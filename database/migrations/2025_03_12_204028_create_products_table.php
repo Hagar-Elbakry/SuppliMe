@@ -20,7 +20,8 @@ return new class extends Migration
             $table->float('weight');
             $table->integer('stock_quantity');
             $table->text('description');
-            $table->foreignIdFor(Category::class);
+            $table->foreignIdFor(Category::class)->constrained()
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
