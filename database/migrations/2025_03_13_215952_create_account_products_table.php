@@ -1,11 +1,10 @@
 <?php
 
 use App\Models\Account;
-use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -14,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wish_lists', function (Blueprint $table) {
+        Schema::create('account_products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Account::class)->constrained()
                 ->onDelete('cascade');
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wish_lists');
+        Schema::dropIfExists('account_products');
     }
 };

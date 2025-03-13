@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WishList extends Model
+class AccountProduct extends Model
 {
     //
 }
