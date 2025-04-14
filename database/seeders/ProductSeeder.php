@@ -133,5 +133,65 @@ class ProductSeeder extends Seeder
             'category_id' => 2,
         ]);
 
+        Product::create([
+            'name' => 'Apple Juice',
+            'image' => './images/products/applejuice.png',
+            'price' => 20,
+            'weight' => 10,
+            'stock_quantity' => 20,
+            'description' => 'A sweet, refreshing juice made from pressed apples, available in clear (filtered) or cloudy (unfiltered) varieties. Naturally high in sugars and vitamin C, with a balanced sweet-tart flavor profile. Commonly consumed as a beverage, used in cooking, or as a mixer in cocktails.',
+            'category_id' => 3,
+        ]);
+
+        Product::create([
+            'name' => 'Orange Juice',
+            'image' => './images/products/orangejuicr.png',
+            'price' => 20,
+            'weight' => 10,
+            'stock_quantity' => 20,
+            'description' => 'A tangy, sweet, and vitamin-rich juice extracted from pressed oranges, available in various forms (fresh, concentrated, or fortified). Known for its high vitamin C content and refreshing taste, widely consumed as a breakfast staple or health drink.',
+            'category_id' => 3,
+        ]);
+
+        Product::create([
+            'name' => 'Mango Juice',
+            'image' => './images/products/mangojuice.png',
+            'price' => 20,
+            'weight' => 10,
+            'stock_quantity' => 20,
+            'description' => 'A rich, tropical juice made from pureed or pressed mango pulp, known for its vibrant orange color, creamy texture, and sweet, fruity flavor with subtle tartness. A popular thirst-quencher and immunity booster, high in vitamins A and C.',
+            'category_id' => 3,
+        ]);
+
+
+        Product::create([
+            'name' => 'Pineapple Juice',
+            'image' => './images/products/pineapplejuice.png',
+            'price' => 20,
+            'weight' => 10,
+            'stock_quantity' => 20,
+            'description' => 'A tropical, sweet-tart juice extracted from pressed pineapples, known for its vibrant golden color and refreshing flavor. Naturally contains bromelain (a digestive enzyme) and is rich in vitamin C. Enjoyed as a standalone drink, mixer, or culinary ingredient.',
+            'category_id' => 3,
+        ]);
+
+        Product::create([
+            'name' => 'Diet Cola',
+            'image' => './images/products/dietcola.png',
+            'price' => 20,
+            'weight' => 10,
+            'stock_quantity' => 20,
+            'description' => 'A sugar-free, low-calorie carbonated cola beverage that mimics the classic cola flavor using artificial sweeteners. Designed for calorie-conscious consumers and diabetics, offering the same fizzy satisfaction as regular cola without sugar.',
+            'category_id' => 3,
+        ]);
+
+        Product::create([
+            'name' => 'Cocktail Juice',
+            'image' => './images/products/cocktailjuice.png',
+            'price' => 20,
+            'weight' => 10,
+            'stock_quantity' => 20,
+            'description' => 'A vibrant blend of multiple fruit juices (typically tropical or citrus-based) designed specifically for cocktail mixing or standalone consumption. Offers balanced sweetness and acidity to complement spirits while delivering authentic fruit flavors.',
+            'category_id' => 3,
+        ]);
     }
 }
