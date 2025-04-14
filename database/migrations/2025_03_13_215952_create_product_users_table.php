@@ -2,6 +2,7 @@
 
 use App\Models\Account;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,9 +14,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('account_products', function (Blueprint $table) {
+        Schema::create('product_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Account::class)->constrained()
+            $table->foreignIdFor(User::class)->constrained()
                 ->onDelete('cascade');
             $table->foreignIdFor(Product::class)->constrained()
                 ->onDelete('cascade');

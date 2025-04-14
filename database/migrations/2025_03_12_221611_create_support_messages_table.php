@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Account;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -15,7 +16,8 @@ return new class extends Migration
         Schema::create('support_messages', function (Blueprint $table) {
             $table->id();
             $table->text('message');
-            $table->foreignIdFor(Account::class)->nullable()->constrained()->onDelete('set null');
+            $table->boolean('read')->default(false);
+            $table->foreignIdFor(User::class)->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

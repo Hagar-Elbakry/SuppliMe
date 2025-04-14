@@ -2,6 +2,7 @@
 
 use App\Models\Account;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -16,7 +17,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->enum('rate',['1','2','3','4','5']);
-            $table->foreignIdFor(Account::class)->nullable()->constrained()->onDelete('set null');
+            $table->foreignIdFor(User::class)->nullable()->constrained()->onDelete('set null');
             $table->foreignIdFor(Product::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
