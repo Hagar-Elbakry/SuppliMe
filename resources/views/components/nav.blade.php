@@ -71,11 +71,11 @@
 
             <div class="collapse position-absolute  z-3" id="menu" style="top: 60px; left: 0; width: 250px;">
                 <div class="card card-body border-0 rounded-2">
-                  <x-mobile-nav-link href="">My Orders</x-mobile-nav-link>
+                    <x-mobile-nav-link href="">My Orders</x-mobile-nav-link>
                     <x-mobile-nav-link href="">Profile</x-mobile-nav-link>
                     <x-mobile-nav-link href="">Log Out</x-mobile-nav-link>
-                    <x-mobile-nav-link href="">Notifications</x-mobile-nav-link>
-                    <x-mobile-nav-link href="">Shopping Cart</x-mobile-nav-link>
+                    <x-mobile-nav-link href="/notifications">Notifications</x-mobile-nav-link>
+                    <x-mobile-nav-link href="/cart">Shopping Cart</x-mobile-nav-link>
                     <x-mobile-nav-link href="">Favorites</x-mobile-nav-link>
                     <x-mobile-nav-link href="">Delivery</x-mobile-nav-link>
                 </div>

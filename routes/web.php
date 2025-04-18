@@ -8,9 +8,6 @@ use App\Http\Controllers\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/',[HomeController::class,'index'])->name('home');
-Route::view('/about','about');
-Route::view('/notifications','notifications');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/{user:name}',[ProfileController::class,'show'])->name('profile.show');
@@ -22,6 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/{product}',[CartController::class,'store'])->name('cart.store');
     Route::delete('/cart',[CartController::class,'destroyAll'])->name('cart.destroyAll');
     Route::delete('/cart/{product}',[CartController::class,'destroy'])->name('cart.destroy');
+    Route::view('/notifications','notifications');
+
 });
 
 Route::middleware('guest')->group(function () {
@@ -29,6 +28,10 @@ Route::middleware('guest')->group(function () {
     Route::post('/register',[RegisteredUserController::class,'store'])->name('register.store');
     Route::get('/login',[AuthenticatedSessionController::class,'create'])->name('login');
     Route::post('/login',[AuthenticatedSessionController::class,'store'])->name('login.store');
+    Route::get('/',[HomeController::class,'index'])->name('home');
+    Route::view('/about','about');
+
+
 });
 
 

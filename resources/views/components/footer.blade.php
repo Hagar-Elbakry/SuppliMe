@@ -8,8 +8,7 @@
                     <h2 class="text-light fw-bold">Supplime.</h2>
                 </div>
                 <p class="mt-4 text-light">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Voluptatibus corrupti consequuntur fugiat tempory.
+                    SuppliMe is your trusted online supermarket for fast, easy, and reliable shopping.
                 </p>
                 <div class="social-icons d-flex gap-3 mt-5">
                     <a href="#" class="rounded-circle text-light"><i class="fab fa-facebook-f"></i></a>
@@ -51,7 +50,7 @@
         <div class="row border-top py-4 mt-3">
             <div class="col-12">
                 <p class="text-light fw-medium mb-0">
-                    CopyRight 2025 <span class="text-warning">Grocery Website Design.</span> All Rights Reserved
+                    ©2025 <span class="text-warning">SuppliMe. </span>All rights reserved. | Designed with care to make your shopping easier.
                 </p>
             </div>
         </div>

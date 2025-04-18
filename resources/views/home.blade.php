@@ -6,10 +6,10 @@
                 Your One-Stop Shop For <span>Quality Groceries</span>
             </h1>
             <p class="text-black-50 mt-4 mb-5 text-center text-md-start">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio sed,
-                mollitia quia debitis eligendi nobis vel corrupti modi tenetur
-                adipisci a laudantium molestias labore fuga quis incidunt doloremque
-                fugiat beatae.
+                Welcome to SuppliMe!
+                Your one-stop online supermarket for all your daily needs.
+                At SuppliMe, we bring you a seamless shopping experience with top-quality products, unbeatable daily offers, and fast delivery right to your doorstep.
+                Whether you’re stocking up the kitchen or grabbing last-minute essentials — we’ve got you covered.
             </p>
             <div
                 class="buttons d-flex align-items-center justify-content-center justify-content-md-start"
