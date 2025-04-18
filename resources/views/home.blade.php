@@ -1,42 +1,5 @@
 <x-head>
     <x-nav/>
-    <div
-        class="sidebar d-block d-sm-flex justify-content-between align-items-center px-5 pt-3 pb-0"
-    >
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="cat d-flex justify-content-center align-items-center">
-                <a href="" class="text-decoration-none text-dark"
-                ><i class="fas fa-bars px-2 icon"></i>
-                </a>
-                <p class="fw-bold fs-6 text-nowrap">All Categories</p>
-            </div>
-            <div class="links">
-                <ul
-                    class="list-unstyled d-flex justify-content-center align-items-center gap-4"
-                >
-                    <x-link href="/" :active="request()->is('/')">Home</x-link>
-                    <x-link href="/about">About</x-link>
-                    <x-link href="/shop">Shop</x-link>
-                    <x-link href="/contact">Contact Us</x-link>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="allcat position-absolute">
-        <div class="container">
-            <ul class="category list-unstyled fs-4">
-                <x-category-link href="">Fruits</x-category-link>
-                <x-category-link href="">Vegetables</x-category-link>
-                <x-category-link href="">Drinks</x-category-link>
-                <x-category-link href="">Dry Fruit</x-category-link>
-                <x-category-link href="">Oil</x-category-link>
-                <x-category-link href="">Bakery Items</x-category-link>
-                <x-category-link href="">Milk Shake</x-category-link>
-                <x-category-link href="">Detergents</x-category-link>
-                <x-category-link href="">Milk & Eggs</x-category-link>
-            </ul>
-        </div>
-    </div>
     <div class="landing d-flex justify-content-between align-items-center p-5">
         <div class="disc col-lg-6 col-md-6">
             <h1 class="text-center text-md-start">
