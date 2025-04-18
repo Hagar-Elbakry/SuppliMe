@@ -1,7 +1,7 @@
 <div class="nav">
     <div class="container d-flex justify-content-between align-items-center">
         <div class="logos text-center px-3 d-flex align-items-center">
-            <a href="" class="text-decoration-none text-light">
+            <a href="/" class="text-decoration-none text-light">
                 <h2 class="fw-bold">Supplime</h2>
                 <p class="cust-p text-uppercase">Supermarket</p>
             </a>
@@ -83,7 +83,7 @@
 
         </div>
         <div class="f-logo rounded-pill">
-            <a href="" class="text-decoration-none text-light fw-bold fs-3 p-4">Supplime</a>
+            <a href="/" class="text-decoration-none text-light fw-bold fs-3 p-4">Supplime</a>
         </div>
         <div class="f-searche">
             <i class="fa-solid fa-magnifying-glass fs-5 f-search-icon"></i>

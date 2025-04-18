@@ -8,7 +8,7 @@
         </p>
         <a
             class="btn rounded-3 text-light main-btn p-1 mt-4"
-            href="./item.html"
+            href="/shop"
             target="_blank"
         >
             Shop Now

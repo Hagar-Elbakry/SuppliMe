@@ -53,13 +53,13 @@
             >
                 <a
                     class="btn rounded-3 text-light main-btn mt-3"
-                    href="./item.html"
+                    href="/shop"
                     target="_blank"
                 >
                     Shop Now
                 </a>
                 <a
-                    href=""
+                    href="/shop"
                     class="text-dark p-1 text-decoration-none mt-3 p-1 border-bottom border-black"
                 >View All Products</a
                 >

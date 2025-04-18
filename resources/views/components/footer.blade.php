@@ -26,8 +26,8 @@
                     <div class="col-md-4 mb-4">
                         <h5 class="text-light">Company</h5>
                         <div class="d-flex flex-column gap-3 mt-4">
-                            <a href="#" class="text-decoration-none text-white-50">About Us</a>
-                            <a href="#" class="text-decoration-none text-white-50">Contact Us</a>
+                            <a href="/about" class="text-decoration-none text-white-50">About Us</a>
+                            <a href="/contact" class="text-decoration-none text-white-50">Contact Us</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
