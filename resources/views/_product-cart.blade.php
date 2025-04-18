@@ -1,3 +1,6 @@
+@php
+    use illuminate\Support\Str ;
+@endphp
 <div class="product rounded-4 p-4 col-lg-4 col-md-4 col-sm-6">
     <div
         class="image d-flex justify-content-center align-items-start position-relative"
@@ -5,9 +8,11 @@
         <div
             class="fav d-flex justify-content-between align-items-start gap-2 w-100 position-absolute"
         >
-            <p class="rounded-5 rounded-start py-1 px-3 text-light">
-                20% off
-            </p>
+            @if($product->activeDiscount())
+                <p class="rounded-5 rounded-start py-1 px-3 text-light">
+                    {{ intval($product->activeDiscount()->discount_percentage) }}% off
+                </p>
+            @endif
             <a href="" class="text-decoration-none text-dark"
             ><i
                     class="bi bi-heart fs-5 p-2 d-flex justify-content-center align-items-center"
@@ -15,9 +20,9 @@
             </a>
         </div>
         <img
-            src="/assets/imgs/erasebg-transformed(1) 1.png"
+            src={{ $product->image }}
             class="img-fluid"
-            alt=""
+            alt={{ $product->name }}
         />
     </div>
     <div
@@ -27,7 +32,7 @@
             <div
                 class="name d-flex justify-content-between align-items-start"
             >
-                <p>Fruit</p>
+                <p>{{ $product->name }}</p>
                 <div
                     class="rate d-flex justify-content-between align-items-start gap-1"
                 >
@@ -35,16 +40,20 @@
                     <p class="">4.8</p>
                 </div>
             </div>
-            <h6 class="cust-h">Fresh Strawberry</h6>
+            <h6 class="cust-h">{{ Str::limit($product->description) }}</h6>
         </div>
         <div class="price">
-            <p class="mb-0 text-black-50">400g</p>
+            <p class="mb-0 text-black-50">{{ $product->weight }}g</p>
             <div
                 class="add d-flex justify-content-between align-items-start gap-2"
             >
-                <p class="text-nowrap">
-                    $8.00 <del class="text-black-50 ms-2">$10.00</del>
-                </p>
+                @if($product->activeDiscount())
+                    <p class="text-nowrap">
+                        ${{ $product->getDiscountedPrice() }} <del class="text-black-50 ms-2">${{ $product->price }}</del>
+                    </p>
+                @else
+                    <p class="text-nowrap">${{ $product->price }}</p>
+                @endif
                 <a
                     href=""
                     class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2"

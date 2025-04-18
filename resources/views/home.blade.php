@@ -86,17 +86,21 @@
             </div>
         </div>
         <div class="items p-3 d-flex flex-row overflow-x-hidden text-nowrap">
-            {{--start loop--}}
+            @foreach($categories as $category)
             @include('_category')
-            {{--end loop--}}
+            @endforeach
+            
         </div>
     </div>
     <div
         class="offer px-5 pt-5 d-flex justify-content-between align-items-center gap-3"
     >
-
-        <x-discount color="fre-veg" discount="Flat 20% Discount" category="Purely Fresh Vegetables" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-            quaerat illum at totam impedit nemo." img="/assets/imgs/erasebg-transformed 1.png"/>
+        @foreach ($categories as $category)
+            @if($category->activeDiscount())
+            <x-discount :color="$category->color"  :discount="$category->activeDiscount()->discount_percentage"  :category="$category->name"  :description="$category->description"  :img="$category->image"/>
+            @endif
+        @endforeach
+        
     </div>
     <div class="featured">
         <div class="container mt-5">
@@ -122,9 +126,10 @@
             <div
                 class="row pb-5 mt-4 d-flex flex-nowrap justify-content-between align-items-center gap-5 overflow-x-hidden"
             >
-                {{--start loop--}}
-                @include('_product-cart')
-                {{--end loop--}}
+                @foreach ($featuredProducts as $product)
+                    @include('_product-cart')
+                @endforeach
+                
             </div>
         </div>
     </div>
@@ -140,9 +145,10 @@
             <div
                 class="products mt-4 d-flex justify-content-between align-items-center gap-4"
             >
-                {{--start loop--}}
-                @include('_deals')
-                {{--end loop--}}
+                @foreach ($dailyOffers as $product)
+                    @include('_deals')
+                @endforeach
+                
             </div>
         </div>
     </div>
@@ -170,9 +176,10 @@
             <div
                 class="row pb-5 mt-4 d-flex flex-nowrap justify-content-between align-items-center gap-5 overflow-x-hidden"
             >
-                {{--start loop--}}
-                @include('_product-cart')
-                {{--end loop--}}
+                @foreach ($bestSellers as $product)
+                    @include('_product-cart')
+                @endforeach
+                
             </div>
         </div>
     </div>

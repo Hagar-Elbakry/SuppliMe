@@ -7,7 +7,7 @@
 ])
 <div class="{{$color}} d-flex p-4 rounded-4 align-items-center">
     <div class="disc">
-        <p class="of rounded-pill p-1 text-center mb-4">{{$discount}}</p>
+        <p class="of rounded-pill p-1 text-center mb-4">Flat {{$discount}}% Discount</p>
         <h4>{{$category}}</h4>
         <p class="text-black-50 lh-sm">
             {{$description}}

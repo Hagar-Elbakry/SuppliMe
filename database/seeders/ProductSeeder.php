@@ -21,6 +21,7 @@ class ProductSeeder extends Seeder
             'stock_quantity' => 5,
             'description' => 'A large, juicy fruit with a green rind and sweet red (or yellow) flesh, rich in hydration, vitamins A & C, and antioxidants. Typically consumed fresh, in salads, or as juice.',
             'category_id' => 1,
+            'is_featured' => true
         ]);
 
         Product::create([
@@ -41,6 +42,7 @@ class ProductSeeder extends Seeder
             'stock_quantity' => 20,
             'description' => 'A tropical fruit with green or yellow skin and pink/white flesh, known for its sweet-tart flavor and aromatic fragrance. High in vitamin C, fiber, and antioxidants. Consumed fresh, juiced, or in jams and desserts.',
             'category_id' => 1,
+            'is_featured' => true
         ]);
 
         Product::create([
@@ -51,6 +53,7 @@ class ProductSeeder extends Seeder
             'stock_quantity' => 30,
             'description' => 'A small, oval fruit with fuzzy brown skin and vibrant green (or golden) flesh, dotted with tiny black seeds. Sweet-tart flavor with high vitamin C, fiber, and antioxidants. Eaten fresh, in salads, smoothies, or as garnish.',
             'category_id' => 1,
+            'is_featured' => true
         ]);
 
         Product::create([
@@ -71,6 +74,7 @@ class ProductSeeder extends Seeder
             'stock_quantity' => 30,
             'description' => 'A round, thick-skinned fruit with a vibrant red exterior containing hundreds of juicy arils (seed sacs). Known for its sweet-tart flavor and exceptional antioxidant properties. High in vitamin C, K, and fiber. Commonly consumed fresh, juiced, or as a garnish.',
             'category_id' => 1,
+            'is_featured' => true
         ]);
 
         Product::create([
@@ -101,6 +105,7 @@ class ProductSeeder extends Seeder
             'stock_quantity' => 5,
             'description' => 'A glossy, purple-skinned vegetable (botanically a berry) with spongy, cream-colored flesh. Mild, slightly bitter flavor that becomes rich and creamy when cooked. Used in global cuisines (e.g., baba ganoush, ratatouille, stir-fries). High in fiber, antioxidants (nasunin), and low in calories.',
             'category_id' => 2,
+            'is_featured' => true
         ]);
 
         Product::create([
@@ -145,7 +150,7 @@ class ProductSeeder extends Seeder
 
         Product::create([
             'name' => 'Orange Juice',
-            'image' => './images/products/orangejuicr.png',
+            'image' => './images/products/orangejuice.png',
             'price' => 20,
             'weight' => 10,
             'stock_quantity' => 20,
@@ -161,6 +166,7 @@ class ProductSeeder extends Seeder
             'stock_quantity' => 20,
             'description' => 'A rich, tropical juice made from pureed or pressed mango pulp, known for its vibrant orange color, creamy texture, and sweet, fruity flavor with subtle tartness. A popular thirst-quencher and immunity booster, high in vitamins A and C.',
             'category_id' => 3,
+            'is_featured' => true
         ]);
 
 
@@ -182,6 +188,7 @@ class ProductSeeder extends Seeder
             'stock_quantity' => 20,
             'description' => 'A sugar-free, low-calorie carbonated cola beverage that mimics the classic cola flavor using artificial sweeteners. Designed for calorie-conscious consumers and diabetics, offering the same fizzy satisfaction as regular cola without sugar.',
             'category_id' => 3,
+            'is_featured' => true
         ]);
 
         Product::create([
