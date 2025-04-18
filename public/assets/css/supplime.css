@@ -1,0 +1,46 @@
+:root {
+    --main-color: #1b8057;
+    --smain-color: #30a274;
+    --sec-color: #f8c519;
+}
+.navbar {
+     background-color: var(--main-color);
+     padding: 10px 0;
+     height: 130px;
+ }
+ .navbar .navbar-brand {
+    background: var(--sec-color);
+    height: 130px;
+ }
+ .navbar .navbar-brand p {
+    margin-top: -12px;
+ }
+ .navbar .input-group {
+    bottom: -25px;
+    left: 30%;
+    width: 50%;
+    max-width: 500px;
+ }
+ .navbar .input-group i {
+    color: var(--main-color) ;
+ }
+ .navbar .input-group .button-success {
+    background-color: var(--smain-color);
+    height: 100%;
+ }
+ .navbar .links {
+    top: 0;
+    right: 12px;
+ }
+ .navbar .icons {
+    right: 100px;
+    bottom: -8px;
+ }
+ .navbar .fa-shopping-cart {
+    background-color: var(--sec-color);
+ }
+ /* .btn-custom {
+     background-color: var(--sec-color);
+     color: black;
+     font-weight: bold;
+ } */

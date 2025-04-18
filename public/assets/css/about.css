@@ -1,0 +1,35 @@
+:root {
+  --main-color: #1b8057;
+  --sec-color: #f8c519;
+  --childmain-color: #30a274;
+  --section-color: #f4f4f4;
+  --list-color: #e9e9e9;
+  --t-margin : 100px;
+}
+.main-title {
+  background-color: var(--section-color);
+  height: 20vh;
+}
+span {
+     color: var(--main-color);
+}
+.about {
+  margin-top: var(--t-margin);
+  margin-bottom: var(--t-margin);
+}
+.about h2 {
+  max-width: 55%;
+}
+@media (max-width: 992px) {
+     .about h2 {
+          max-width: 100%;
+        }
+   }
+.about i {
+  background-color: var(--sec-color);
+  height: 30px;
+  border-radius: 50%;
+}
+.about-disc > a:last-of-type {
+  font-family: "Great Vibes", sans-serif;
+}

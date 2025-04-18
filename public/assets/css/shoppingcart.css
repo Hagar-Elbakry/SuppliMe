@@ -1,0 +1,29 @@
+:root {
+  --main-color: #1b8057;
+  --sec-color: #f8c519;
+  --childmain-color: #30a274;
+  --section-color: #f4f4f4;
+  --list-color: #e9e9e9;
+  --t-margin: 100px;
+}
+.shopcart {
+  margin-top: var(--t-margin);
+  margin-bottom: var(--t-margin);
+}
+.shopcart .product-head {
+  background-color: var(--sec-color);
+}
+.shopcart .infos {
+  gap: 80px;
+}
+.shopcart .item .iname > p:last-child {
+  margin-top: -15px;
+}
+.products .clear a {
+  color: var(--main-color);
+  /* border-color: var(--main-color); */
+  border-bottom: 1px solid var(--main-color);
+}
+.summary .check a {
+  background-color: var(--main-color);
+}
