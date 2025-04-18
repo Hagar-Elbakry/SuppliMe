@@ -94,9 +94,9 @@
     <div
         class="offer px-5 pt-5 d-flex justify-content-between align-items-center gap-3"
     >
-        {{--start loop--}}
-        @include('_discount')
-        {{--end loop--}}
+
+        <x-discount color="fre-veg" discount="Flat 20% Discount" category="Purely Fresh Vegetables" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+            quaerat illum at totam impedit nemo." img="/assets/imgs/erasebg-transformed 1.png"/>
     </div>
     <div class="featured">
         <div class="container mt-5">

@@ -3,12 +3,7 @@
 <x-nav/>
 <div class="main-title text-center pt-5">
     <h1>About Us</h1>
-    <p>
-        <a href="/" class="text-decoration-none text-dark"
-        >Home /
-        </a>
-        <a href="/about" class="text-decoration-none text-dark">About Us</a>
-    </p>
+    <x-header href="/about">About Us</x-header>
 </div>
 <div class="about">
     <div class="container">

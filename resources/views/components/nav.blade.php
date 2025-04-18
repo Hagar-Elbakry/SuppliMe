@@ -44,7 +44,7 @@
                 class="icons d-flex justify-content-between align-items-center gap-3"
             >
                 <a
-                    href=""
+                    href="/cart"
                     class="bg-warning text-light cart text-decoration-none rounded-circle p-2"
                 ><i class="fa-solid fa-cart-shopping fs-3"></i
                     ></a>
