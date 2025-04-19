@@ -25,37 +25,37 @@
                 <div class="deatails col-12 col-md-auto col-lg-12">
                     <h4 class="mb-4">Select Payment Method</h4>
 
-                    <x-payment-field>
-                        <x-payment-input type="radio" name="paymentMethod" id="visaOption" checked/>
-                        <x-payment-label for="visaOption">
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
-                                alt="Visa"
-                                height="20"
-                            />
-                        </x-payment-label>
-                    </x-payment-field>
-
-                    <x-payment-field>
-                        <x-payment-input type="radio" name="paymentMethod" id="codOption"/>
-                        <i class="fa-solid fa-credit-card fs-5 credit me-1"></i>
-                        <x-payment-label for="codOption">
-                            Cash on Delivery
-                        </x-payment-label>
-                    </x-payment-field>
-
-                </div>
-                <div class="check text-center rounded-pill p-3">
                     <form action="/payment/create" method="post">
                         @csrf
-                        <button
-                            type="submit"
-                            class="text-dark text-decoration-none px-5 py-2 rounded-pill"
-                        >Payment
-                        </button
-                        >
-                    </form>
+                        <x-payment-field>
+                            <x-payment-input type="radio" name="payment_method" value="visa" id="visa"/>
+                            <x-payment-label for="visa">
+                                <img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+                                    alt="Visa"
+                                    height="20"
+                                />
+                            </x-payment-label>
+                        </x-payment-field>
 
+                        <x-payment-field>
+                            <x-payment-input type="radio" name="payment_method" value="cash" id="cash"/>
+                            <i class="fa-solid fa-credit-card fs-5 credit me-1"></i>
+                            <x-payment-label for="cash">
+                                Cash on Delivery
+                            </x-payment-label>
+                        </x-payment-field>
+
+                        <div class="check text-center rounded-pill p-3">
+
+                            <button
+                                type="submit"
+                                class="text-dark text-decoration-none px-5 py-2 rounded-pill"
+                            >Payment
+                            </button
+                            >
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
