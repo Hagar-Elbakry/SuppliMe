@@ -15,7 +15,9 @@ class CartController extends Controller
         //! test with any user untile doing authentication
         if (!Auth::check()) {
             $user = User::find(2);
-            Auth::login($user);
+            if ($user instanceof User) {
+                Auth::login($user);
+            }
         }
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
         $products = $cart->products()->withPivot('quantity')->get();
@@ -25,7 +27,9 @@ class CartController extends Controller
     public function store(Request $request , $product_id) {
         if (!Auth::check()) {
             $user = User::find(2);
-            Auth::login($user);
+            if ($user instanceof User) {
+                Auth::login($user);
+            }
         }
         $user = Auth::user();
         $cart = Cart::firstOrCreate(['user_id' => $user->id]);
@@ -43,8 +47,10 @@ class CartController extends Controller
     public function updateQuantity($product_id, $action)
     {
         if (!Auth::check()) {
-            $user = User::find(2); 
-            Auth::login($user);
+            $user = User::find(2);
+            if ($user instanceof User) {
+                Auth::login($user);
+            }
         }
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
         $cartProduct = $cart->products()->where('product_id', $product_id)->first();
@@ -63,8 +69,10 @@ class CartController extends Controller
 
     public function destroy($id) {
         if (!Auth::check()) {
-            $user = User::find(2); 
-            Auth::login($user);
+            $user = User::find(2);
+            if ($user instanceof User) {
+                Auth::login($user);
+            }
         }
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
         $cartProduct = $cart->products()->where('product_id', $id)->first();
@@ -76,8 +84,10 @@ class CartController extends Controller
     }
     public function destroyAll() {
         if (!Auth::check()) {
-            $user = User::find(2); 
-            Auth::login($user);
+            $user = User::find(2);
+            if ($user instanceof User) {
+                Auth::login($user);
+            }
         }
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
         $cart->products()->detach();

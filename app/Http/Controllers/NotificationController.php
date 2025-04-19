@@ -12,7 +12,9 @@ class NotificationController extends Controller
         //!  the comments of the following lines to simulate a logged-in user until we make authentication work
         if (!Auth::check()) {
             $user = User::find(2);
-            Auth::login($user);
+            if ($user instanceof User) {
+                Auth::login($user);
+            }
         }
         $notifications = Auth::user()->notifications->sortByDesc('created_at');
         return view('notifications',compact('notifications'));

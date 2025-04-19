@@ -13,7 +13,7 @@
             <h4 class="alert-heading">Your Cart is Empty!</h4>
             <p>Looks like you haven't added any items to your cart yet.</p>
             <a href="{{ route('home') }}" class="btn mt-2"
-               style="background-color: #ffc107; color: #000; border: 1px solid #ffc107;">
+                style="background-color: #ffc107; color: #000; border: 1px solid #ffc107;">
                 Start Shopping
             </a>
         </div>
