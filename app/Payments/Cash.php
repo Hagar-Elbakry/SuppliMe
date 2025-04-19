@@ -6,6 +6,6 @@ use App\interfaces\PaymentMethod;
 
 class Cash implements PaymentMethod {
     public function pay() {
-        return true;
+        return 'cash';
     }
 }
