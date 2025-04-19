@@ -54,12 +54,12 @@
                 @else
                     <p class="text-nowrap">${{ $product->price }}</p>
                 @endif
-                <a
-                    href=""
-                    class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2"
-                >
-                    <i class="bi bi-bag fs-6"></i>add</a
-                >
+                <form action="{{ route('cart.store', $product->id) }}" method="POST" class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
+                    @csrf
+                    <button type="submit" class="btn btn-sm" style="background-color: #b2f2bb; color: #155724;">
+                        <i class="bi bi-bag fs-6"></i> Add
+                    </button>
+                </form>
             </div>
         </div>
     </div>

@@ -7,63 +7,93 @@
     <h1>shopping Cart</h1>
     <x-header href="/cart">Shopping Cart</x-header>
 </div>
-<div class="shopcart">
-    <div
-        class="container"
-    >
-        <div class="row align-items-start">
-            <div class="products col-12 col-md-12 col-lg-8">
-                <div
-                    class="product-head px-5 pt-3 mb-3 d-flex justify-content-between align-items-center gap-5 rounded-3"
-                >
-                    <p>Products</p>
+@if ($products->isEmpty())
+    <!-- Empty Cart State (hidden by default, show when cart is empty) -->
+    <div class="alert alert-success text-center" role="alert" id="empty-cart">
+        <h4 class="alert-heading">Your Cart is Empty!</h4>
+        <p>Looks like you haven't added any items to your cart yet.</p>
+        <a href="{{ route('home') }}" class="btn mt-2" style="background-color: #ffc107; color: #000; border: 1px solid #ffc107;">
+            Start Shopping
+        </a>
+    </div>
+@else
+    <div class="shopcart">
+        <div
+            class="container"
+        >
+            <div class="row align-items-start">
+                <div class="products col-12 col-md-12 col-lg-8">
                     <div
-                        class="infos d-flex justify-content-between align-items-center"
+                        class="product-head px-5 pt-3 mb-3 d-flex justify-content-between align-items-center gap-5 rounded-3"
                     >
-                        <p>Price</p>
-                        <p>Quantity</p>
-                        <p>Subtotal</p>
+                        <p>Products</p>
+                        <div
+                            class="infos d-flex justify-content-between align-items-center"
+                        >
+                            <p>Price</p>
+                            <p>Quantity</p>
+                            <p>Subtotal</p>
+                        </div>
                     </div>
-                </div>
-{{--start loop--}}
-               @include('_cart-product')
-{{--end loop--}}
+                    {{-- intialize the variables --}}
+                    @php
+                        $totalItems = 0;
+                        $subTotal = 0;
+                    @endphp
+                    {{-- loop through the products --}}
+                @foreach($products as $product)
+                    @php
+                        $totalItems += $product->pivot->quantity;
+                        if($product->activeDiscount()){
+                            $product->price = $product->getDiscountedPrice();
+                        }
+                        $subTotal += $product->pivot->quantity * $product->price;
+                    @endphp 
+                    @include('_cart-product')
+                @endforeach
+
                 <div class="clear d-flex justify-content-end align-items-center py-4">
-                    <a href="" class="text-decoration-none fw-medium pb-2"
-                    >Clear Shopping Cart</a
-                    >
+                    <form action="{{ route('cart.destroyAll') }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="fw-medium text-decoration-none rounded-3 border border-secondary-subtle px-4 py-2">
+                            Clear Shopping Cart
+                        </button>
+                    </form>
                 </div>
-            </div>
-            <div class="summary col-12 col-md-12 col-lg-4 rounded-4 border border-black px-0">
-                <p class="fw-medium  border-bottom border-black py-3 px-3">Order Summary</p>
+                </div>
+                <div class="summary col-12 col-md-12 col-lg-4 rounded-4 border border-black px-0">
+                    <p class="fw-medium  border-bottom border-black py-3 px-3">Order Summary</p>
 
-                <div class="checkout">
-                    <ul class="list-unstyled">
-                        <li class="d-flex justify-content-between align-items-center gap-3 px-3">
-                            <p class="text-black-50">Items</p>
-                            <p>5</p>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center gap-3 px-3 ">
-                            <p class="text-black-50">Sub Total</p>
-                            <p>$85.40</p>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center gap-3 px-3">
-                            <p class="text-black-50">Shipping</p>
-                            <p>$00.00</p>
-                        </li>
+                    <div class="checkout">
+                        <ul class="list-unstyled">
+                            <li class="d-flex justify-content-between align-items-center gap-3 px-3">
+                                <p class="text-black-50">Items</p>
+                                <p>{{ $totalItems }}</p>
+                            </li>
+                            <li class="d-flex justify-content-between align-items-center gap-3 px-3 ">
+                                <p class="text-black-50">Sub Total</p>
+                                <p>${{ $subTotal }}</p>
+                            </li>
+                            {{-- <li class="d-flex justify-content-between align-items-center gap-3 px-3">
+                                <p class="text-black-50">Shipping</p>
+                                <p>$20.00</p>
+                            </li>
 
-                        <li class="mt-5 d-flex justify-content-between align-items-center gap-3 px-3">
-                            <p class="text-black-50">Total</p>
-                            <p>$85.40</p>
-                        </li>
-                    </ul>
-                    <div class="check text-center rounded-pill p-3">
-                        <a href="" class=" text-light text-decoration-none px-5 py-2 rounded-pill">Proceed to Checkout</a>
+                            <li class="mt-5 d-flex justify-content-between align-items-center gap-3 px-3">
+                                <p class="text-black-50">Total</p>
+                                <p>${{ $subTotal + 20 }}</p>
+                            </li> --}}
+                        </ul>
+                        <div class="check text-center rounded-pill p-3">
+                            <a href="" class=" text-light text-decoration-none px-5 py-2 rounded-pill">Proceed to Checkout</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endif
+
 <x-footer/>
 </x-head>

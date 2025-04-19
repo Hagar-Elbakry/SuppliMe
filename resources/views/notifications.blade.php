@@ -6,8 +6,9 @@
     <h1>Notifications</h1>
     <x-header href="/notifications">Notifications</x-header>
 </div>
-{{--start loop--}}
-    @include('_notification')
-{{--end loop--}}
+    @foreach ($notifications as $notification)
+        @include('_notification')
+    @endforeach
+
 <x-footer/>
 </x-head>
