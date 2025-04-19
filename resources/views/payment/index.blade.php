@@ -27,6 +27,7 @@
 
                     <form action="/payment/create" method="post">
                         @csrf
+                        <input type="hidden" name="order_id" value="{{$order->id}}"/>
                         <x-payment-field>
                             <x-payment-input type="radio" name="payment_method" value="visa" id="visa"/>
                             <x-payment-label for="visa">

@@ -15,7 +15,9 @@ class PaymentController extends Controller
 
     public function store() {
         $paymentMethod = PaymentFactory::createPayment(request('payment_method'));
-        $amount =
+        $totalPrice = Order::findOrFail(request('order_id'))->total_price;
+        $shippingCost = Order::findOrFail(request('order_id'))->shipping_cost;
+        $amount = $totalPrice + $shippingCost;
 
         request()->user()->notify(new PaymentReceived($amount, $paymentMethod));
     }
