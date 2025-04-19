@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             ProductSeeder::class,
             SupportMessageSeeder::class,
-            DiscountSeeder::class
+            DiscountSeeder::class,
+            NotificationSeeder::class
         ]);
     }
 }
