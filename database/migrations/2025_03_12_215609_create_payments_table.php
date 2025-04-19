@@ -17,7 +17,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->enum('method', ['cash', 'credit card']);
+            $table->enum('method', ['cash', 'Visa']);
             $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
             $table->decimal('amount');
             $table->foreignIdFor(Order::class)->nullable()->constrained()

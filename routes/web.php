@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Models\Notification;
@@ -16,6 +18,9 @@ use Illuminate\Support\Facades\Route;
     Route::delete('/cart/{product}',[CartController::class,'destroy'])->name('cart.destroy');
     Route::get('/notifications',[NotificationController::class,'index'])->name('notifications.index');
     Route::get('/',[HomeController::class,'index'])->name('home');
+    Route::post('/checkout',[CheckoutController::class,'store'])->name('checkout.store');
+    Route::get('/payment',[PaymentController::class,'index'])->name('payment.index');
+    Route::post('/payment/create',[PaymentController::class,'store'])->name('payment.store');
 
 
 Route::middleware('auth')->group(function () {
