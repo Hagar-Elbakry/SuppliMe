@@ -23,6 +23,6 @@ class CheckoutController extends Controller
         $user = Auth::user() ;
         $cart = Cart::with('products')->where('user_id', $user->id)->first();
         $order = $orderService->placeOrder($cart);
-        return redirect('/payment')->with('order', $order);
+        return redirect('/payment/'.$order->id);
     }
 }

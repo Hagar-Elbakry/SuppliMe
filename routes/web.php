@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/notifications',[NotificationController::class,'index'])->name('notifications.index');
     Route::get('/',[HomeController::class,'index'])->name('home');
     Route::post('/checkout',[CheckoutController::class,'store'])->name('checkout.store');
-    Route::get('/payment',[PaymentController::class,'index'])->name('payment.index');
+    Route::get('/payment/{orderId}',[PaymentController::class,'index'])->name('payment.index');
     Route::post('/payment/create',[PaymentController::class,'store'])->name('payment.store');
 
 
