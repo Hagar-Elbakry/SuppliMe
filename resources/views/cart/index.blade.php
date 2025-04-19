@@ -75,7 +75,7 @@
                                 <p class="text-black-50">Sub Total</p>
                                 <p>${{ $subTotal }}</p>
                             </li>
-                            {{-- <li class="d-flex justify-content-between align-items-center gap-3 px-3">
+                            <li class="d-flex justify-content-between align-items-center gap-3 px-3">
                                 <p class="text-black-50">Shipping</p>
                                 <p>$20.00</p>
                             </li>
@@ -83,7 +83,7 @@
                             <li class="mt-5 d-flex justify-content-between align-items-center gap-3 px-3">
                                 <p class="text-black-50">Total</p>
                                 <p>${{ $subTotal + 20 }}</p>
-                            </li> --}}
+                            </li>
                         </ul>
                         <div class="check text-center rounded-pill p-3">
                             <a href="" class=" text-light text-decoration-none px-5 py-2 rounded-pill">Proceed to Checkout</a>
