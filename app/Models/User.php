@@ -50,11 +50,7 @@ class User extends Authenticatable
         return $this->hasMany(SupportMessage::class);
     }
 
-    public function notifications()
-    {
-        return $this->hasMany(Notification::class);
-    }
-
+    
     public function orders()
     {
         return $this->hasMany(Order::class);
