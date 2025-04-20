@@ -4,11 +4,11 @@ use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserNotificationsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisteredUserController;
-use App\Models\Notification;
 use Illuminate\Support\Facades\Route;
 
     Route::get('/cart',[CartController::class,'index'])->name('cart.index');
@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('/checkout',[CheckoutController::class,'store'])->name('checkout.store');
     Route::get('/payment/{orderId}',[PaymentController::class,'index'])->name('payment.index');
     Route::post('/payment/create',[PaymentController::class,'store'])->name('payment.store');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 
 
 Route::middleware('auth')->group(function () {
