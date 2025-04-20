@@ -7,6 +7,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupportMessageController;
 use App\Http\Controllers\UserNotificationsController;
@@ -40,6 +41,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/track-order/{orderId}', [OrderController::class, 'track'])->name('orders.track');
+
+    Route::get('/product/{product}',[ProductController::class,'show'])->name('product.show');
 
     Route::get('/notifications',[UserNotificationsController::class,'show'])->name('notifications.show');
 
