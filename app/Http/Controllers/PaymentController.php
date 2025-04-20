@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Payment;
-use App\Notifications\PaymentReceived;
-use App\Payments\PaymentFactory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Payments\PaymentFactory;
+use App\Notifications\PaymentReceived;
 
 class PaymentController extends Controller
 {
@@ -21,11 +22,15 @@ class PaymentController extends Controller
         $shippingCost = Order::findOrFail(request('order_id'))->shipping_cost;
         $amount = $totalPrice + $shippingCost;
 
+        if($paymentMethod == 'visa'){
+            $transactionId = 'VISA-'.strtoupper(Str::random(10));
+        }
         Payment::create([
             'method' => $paymentMethod,
             'amount' => $amount,
             'order_id' => request('order_id'),
             'user_id' => auth()->id(),
+            'transaction_id' => $transactionId ?? null,
         ]);
         request()->user()->notify(new PaymentReceived($amount, $paymentMethod));
         return redirect('/notifications');
