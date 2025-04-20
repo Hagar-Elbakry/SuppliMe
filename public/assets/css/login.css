@@ -1,0 +1,38 @@
+:root {
+  --main-color: #1b8057;
+  --sec-color: #f8c519;
+  --childmain-color: #30a274;
+  --section-color: #f4f4f4;
+  --list-color: #e9e9e9;
+  --t-margin: 100px;
+}
+.main-form {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: var(--t-margin);
+  width: 40%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+.main-form input {
+  width: 80%;
+}
+.main-form a {
+  color: var(--sec-color);
+}
+.main-form .btn {
+  background-color: var(--main-color);
+  margin-left: 10%;
+  width: 80%;
+}
+@media (max-width: 992px) {
+  .main-form {
+    width: 60%;
+  }
+}
+@media (max-width: 767px) {
+  .main-form {
+    width: 80%;
+  }
+}
