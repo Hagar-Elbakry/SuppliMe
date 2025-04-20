@@ -5,7 +5,11 @@
             <img src="/assets/imgs/Mask group-2.png" class="img-fluid" alt="">
             <p>
                 @if($notification->type == 'App\Notifications\PaymentReceived')
-                    The amount is: {{$notification->data['amount']}}$ has been paid with {{$notification->data['paymentMethod']}} successfully.
+                    @if($notification->data['paymentMethod'] == 'visa')
+                    The amount is: {{$notification->data['amount']}}$ has been paid with visa successfully.
+                        @else
+                        The total amount is {{$notification->data['amount']}}$ and will be paid cash on delivery.
+                    @endif
                 @endif
             </p>
         </div>
