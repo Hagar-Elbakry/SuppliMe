@@ -19,11 +19,13 @@
                 ></i>
             </a>
         </div>
+        <a href="/product/{{$product->id}}">
         <img
             src={{ $product->image }}
             class="img-fluid"
             alt={{ $product->name }}
         />
+        </a>
     </div>
     <div
         class="item-content d-flex justify-content-between gap-3 flex-column"
