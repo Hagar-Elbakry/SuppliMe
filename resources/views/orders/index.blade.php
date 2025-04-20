@@ -9,9 +9,16 @@
 <div class="myorders">
     <div class="container">
         <!-- order -->
-{{--start loop--}}
-        @include('_order-details')
-{{--end loop--}}
+        @forelse ($orders as $order)
+            @include('_order-details')
+        @empty
+            <div class="alert alert-success text-center" role="alert" id="empty-cart">
+                <h4 class="alert-heading">You haven't made any orders Yet !</h4>
+                <p>check it in anthor time.</p>
+                
+            </div>
+        @endforelse
+
     </div>
 </div>
 <x-footer/>
