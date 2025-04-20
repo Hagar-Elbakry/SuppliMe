@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/payment/create',[PaymentController::class,'store'])->name('payment.store');
 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/track-order/{orderId}', [OrderController::class, 'track'])->name('orders.track');
 
     Route::get('/notifications',[UserNotificationsController::class,'show'])->name('notifications.show');
 
