@@ -55,22 +55,21 @@ function handleClick(checkbox) {
     window.open(pages[checkbox.id], "_blank");
   }
 }
-document.querySelectorAll(".stars").forEach((ratingContainer) => {
-  const stars = ratingContainer.querySelectorAll(".bi-star");
-  stars.forEach((star) => {
-    star.addEventListener("click", () => {
-      const rating = star.getAttribute("data-rating");
-      stars.forEach((s, index) => {
-        if (index < rating) {
-          s.classList.add("bi-star-fill");
-          s.classList.remove("bi-star");
-        } else {
-          s.classList.add("bi-star");
-          s.classList.remove("bi-star-fill");
-        }
+document.querySelectorAll('.stars i').forEach(star => {
+  star.addEventListener('click', function() {
+      const rating = this.getAttribute('data-rating');
+      document.getElementById('rating-value').value = rating;
+
+      
+      document.querySelectorAll('.stars i').forEach(s => {
+          s.classList.remove('bi-star-fill');
+          s.classList.add('bi-star');
       });
-      // alert(`Thank you! You rated this ${rating} stars!`);
-    });
+
+      for (let i = 0; i < rating; i++) {
+          document.querySelectorAll('.stars i')[i].classList.remove('bi-star');
+          document.querySelectorAll('.stars i')[i].classList.add('bi-star-fill');
+      }
   });
 });
 

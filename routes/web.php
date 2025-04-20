@@ -9,8 +9,10 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SupportMessageController;
 use App\Http\Controllers\UserNotificationsController;
+use App\Models\Review;
 use App\Models\SupportMessage;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/contact',[SupportMessageController::class,'index'])->name('contact-us.index');
     Route::post('/contact',[SupportMessageController::class,'store'])->name('contact-us.store');
 
+    Route::post('/rate',[ReviewController::class,'store'])->name('review.store');
     Route::post('/logout',[AuthenticatedSessionController::class,'destroy'])->name('logout');
 });
 

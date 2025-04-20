@@ -16,7 +16,9 @@
                 ></i>
             </a>
         </div>
-        <img src={{ asset($product->image) }} alt="" />
+        <a href="/product/{{$product->id}}">
+            <img src={{ asset($product->image) }} alt="" />
+        </a>
     </div>
     <div class="item-disc">
         <p class="fs-5">{{ $product->category->name }}</p>

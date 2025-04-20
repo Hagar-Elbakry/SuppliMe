@@ -90,31 +90,33 @@
                 class="row pb-5 mt-4 d-flex flex-nowrap justify-content-between align-items-center gap-5 overflow-x-hidden"
             >
                 @foreach ($featuredProducts as $product)
-                    @include('_product-cart')
+                    <x-product-cart :product="$product"/>
                 @endforeach
                 
             </div>
         </div>
     </div>
-    <div class="deals">
-        <div class="container">
-            <div class="text d-flex justify-content-between align-items-center">
-                <div class="label">
-                    <p class="pt-3 fs-4 mb-1">Today Deals</p>
-                    <h2 class=""><span>Deals</span> of the Day</h2>
+    @if($dailyOffers->count() > 0)
+        <div class="deals">
+            <div class="container">
+                <div class="text d-flex justify-content-between align-items-center">
+                    <div class="label">
+                        <p class="pt-3 fs-4 mb-1">Today Deals</p>
+                        <h2 class=""><span>Deals</span> of the Day</h2>
+                    </div>
+                </div>
+
+                <div
+                    class="products mt-4 d-flex justify-content-between align-items-center gap-4"
+                >
+                    @foreach ($dailyOffers as $product)
+                        @include('_deals')
+                    @endforeach
+                    
                 </div>
             </div>
-
-            <div
-                class="products mt-4 d-flex justify-content-between align-items-center gap-4"
-            >
-                @foreach ($dailyOffers as $product)
-                    @include('_deals')
-                @endforeach
-                
-            </div>
         </div>
-    </div>
+    @endif
     <div class="featured">
         <div class="container mt-5">
             <div class="text d-flex justify-content-between align-items-center">
@@ -140,7 +142,7 @@
                 class="row pb-5 mt-4 d-flex flex-nowrap justify-content-between align-items-center gap-5 overflow-x-hidden"
             >
                 @foreach ($bestSellers as $product)
-                    @include('_product-cart')
+                    <x-product-cart :product="$product"/>
                 @endforeach
                 
             </div>

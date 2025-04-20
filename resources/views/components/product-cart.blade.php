@@ -1,7 +1,7 @@
 @php
     use illuminate\Support\Str ;
 @endphp
-<div class="product rounded-4 p-4 col-lg-4 col-md-4 col-sm-6">
+<div {{ $attributes->merge(['class' => 'product rounded-4 p-4 col-lg-4 col-md-4 col-sm-6']) }}>
     <div
         class="image d-flex justify-content-center align-items-start position-relative"
     >
@@ -21,7 +21,7 @@
         </div>
         <a href="/product/{{$product->id}}">
         <img
-            src={{ $product->image }}
+            src={{ asset($product->image) }}
             class="img-fluid"
             alt={{ $product->name }}
         />

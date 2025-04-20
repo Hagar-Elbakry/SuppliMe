@@ -17,49 +17,65 @@
     </p>
 </div>
 <div class="product-details">
-    <div class="container mt-5 d-flex justify-content-center">
+    <div class="container mt-5 d-flex justify-content-center align-items-center">
         <div class="product-card row d-flex gap-4">
             <div
                 class="col-md-5 product-image p-2 border border-1 rounded-5 text-center"
             >
-                <img src="/assets/imgs/image 11.png" alt="Laundry Detergent" />
+            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"  />
             </div>
             <div class="col-md-6">
-                <p class="text-success fw-medium fs-4 mb-0">Laundry Supplies</p>
-                <h3>Laundry Detergent</h3>
-                <div class="rating my-3 d-flex gap-1">
-                    <div class="stars" id="rating1">
-                        <i class="bi bi-star" data-rating="1" style="color: gold;"></i>
-                        <i class="bi bi-star" data-rating="2" style="color: gold;"></i>
-                        <i class="bi bi-star" data-rating="3" style="color: gold;"></i>
-                        <i class="bi bi-star" data-rating="4" style="color: gold;"></i>
-                        <i class="bi bi-star" data-rating="5" style="color: gold;"></i>
+                <p class="text-success fw-medium fs-4 mb-0">{{ $product->category->name }}</p>
+                <h3>{{ $product->name }}</h3>
+                
+        <form action="{{ route('review.store') }}" method="post" id="rating-form">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <input type="hidden" name="rating" id="rating-value" value="{{ session('rating') ?? '' }}">
+            <div class="stars" id="rating1">
+                @for ($i = 1; $i <= 5; $i++)
+                    <i class="bi bi-star{{ $i <= session('rating') ? '-fill' : '' }}" data-rating="{{ $i }}" style="color: gold;"></i>
+                @endfor
+            </div>
+            <button type="submit" class="btn btn-warning mt-3">Rate</button>
+        </form>
+                @if ($product->activeDiscount())
+                    <div class="mb-2">
+                        <p class="fw-medium fs-5">
+                            ${{ $product->getDiscountedPrice() }} <del class="text-black-50 ms-2">${{ $product->price }}</del>
+                        </p>
                     </div>
-                    <span class="text-muted"> 5.0 (200 Reviews)</span>
-                </div>
-                <div class="mb-2">
-                    <p class="fw-medium fs-5">
-                        $75.00 <del class="text-black-50 ms-2">$100.00</del>
-                    </p>
-                </div>
+                @else
+                    <div class="mb-2">
+                        <p class="fw-medium fs-5">
+                            ${{ $product->price }} 
+                        </p>
+                    </div>
+                @endif
                 <p class="text-muted">
-                    Lorem Ipsum has been the industry's standard dummy ever since the
-                    1500s.
+                    {{ $product->description }}
                 </p>
                 <div class="weight">
                     <h5>Weight</h5>
                     <div class="weight-info d-flex justify-content-start align-items-center gap-3 mb-2">
-                       500g
+                        {{ $product->weight }}g
                     </div>
                 </div>
                 <div class="d-flex gap-2 border-bottom border-2 pb-2">
 
                     <div class="add align-items-center d-flex text-nowrap">
-                        <a
-                            href=""
-                            class="btn add text-light text-decoration-none rounded-pill px-3 py-1"
-                        >Add To Cart</a
-                        >
+                        <form action="{{ route('cart.store', $product->id) }}" method="POST" class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
+                            @csrf
+                            @if($product->stock_quantity > 0)
+                                <button type="submit" class="btn btn-sm" style="background-color: #b2f2bb; color: #155724;">
+                                    <i class="bi bi-bag fs-6"></i> Add
+                                </button>
+                            @else
+                                <button type="button" class="btn btn-secondary" disabled>
+                                    <i class="bi bi-bag fs-6"></i> Out of Stock
+                                </button>
+                            @endif
+                        </form>
                     </div>
                     <a href="" class="text-decoration-none text-dark m-lg-5">
                         <i class="fa-regular fa-heart fs-3 "></i
@@ -92,9 +108,9 @@
                 <div
                     class="row pb-5 mt-4 d-flex flex-nowrap justify-content-between align-items-center gap-5 overflow-x-hidden"
                 >
-{{--start loop--}}
-{{--@include('_product-cart')--}}
-{{--end loop--}}
+                        @foreach($RelatedProducts as $product)
+                            <x-product-cart class="border border-1 border-black" :product="$product"/>
+                        @endforeach
                 </div>
             </div>
         </div>
