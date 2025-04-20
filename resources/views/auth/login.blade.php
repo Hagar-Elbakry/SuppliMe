@@ -8,7 +8,6 @@
             <x-auth-input type="email" name="email" placeholder="Email" />
             <x-form-error name="email" />
             <x-auth-input type="password" name="password" placeholder="Password"/>
-            <x-form-error name="password" />
             <div class="forget p-2"><a href="" class="text-decoration-none fw-medium ">Forget Password?</a></div>
             <button type="submit" class="btn text-light fw-medium rounded-3 m-lg-2" >Log In</button>
         </form>

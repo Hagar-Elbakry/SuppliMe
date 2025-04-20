@@ -37,7 +37,15 @@
                     </li>
                     <x-nav-link href="">My Orders</x-nav-link>
                     <x-nav-link href="">Profile</x-nav-link>
-                    <x-nav-link href="">Log Out</x-nav-link>
+
+                    @auth
+                    <form action="/logout" method="POST" class="d-line">
+                        @csrf
+                        <button type="submit" class="btn nav-link text-white p-0 m-0" style="white-space: nowrap">Log Out</button>
+                    </form>
+                        @else
+                    <x-nav-link href="/login">Log In</x-nav-link>
+                        @endauth
                 </ul>
             </div>
             <div
