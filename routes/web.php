@@ -8,7 +8,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SupportMessageController;
 use App\Http\Controllers\UserNotificationsController;
+use App\Models\SupportMessage;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::view('/about','about');
-Route::view('/contact','contact');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/{user:name}',[ProfileController::class,'show'])->name('profile.show');
@@ -41,6 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/track-order/{orderId}', [OrderController::class, 'track'])->name('orders.track');
 
     Route::get('/notifications',[UserNotificationsController::class,'show'])->name('notifications.show');
+
+    Route::get('/contact',[SupportMessageController::class,'index'])->name('contact-us.index');
+    Route::post('/contact',[SupportMessageController::class,'store'])->name('contact-us.store');
 
     Route::post('/logout',[AuthenticatedSessionController::class,'destroy'])->name('logout');
 });

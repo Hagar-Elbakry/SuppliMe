@@ -7,35 +7,43 @@
     <h1>Contact Us</h1>
     <x-header href="/contact">Contact Us</x-header>
 </div>
+@if(session('success'))
+</div>
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="alert alert-success text-center px-4 py-2 w-50 shadow-sm">{{ session('success') }}</div>
+    </div>
+    
+@endif
 <div class="contact">
     <div class="container">
         <div class="row align-items-start">
             <div class="col-md-6">
                 <div class="contact-form">
-                    <form>
+                    <form action="{{ route('contact-us.store') }}" method="POST">
+                        @csrf
                         <x-contact-label>
                             <x-slot:name>
                                 Name *
                             </x-slot:name>
-                            <x-contact-input type="text" placeholder="e.g. John"/>
+                            <x-contact-input type="text" name="name" value="{{ $user->name }}"/>
                         </x-contact-label>
 
                         <x-contact-label>
                             <x-slot:name>
                                Phone *
                             </x-slot:name>
-                            <x-contact-input type="tel" placeholder="Enter Phone Number"/>
+                            <x-contact-input type="tel" name="phone" value="{{ $user->phone }}"/>
                         </x-contact-label>
                         <x-contact-label>
                             <x-slot:name>
                                 Email *
                             </x-slot:name>
-                            <x-contact-input type="email" placeholder="example@gmail.com"/>
+                            <x-contact-input type="email" name="email" value="{{ $user->email }}"/>
                         </x-contact-label>
 
                         <div class="mb-3">
                             <label class="form-label">Your Message *</label>
-                            <textarea class="form-control" rows="4" placeholder="Enter your message here..."></textarea>
+                            <textarea class="form-control" name="message" rows="4" placeholder="Enter your message here..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-custom text-light rounded-pill">Send a Message</button>
                     </form>
