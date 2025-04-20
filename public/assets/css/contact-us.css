@@ -6,26 +6,15 @@
   --list-color: #e9e9e9;
   --t-margin: 100px;
 }
-.profile,
-.main-profile {
+.contact {
   margin-top: var(--t-margin);
   margin-bottom: var(--t-margin);
 }
-.profile input {
-  width: 80%;
-}
-.pro {
-  width: 75%;
-}
-.profile .btn {
+.contact .btn {
   background-color: var(--main-color);
 }
-.edit-but {
-  width: fit-content;
-  background-color: var(--main-color);
-}
-@media (max-width: 992px) {
-  .main-profile .pro {
-    flex-direction: column;
+@media (max-width: 767px) {
+  img {
+    display: none;
   }
 }
