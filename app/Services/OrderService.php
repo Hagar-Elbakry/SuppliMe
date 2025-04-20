@@ -16,7 +16,10 @@ class OrderService
              // create order in order table in database
             $order = Order::create([
                 'user_id'          => Auth::id(),
-                'total_price'            => $cart->products->sum(fn($p) => $p->pivot->quantity * $p->price),
+                'total_price'            => $cart->products->sum(function($p){
+                    $price  = $p->activeDiscount() ? $p->getDiscountedPrice() : $p->price;
+                    return $price * $p->pivot->quantity;
+                }) ,
                 'shipping_address' => Auth::user()->address,
                 'shipping_cost'   => 20,
                 'status'         => 'pending',  
