@@ -18,6 +18,11 @@
             </a>
         </div>
     @else
+        @if(session('error'))
+            <div class="d-flex justify-content-center align-items-center mt-5">
+                <div class="alert alert-danger text-center px-4 py-2 w-50 shadow-sm">{{ session('error') }}</div>
+            </div>
+        @endif
         <div class="shopcart">
             <div
                 class="container"
