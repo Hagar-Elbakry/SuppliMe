@@ -13,9 +13,9 @@
         </form>
         <div class="image mx-2">
             <img
-                src={{ asset($product->image) }}
+                src="{{ asset($product->image) }}"
                 class="img-fluid rounded-4 border border-secondary-subtle d-none d-md-block"
-                alt={{ $product->name }}
+                alt="{{ $product->name }}"
                 style="width: 80px; height: 80px"
             />
         </div>
@@ -27,9 +27,9 @@
     <div
         class="item-disc d-flex justify-content-between align-items-center gap-5"
     >
-        
+
             <p>${{ $product->price }}</p>
-        
+
         <div
             class="quan d-flex justify-content-between align-items-center gap-4 rounded-pill border border-secondary px-1"
         >

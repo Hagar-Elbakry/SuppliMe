@@ -28,7 +28,7 @@
                 class="container"
             >
                 <div class="row align-items-start">
-                    <div class="products col-12 col-md-12 col-lg-8">
+                    <div class=" d-none d-md-block products col-12 col-md-12 col-lg-8">
                         <div
                             class="product-head px-5 pt-3 mb-3 d-flex justify-content-between align-items-center gap-5 rounded-3"
                         >
@@ -67,6 +67,11 @@
                                 </button>
                             </form>
                         </div>
+                    </div>
+                    <div class="d-block d-md-none">
+
+                        @include('_cart-product-mobile')
+                        
                     </div>
                     <div class="summary col-12 col-md-12 col-lg-4 rounded-4 border border-black px-0">
                         <p class="fw-medium  border-bottom border-black py-3 px-3">Order Summary</p>
