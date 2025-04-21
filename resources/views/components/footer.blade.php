@@ -32,7 +32,7 @@
                     <div class="col-md-4 mb-4">
                         <h5 class="text-light">Customer Services</h5>
                         <div class="d-flex flex-column gap-3 mt-4">
-                            <a href="/profile/{{auth()->user()->name}}" class="text-decoration-none text-white-50">My Account</a>
+                            <a href="{{ auth()->check() ? '/profile/'.auth()->user()->name : route('login') }}" class="text-decoration-none text-white-50">My Account</a>
                             <a href="/delivery" class="text-decoration-none text-white-50">Track Your Order</a>
                         </div>
                     </div>

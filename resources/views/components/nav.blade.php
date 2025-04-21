@@ -36,7 +36,7 @@
                             ></a>
                     </li>
                     <x-nav-link href="/orders">My Orders</x-nav-link>
-                    <x-nav-link href="/profile/{{auth()->user()->name}}">Profile</x-nav-link>
+                    <x-nav-link href="{{ auth()->check() ? '/profile/'.auth()->user()->name : route('login') }}">Profile</x-nav-link>
 
                     @auth
                     <form action="/logout" method="POST" class="d-line">
@@ -80,7 +80,7 @@
             <div class="collapse position-absolute  z-3" id="menu" style="top: 60px; left: 0; width: 250px;">
                 <div class="card card-body border-0 rounded-2">
                     <x-mobile-nav-link href="/orders">My Orders</x-mobile-nav-link>
-                    <x-mobile-nav-link href="/profile/{{auth()->user()->name}}">Profile</x-mobile-nav-link>
+                    <x-mobile-nav-link href="{{ auth()->check() ? '/profile/'.auth()->user()->name : route('login') }}">Profile</x-mobile-nav-link>
                     <x-mobile-nav-link href="/notifications">Notifications</x-mobile-nav-link>
                     <x-mobile-nav-link href="/cart">Shopping Cart</x-mobile-nav-link>
                     <x-mobile-nav-link href="">Favorites</x-mobile-nav-link>

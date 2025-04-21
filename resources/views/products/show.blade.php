@@ -5,7 +5,7 @@
 <div class="main-title text-center pt-5">
     <h1>Shop</h1>
     <p>
-        <a href="./supplime2.html" class="text-decoration-none text-dark"
+        <a href="/" class="text-decoration-none text-dark"
         >Home /
         </a>
         <a href="/shop" class="text-decoration-none text-dark"
@@ -31,10 +31,10 @@
         <form action="{{ route('review.store') }}" method="post" id="rating-form">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
-            <input type="hidden" name="rating" id="rating-value" value="{{ session('rating') ?? '' }}">
+            <input type="hidden" name="rating" id="rating-value" value="{{ $rateValue ?? '' }}">
             <div class="stars" id="rating1">
                 @for ($i = 1; $i <= 5; $i++)
-                    <i class="bi bi-star{{ $i <= session('rating') ? '-fill' : '' }}" data-rating="{{ $i }}" style="color: gold;"></i>
+                    <i class="bi bi-star{{ $i <= $rateValue ? '-fill' : '' }}" data-rating="{{ $i }}" style="color: gold;"></i>
                 @endfor
             </div>
             <button type="submit" class="btn btn-warning mt-3">Rate</button>
