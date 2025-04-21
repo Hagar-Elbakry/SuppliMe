@@ -16,7 +16,7 @@
                         <label for="order-id" class="fw-medium fs-3">Order Id*</label>
                         <input type="text" class="mt-2 p-2 rounded-2 border border-1" placeholder="Enter Your Order Id">
                     </div>
-                    <a href="./order-status.html"><button type="submit" class="btn btn-success rounded-pill">Track Your Order</button></a>
+                    <a href="{{ route('orders.show',1) }}"><button type="submit" class="btn btn-success rounded-pill">Track Your Order</button></a>
                 </div>
             </div>
         </div>
