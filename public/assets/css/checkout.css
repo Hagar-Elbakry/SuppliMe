@@ -1,0 +1,26 @@
+:root {
+  --main-color: #1b8057;
+  --sec-color: #f8c519;
+  --childmain-color: #30a274;
+  --section-color: #f4f4f4;
+  --list-color: #e9e9e9;
+  --t-margin: 100px;
+}
+.main-checkout {
+  margin-top: var(--t-margin);
+}
+.summary {
+  height: fit-content;
+}
+@media (max-width: 992px) {
+  .summary {
+    margin-top: 25px;
+  }
+}
+.form-check {
+  box-sizing: border-box;
+}
+.summary input:focus {
+     outline: none;
+     box-shadow: none;
+   }

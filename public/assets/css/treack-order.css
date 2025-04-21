@@ -1,0 +1,26 @@
+:root {
+  --main-color: #1b8057;
+  --sec-color: #f8c519;
+  --childmain-color: #30a274;
+  --section-color: #f4f4f4;
+  --list-color: #e9e9e9;
+  --t-margin: 100px;
+}
+.track,
+.status {
+     margin-top: var(--t-margin);
+     margin-bottom: var(--t-margin);
+}
+.order-id {
+     width: 100%;
+}
+.order-id input {
+     width: 80%;
+}
+.status img{
+     width: 60px;
+     height: 60px;
+}
+/* .status .order-head {
+     background-color: var(--sec-color);
+} */

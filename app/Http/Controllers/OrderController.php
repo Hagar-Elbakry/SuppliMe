@@ -15,10 +15,10 @@ class OrderController extends Controller
             ->get();
         return view('orders.index', compact('orders'));
     }
-    public function track($orderId) {
+    public function show($orderId) {
         $order = Order::where('user_id', Auth::user()->id)
             ->with(['orderDetails.product', 'payment'])
             ->findOrFail($orderId);
-        return view('orders.track', compact('order'));
+        return view('orders.show', compact('order'));
     }
 }

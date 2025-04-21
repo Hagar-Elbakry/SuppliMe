@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
@@ -42,7 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/payment/create',[PaymentController::class,'store'])->name('payment.store');
 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('/track-order/{orderId}', [OrderController::class, 'track'])->name('orders.track');
+    Route::get('/orders/{id}/track', [OrderController::class, 'show'])->name('orders.show');
+
+    Route::get('/delivery',[DeliveryController::class,'index'])->name('delivery.index');
 
     Route::get('/product/{product}',[ProductController::class,'show'])->name('product.show');
 
