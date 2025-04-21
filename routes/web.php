@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
@@ -46,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/{id}/track', [OrderController::class, 'show'])->name('orders.show');
 
     Route::get('/delivery',[DeliveryController::class,'index'])->name('delivery.index');
+    Route::get('/wishlist',[FavouriteController::class,'index'])->name('favourite.index');
 
     Route::get('/product/{product}',[ProductController::class,'show'])->name('product.show');
 
