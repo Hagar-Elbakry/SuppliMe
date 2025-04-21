@@ -9,4 +9,8 @@ class ShoppingController extends Controller
     public function index(){
         return view('shopping.index');
     }
+
+    public function show($id){
+        return view('shopping.show');
+    }
 }

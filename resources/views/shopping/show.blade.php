@@ -3,20 +3,25 @@
     <link rel="stylesheet" href="/assets/css/shop.css" />
 <x-nav/>
 <div class="main-title text-center pt-5">
-    <h1>Shop</h1>
-    <x-header href="/shop">Shop</x-header>
+    <h1>Fruits</h1>
+    <p>
+        <a href="/" class="text-decoration-none text-dark"
+        >Home /
+        </a>
+        <a href="/shop" class="text-decoration-none text-dark">Shop /</a>
+        <a href="" class="text-decoration-none text-dark">Fruits</a>
+
+    </p>
 </div>
 <div class="shop">
     <div
         class="container d-flex justify-content-between align-items-start gap-5"
     >
         @include('_category-options')
-
         <div class="food d-flex flex-column">
             <div
                 class="row d-flex justify-content-center align-items-center gap-4"
             >
-
                 <div
                     class="product rounded-4 p-4 col-xs-12 col-sm-4 col-md-4 col-lg-3 border border-black"
                 >
@@ -36,7 +41,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/erasebg-transformed(1) 1.png"
+                            src="/assets//imgs/Fruits/erasebg-transformed(1) 1.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -95,7 +100,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 16.png"
+                            src="/assets/imgs/Fruits/image 10.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -154,7 +159,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 28.png"
+                            src="/assets/imgs/Fruits/image 25.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -213,7 +218,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 37.png"
+                            src="/assets/imgs/image 25.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -272,7 +277,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 49.png"
+                            src="/assets/imgs/Fruits/image 9.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -331,7 +336,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 30.png"
+                            src="/assets/imgs/Fruits/image 27.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -390,7 +395,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 46.png"
+                            src="/assets/imgs/Fruits/image 28.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -449,7 +454,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 42.png"
+                            src="/assets/imgs/Fruits/image 36.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -508,7 +513,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 49.png"
+                            src="/assets/imgs/Fruits/image 37.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -567,7 +572,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 15.png"
+                            src="/assets/imgs/Fruits/image 39.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -626,7 +631,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 9.png"
+                            src="/assets/imgs/Fruits/image 40.png"
                             class="img-fluid"
                             alt=""
                         />
@@ -685,7 +690,7 @@
                             </a>
                         </div>
                         <img
-                            src="/assets/imgs/image 10.png"
+                            src="/assets/imgs/Fruits/image 41.png"
                             class="img-fluid"
                             alt=""
                         />
