@@ -14,7 +14,7 @@
         </p>
         <a
             class="btn rounded-3 text-light main-btn p-1 mt-4"
-            href="/shop"
+            href="/shop/1"
             target="_blank"
         >
             Shop Now
