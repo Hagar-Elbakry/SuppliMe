@@ -4,7 +4,7 @@
 <x-nav/>
 <div class="main-title text-center pt-5">
     <h1>Profile</h1>
-    <x-header>Profile</x-header>
+    <x-header href="/profile/{{auth()->user()->name}}">Profile</x-header>
 </div>
 <div class="main-profile">
     <div class="container d-flex justify-content-center">
@@ -53,7 +53,7 @@
 
                 <div class="edit-but p-4 border border-success rounded-4">
                     <i class="fa-solid fa-pen me-2 text-light"></i>
-                    <a href="./profile.html" class="text-decoration-none text-light text-uppercase ">Edit Profile</a>
+                    <a href="/profile/{{auth()->user()->name}}/edit" class="text-decoration-none text-light text-uppercase ">Edit Profile</a>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
     <div class="order-head border-bottom border-1 rounded-bottom rounded-4">
         <h4 class="p-3">Order Details</h4>
     </div>
-    
+
     <div class="order-detailes p-3 border-bottom border-1">
         @foreach ($order->orderDetails as $orderDetail)
             <div class="image-detailed d-flex justify-content-start my-3">
@@ -14,7 +14,7 @@
                 </div>
             </div>
         @endforeach
-        
+
     </div>
 
         <div class="total px-3 py-2 d-flex justify-content-between align-items-center">
@@ -30,7 +30,7 @@
             <p class="mb-0">{{ $order->created_at }}</p>
         </div>
         <div class="total py-3 d-flex justify-content-center">
-            <a href="/track-order/{{ $order->id }}" class="btn btn-warning">Track Your Order</a>
+            <a href="/orders/{{ $order->id }}/track" class="btn btn-warning">Track Your Order</a>
         </div>
-    
+
 </div>

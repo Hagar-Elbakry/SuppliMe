@@ -35,8 +35,8 @@
                         ><i class="fa-regular fa-bell fw-normal"></i
                             ></a>
                     </li>
-                    <x-nav-link href="">My Orders</x-nav-link>
-                    <x-nav-link href="">Profile</x-nav-link>
+                    <x-nav-link href="/orders">My Orders</x-nav-link>
+                    <x-nav-link href="/profile/{{auth()->user()->name}}">Profile</x-nav-link>
 
                     @auth
                     <form action="/logout" method="POST" class="d-line">
@@ -59,7 +59,7 @@
                 <a href="#" class="text-light"
                 ><i class="fa-regular fa-heart fs-3"></i
                     ></a>
-                <a href="#"
+                <a href="/delivery"
                 ><img
                         src="/assets/imgs/delivery_5457874.png"
                         class="icon-size img-fluid"
@@ -79,13 +79,20 @@
 
             <div class="collapse position-absolute  z-3" id="menu" style="top: 60px; left: 0; width: 250px;">
                 <div class="card card-body border-0 rounded-2">
-                    <x-mobile-nav-link href="">My Orders</x-mobile-nav-link>
-                    <x-mobile-nav-link href="">Profile</x-mobile-nav-link>
-                    <x-mobile-nav-link href="">Log Out</x-mobile-nav-link>
+                    <x-mobile-nav-link href="/orders">My Orders</x-mobile-nav-link>
+                    <x-mobile-nav-link href="/profile/{{auth()->user()->name}}">Profile</x-mobile-nav-link>
                     <x-mobile-nav-link href="/notifications">Notifications</x-mobile-nav-link>
                     <x-mobile-nav-link href="/cart">Shopping Cart</x-mobile-nav-link>
                     <x-mobile-nav-link href="">Favorites</x-mobile-nav-link>
-                    <x-mobile-nav-link href="">Delivery</x-mobile-nav-link>
+                    <x-mobile-nav-link href="/delivery">Delivery</x-mobile-nav-link>
+                    @auth
+                        <form action="/logout" method="POST" class="d-line">
+                            @csrf
+                            <button type="submit" class="btn nav-link text-white p-0 m-0 bg-white" style="white-space: nowrap">Log Out</button>
+                        </form>
+                    @else
+                        <x-nav-link href="/login">Log In</x-nav-link>
+                    @endauth
                 </div>
             </div>
 
