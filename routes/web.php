@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ShoppingController;
 use App\Http\Controllers\SupportMessageController;
 use App\Http\Controllers\UserNotificationsController;
 use App\Models\Review;
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/{user:name}/update',[ProfileController::class,'update'])->name('profile.update');
     Route::delete('/profile/{user:name}/destroy',[ProfileController::class,'destroy'])->name('profile.destroy');
 
+    Route::get('/shop',[ShoppingController::class,'index'])->name('shop.index');
 
     Route::get('/cart',[CartController::class,'index'])->name('cart.index');
     Route::post('/cart/{product}',[CartController::class,'store'])->name('cart.store');
