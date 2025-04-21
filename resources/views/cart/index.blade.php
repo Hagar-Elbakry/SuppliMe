@@ -69,9 +69,10 @@
                         </div>
                     </div>
                     <div class="d-block d-md-none">
-
-                        @include('_cart-product-mobile')
-
+                        @foreach($products as $product)
+                            @include('_cart-product-mobile')
+                        @endforeach
+                        
                     </div>
                     <div class="summary col-12 col-md-12 col-lg-4 rounded-4 border border-black px-0">
                         <p class="fw-medium  border-bottom border-black py-3 px-3">Order Summary</p>
