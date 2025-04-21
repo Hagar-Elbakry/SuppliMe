@@ -56,7 +56,7 @@
                     class="bg-warning text-light cart text-decoration-none rounded-circle p-2"
                 ><i class="fa-solid fa-cart-shopping fs-3"></i
                     ></a>
-                <a href="#" class="text-light"
+                <a href="/wishlist" class="text-light"
                 ><i class="fa-regular fa-heart fs-3"></i
                     ></a>
                 <a href="/delivery"
@@ -83,7 +83,7 @@
                     <x-mobile-nav-link href="{{ auth()->check() ? '/profile/'.auth()->user()->name : route('login') }}">Profile</x-mobile-nav-link>
                     <x-mobile-nav-link href="/notifications">Notifications</x-mobile-nav-link>
                     <x-mobile-nav-link href="/cart">Shopping Cart</x-mobile-nav-link>
-                    <x-mobile-nav-link href="">Favorites</x-mobile-nav-link>
+                    <x-mobile-nav-link href="/wishlist">Favorites</x-mobile-nav-link>
                     <x-mobile-nav-link href="/delivery">Delivery</x-mobile-nav-link>
                     @auth
                         <form action="/logout" method="POST" class="d-line">

@@ -1,0 +1,89 @@
+:root {
+  --main-color: #1b8057;
+  --sec-color: #f8c519;
+  --childmain-color: #30a274;
+  --section-color: #f4f4f4;
+  --list-color: #e9e9e9;
+  --t-margin: 100px;
+}
+.shop {
+  margin-top: var(--t-margin);
+}
+.shop .category a {
+  display: block;
+  margin-top: 3px;
+}
+.shop .category .stars i {
+  color: #ccc;
+}
+.options input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  accent-color: var(--main-color);
+  border: 1px solid var(--childmain-color);
+  border-radius: 10%;
+  cursor: pointer;
+}
+.options .category {
+  width: 250px;
+  height: fit-content;
+}
+.static-slider {
+  width: 250px;
+  height: 10px;
+}
+
+.line {
+  height: 6px;
+  background: #ccc;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.line::before {
+  content: "";
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  height: 100%;
+  background: var(--main-color);
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  background: var(--main-color);
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dot.left {
+  left: 25%;
+}
+
+.dot.right {
+  left: 75%;
+}
+.shop .fav p {
+  background-color: var(--main-color);
+}
+.shop .add a {
+  background-color: #d3ffed;
+  color: var(--main-color);
+}
+.shop img {
+  height: 150px;
+}
+@media (max-width: 992px) {
+  .shop .container {
+    flex-direction: column;
+  }
+}
+.food .slide .one {
+  background-color: var(--main-color);
+}

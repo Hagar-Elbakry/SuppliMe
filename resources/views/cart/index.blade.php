@@ -71,7 +71,7 @@
                     <div class="d-block d-md-none">
 
                         @include('_cart-product-mobile')
-                        
+
                     </div>
                     <div class="summary col-12 col-md-12 col-lg-4 rounded-4 border border-black px-0">
                         <p class="fw-medium  border-bottom border-black py-3 px-3">Order Summary</p>
