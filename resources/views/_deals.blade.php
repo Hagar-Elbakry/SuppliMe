@@ -3,18 +3,18 @@
 >
     <div class="image position-relative">
         <div
-            class="fav d-flex justify-content-between align-items-start gap-2 w-100"
+            class="fav position-relative w-100"
         >
-            <p class="rounded-3 py-1 px-2 text-light position-absolute">
+            <p class="rounded-3 py-1 px-2 text-light position-absolute top-0 start-0 m-2 z-2" style="min-width: 60px; text-align: center; ">
                 {{ intval($product->activeDiscount()->discount_percentage) }}% off
             </p>
-            <a
-                href=""
-                class="text-decoration-none text-dark position-absolute"
-            ><i
-                    class="bi bi-heart fs-5 p-2 d-flex justify-content-center align-items-center"
-                ></i>
-            </a>
+            <form action="{{ route('favourite.store') }}" method="post" class="position-absolute start-0 ms-2 z-1" style="top: 50px; left: 10px;">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <button type="submit" class="btn p-0 border-0 bg-white rounded-circle">
+                    <i class="bi {{ auth()->check() && auth()->user()->products->contains($product->id) ? 'bi-heart-fill text-danger' : 'bi-heart text-secondary' }} fs-4 p-2"></i>
+                </button>
+            </form>
         </div>
         <a href="/product/{{$product->id}}">
             <img src={{ asset($product->image) }} alt="" />
