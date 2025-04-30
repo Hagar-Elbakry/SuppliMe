@@ -14,7 +14,7 @@
                 <div class="status-body">
                     <div class="status-title">
                         <h5>Order Status</h5>
-                        <p>Order Id : #EJFJ64656HFD</p>
+                        <p>Order Id : #{{ $order->id }}</p>
                     </div>
                     <div
                         class="tracking-container d-flex flex-column align-items-stretch py-2 px-5 border border-1 rounded-5"
@@ -44,38 +44,63 @@
                             </div>
                         </div>
                         <div class="expected-date d-flex justify-content-end">
-                            <p class="text-black-50">Expected</p>
-                            <p class="text-black-50">16 July 2025</p>
+                            <p class="text-black-50">Expected :</p>
+                            @php
+                                $estimated_delivery = Carbon\Carbon::parse($order->shipping->estimated_delivery) ;
+                            @endphp
+                            <p class="text-black-50">{{ $estimated_delivery->toDayDateTimeString() }}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-           @include('_order')
+            @include('_order')
         </div>
     </div>
 </div>
 <x-footer/>
+
+@php
+    $status = [
+        'assigned'=>'In Progress',
+        'processing'=>'On the Way',
+        'delivered'=>'Delivered'
+    ];
+@endphp
 <script>
-    const steps = document.querySelectorAll("#tracker .badge");
-    const bars = document.querySelectorAll("#tracker .flex-fill");
-    const btn = document.getElementById("nextStep");
-    let currentStep = 0;
+        
+    const currentStatus = "{{ $status[$order->shipping->status] ?? 'Order Placed' }}";
 
-    btn.addEventListener("click", () => {
-        if (currentStep < steps.length) {
-            steps[currentStep].classList.remove("bg-secondary");
-            steps[currentStep].classList.add("bg-success");
+    const statusMap = {
+        "Order Placed": 1,
+        "Accepted": 2,
+        "In Progress": 3,
+        "On the Way": 4,
+        "Delivered": 5
+    };
 
-            if (currentStep > 0) {
-                bars[currentStep - 1].classList.remove("bg-secondary");
-                bars[currentStep - 1].classList.add("bg-success");
-            }
+    const currentStep = statusMap[currentStatus] || 1;
 
-            currentStep++;
+    const circles = document.querySelectorAll('#tracker .badge.rounded-pill');
+    const lines = document.querySelectorAll('#tracker .flex-fill');
+
+    circles.forEach((circle, index) => {
+        if (index < currentStep) {
+            circle.classList.remove('bg-secondary');
+            circle.classList.add('bg-success');
         } else {
-            btn.disabled = true;
-            btn.innerText = "Completed";
+            circle.classList.remove('bg-success');
+            circle.classList.add('bg-secondary');
+        }
+    });
+
+    lines.forEach((line, index) => {
+        if (index < currentStep - 1) {
+            line.classList.remove('bg-secondary');
+            line.classList.add('bg-success');
+        } else {
+            line.classList.remove('bg-success');
+            line.classList.add('bg-secondary');
         }
     });
 </script>
