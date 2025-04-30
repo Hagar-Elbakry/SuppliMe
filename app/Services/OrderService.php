@@ -2,9 +2,10 @@
 namespace App\Services;
 
 use App\Models\Order;
+use App\Models\Shipping;
 use App\Models\OrderDetail;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class OrderService
 {
@@ -47,6 +48,14 @@ class OrderService
 
             // empty the cart
             $cart->products()->detach();
+
+            // add to shipping table
+            Shipping::create([
+                'tracking_number' => 'TRK-' . strtoupper(uniqid()),
+                'order_id' => $order->id,
+                'user_id' => 3 ,
+                'estimated_delivery' => now()->addDays(5),
+            ]);
 
             DB::commit();
             return $order;
