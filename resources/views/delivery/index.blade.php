@@ -22,7 +22,7 @@
                                 type="text" 
                                 name="order_id" 
                                 id="order-id" 
-                                class="form-control p-3 rounded-3 border border-1" 
+                                class="form-control w-100 p-3 rounded-3 border border-1 shadow-sm" 
                                 placeholder="Enter Your Order ID" 
                                 required
                             >
