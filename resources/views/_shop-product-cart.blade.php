@@ -5,21 +5,27 @@
         class="image d-flex justify-content-center align-items-start position-relative"
     >
         <div
-            class="fav d-flex justify-content-between align-items-start gap-2 w-100 position-absolute"
-        >
+        class="fav d-flex justify-content-between align-items-start gap-2 w-100 position-absolute"
+    >
+        @if($product->activeDiscount())
             <p class="rounded-5 rounded-start py-1 px-3 text-light">
-                20% off
+                {{ intval($product->activeDiscount()->discount_percentage) }}% off
             </p>
-            <a href="" class="text-decoration-none text-dark"
-            ><i
-                    class="bi bi-heart fs-5 p-2 d-flex justify-content-center align-items-center"
-                ></i>
-            </a>
-        </div>
+        @endif
+        
+        <form action="{{ route('favourite.store') }}" method="post">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <button type="submit" class="btn p-0 border-0 bg-white rounded-circle">
+                <i class="bi {{ auth()->check() && auth()->user()->products->contains($product->id) ? 'bi-heart-fill text-danger' : 'bi-heart text-secondary' }} fs-4 p-2"></i>
+            </button>
+        </form>
+        
+    </div>
         <img
-            src="/assets/imgs/erasebg-transformed(1) 1.png"
+            src="{{ asset($product->image) }}"
             class="img-fluid"
-            alt=""
+            alt="{{ $product->name }}"
         />
     </div>
     <div
@@ -29,7 +35,7 @@
             <div
                 class="name d-flex justify-content-between align-items-start"
             >
-                <p>Fruit</p>
+                <p>{{ $product->category->name }}</p>
                 <div
                     class="rate d-flex justify-content-between align-items-start gap-1"
                 >
@@ -37,22 +43,32 @@
                     <p class="">4.8</p>
                 </div>
             </div>
-            <h6 class="cust-h">Fresh Strawberry</h6>
+            <h6 class="cust-h">{{ $product->name }}</h6>
         </div>
         <div class="price">
-            <p class="mb-0 text-black-50">400g</p>
+            <p class="mb-0 text-black-50">{{ $product->weight }}g</p>
             <div
                 class="add d-flex justify-content-between align-items-start gap-2"
             >
+                @if($product->activeDiscount())
                 <p class="text-nowrap">
-                    $8.00 <del class="text-black-50 ms-2">$10.00</del>
+                    ${{ $product->getDiscountedPrice() }} <del class="text-black-50 ms-2">${{ $product->price }}</del>
                 </p>
-                <a
-                    href=""
-                    class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2"
-                >
-                    <i class="bi bi-bag fs-6"></i>add</a
-                >
+                @else
+                    <p class="text-nowrap">${{ $product->price }}</p>
+                @endif
+                <form action="{{ route('cart.store', $product->id) }}" method="POST" class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
+                    @csrf
+                    @if($product->stock_quantity > 0)
+                        <button type="submit" class="btn btn-sm" style="background-color: #b2f2bb; color: #155724;">
+                            <i class="bi bi-bag fs-6"></i> Add
+                        </button>
+                    @else
+                        <button type="button" class="btn btn-secondary" disabled>
+                            <i class="bi bi-bag fs-6"></i> Out of Stock
+                        </button>
+                    @endif
+                </form>
             </div>
         </div>
     </div>
