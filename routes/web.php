@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShoppingController;
 use App\Http\Controllers\SupportMessageController;
 use App\Http\Controllers\UserNotificationsController;
@@ -57,9 +58,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/wishlist',[FavouriteController::class,'store'])->name('favourite.store');
     Route::delete('/wishlist',[FavouriteController::class,'destroyAll'])->name('favourite.destroyAll');
     Route::delete('/wishlist/{product}',[FavouriteController::class,'destroy'])->name('favourite.destroy');
-    Route::post('/whishlist/add-all-to-cart',[FavouriteController::class,'addAllToCart'])->name('favourite.addAllToCart');
+    Route::post('/wishlist/add-all-to-cart',[FavouriteController::class,'addAllToCart'])->name('favourite.addAllToCart');
 
     Route::get('/product/{product}',[ProductController::class,'show'])->name('product.show');
+    Route::get('/products', [SearchController::class, 'index'])->name('search.index');
 
     Route::get('/notifications',[UserNotificationsController::class,'show'])->name('notifications.show');
 

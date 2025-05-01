@@ -5,7 +5,7 @@
 <x-nav/>
 <div class="main-title text-center pt-5">
     <h1>Order Status</h1>
-    <x-header>Order Status</x-header>
+    <x-header href="{{route('orders.show', $order)}}">Order Status</x-header>
 </div>
 <div class="status">
     <div class="container">
@@ -68,7 +68,7 @@
     ];
 @endphp
 <script>
-        
+
     const currentStatus = "{{ $status[$order->shipping->status] ?? 'Order Placed' }}";
 
     const statusMap = {

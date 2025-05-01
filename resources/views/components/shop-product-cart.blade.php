@@ -1,5 +1,5 @@
 <div
-    class="product rounded-4 p-4 col-xs-12 col-sm-4 col-md-4 col-lg-3 border border-black"
+    {{$attributes->merge(['class' => 'product rounded-4 p-4 col-xs-12 col-sm-4 col-md-4 col-lg-3 border border-black'])}}
 >
     <div
         class="image d-flex justify-content-center align-items-start position-relative"
@@ -12,7 +12,7 @@
                 {{ intval($product->activeDiscount()->discount_percentage) }}% off
             </p>
         @endif
-        
+
         <form action="{{ route('favourite.store') }}" method="post">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -20,7 +20,7 @@
                 <i class="bi {{ auth()->check() && auth()->user()->products->contains($product->id) ? 'bi-heart-fill text-danger' : 'bi-heart text-secondary' }} fs-4 p-2"></i>
             </button>
         </form>
-        
+
     </div>
         <img
             src="{{ asset($product->image) }}"

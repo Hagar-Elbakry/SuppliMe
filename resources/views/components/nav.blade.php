@@ -8,12 +8,15 @@
         </div>
         <div class="search d-flex justify-content-center align-items-center">
             <i class="fa-solid fa-magnifying-glass fs-5 search-icon"></i>
-            <form class="d-flex" role="search">
+            <form action="/products" method="GET" class="d-flex" role="search">
                 <input
                     class="form-control rounded-0 border-0"
-                    type="search"
+                    type="text"
+                    name="search"
+                    value="{{ request()->query('search') }}"
                     placeholder="Search For Products"
                     aria-label="Search"
+                    required
                 />
                 <button
                     class="btn btn-outline-success text-light fw-medium rounded-0 border-0"
@@ -104,10 +107,12 @@
             <i class="fa-solid fa-magnifying-glass fs-5 f-search-icon"></i>
         </div>
         <div id="floating-search" class="position-absolute bg-white p-2 rounded shadow d-none" style="top: 70px; right: 20px; z-index: 999;">
-            <form class="d-flex" role="search">
+            <form action="/products" method="GET" class="d-flex" role="search">
                 <input
                     class="form-control me-2"
-                    type="search"
+                    type="text"
+                    name="search"
+                    value="{{ request()->query('search') }}"
                     placeholder="Search For Products"
                     aria-label="Search"
                 />

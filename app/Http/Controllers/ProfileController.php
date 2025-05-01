@@ -58,10 +58,6 @@ class ProfileController extends Controller
             'password' => ['required','confirmed', 'current_password']
         ]);
 
-//       if(!Hash::check($attributes['password'], $user->password)) {
-//           abort(403,'not authorized');
-//       }
-
         $user->delete();
         Auth::logout();
         return redirect('/');

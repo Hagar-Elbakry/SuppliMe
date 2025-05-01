@@ -9,7 +9,7 @@
 <div class="main-profile">
     <div class="container d-flex justify-content-center">
         <div class="row">
-            <div class="image col-md-6 d-flex justify-content-center align-items-start">
+            <div class="image me-4 col-md-6 d-flex justify-content-center align-items-start">
                 <img src="{{$user->image}}" class="img-fluid" alt="">
             </div>
             <div class="profile-detailes d-flex justify-content-between gap-3 flex-column col-md-6">
