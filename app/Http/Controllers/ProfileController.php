@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -41,6 +42,9 @@ class ProfileController extends Controller
 
         Hash::make($attributes['password']);
         if(request('image')){
+            if($user->image) {
+                Storage::delete($user->image);
+            }
             $attributes['image'] = request('image')->store('avatars','public');
         }
         $user->update($attributes);
@@ -54,10 +58,10 @@ class ProfileController extends Controller
         return view('profile.delete', compact('user'));
     }
     public function destroy(User $user) {
-       $attributes =  request()->validate([
+        $attributes =  request()->validate([
             'password' => ['required','confirmed', 'current_password']
         ]);
-
+        Storage::delete($user->image);
         $user->delete();
         Auth::logout();
         return redirect('/');
