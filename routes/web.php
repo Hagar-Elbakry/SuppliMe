@@ -36,7 +36,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/shop',[ShoppingController::class,'index'])->name('shop.index');
 
-    Route::get('/shop/{category}',[ShoppingController::class,'show'])->name('shop.show');
 
     Route::get('/cart',[CartController::class,'index'])->name('cart.index');
     Route::post('/cart/{product}',[CartController::class,'store'])->name('cart.store');
