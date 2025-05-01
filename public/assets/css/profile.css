@@ -1,31 +1,36 @@
 :root {
-  --main-color: #1b8057;
-  --sec-color: #f8c519;
-  --childmain-color: #30a274;
-  --section-color: #f4f4f4;
-  --list-color: #e9e9e9;
-  --t-margin: 100px;
+    --main-color: #1b8057;
+    --sec-color: #f8c519;
+    --childmain-color: #30a274;
+    --section-color: #f4f4f4;
+    --list-color: #e9e9e9;
+    --t-margin: 100px;
 }
 .profile,
 .main-profile {
-  margin-top: var(--t-margin);
-  margin-bottom: var(--t-margin);
+    margin-top: var(--t-margin);
+    margin-bottom: var(--t-margin);
 }
 .profile input {
-  width: 80%;
+    width: 80%;
 }
 .pro {
-  width: 75%;
+    width: 75%;
 }
 .profile .btn {
-  background-color: var(--main-color);
+    background-color: var(--main-color);
 }
 .edit-but {
-  width: fit-content;
-  background-color: var(--main-color);
+    width: fit-content;
+    background-color: var(--main-color);
 }
 @media (max-width: 992px) {
-  .main-profile .pro {
-    flex-direction: column;
-  }
+    .main-profile .pro {
+        flex-direction: column;
+    }
+}
+.main-profile img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
 }

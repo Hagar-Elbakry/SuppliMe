@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -69,5 +70,11 @@ class User extends Authenticatable
     }
     public function products(){
         return $this->belongsToMany(Product::class);
+    }
+
+    public function image() : Attribute {
+        return Attribute::make(
+            get: fn($value) => asset($value ? '/storage/'.$value : '/images/default-avatar.jpg')
+        );
     }
 }

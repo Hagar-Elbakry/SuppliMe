@@ -52,7 +52,7 @@
             @foreach($categories as $category)
             @include('_category')
             @endforeach
-            
+
         </div>
     </div>
     <div
@@ -63,7 +63,7 @@
             <x-discount :color="$category->color"  :discount="$category->activeDiscount()->discount_percentage"  :category="$category->name"  :description="$category->description"  :img="$category->image"/>
             @endif
         @endforeach
-        
+
     </div>
     <div class="featured">
         <div class="container mt-5">
@@ -92,7 +92,7 @@
                 @foreach ($featuredProducts as $product)
                     <x-product-cart :product="$product"/>
                 @endforeach
-                
+
             </div>
         </div>
     </div>
@@ -112,7 +112,7 @@
                     @foreach ($dailyOffers as $product)
                         @include('_deals')
                     @endforeach
-                    
+
                 </div>
             </div>
         </div>
@@ -144,7 +144,7 @@
                 @foreach ($bestSellers as $product)
                     <x-product-cart :product="$product"/>
                 @endforeach
-                
+
             </div>
         </div>
     </div>

@@ -1,1 +1,1 @@
-<button type="submit" class="btn btn-success">{{$slot}}</button>
+<button type="submit" class="btn btn-success" {{$attributes}}>{{$slot}}</button>

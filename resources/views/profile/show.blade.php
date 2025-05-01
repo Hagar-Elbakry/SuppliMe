@@ -8,9 +8,9 @@
 </div>
 <div class="main-profile">
     <div class="container d-flex justify-content-center">
-        <div class="row ">
-            <div class="image col-md-6">
-                <img src="/images/default-avatar.jpg" class="img-fluid rounded-circle" alt="">
+        <div class="row">
+            <div class="image col-md-6 d-flex justify-content-center align-items-start">
+                <img src="{{$user->image}}" class="img-fluid" alt="">
             </div>
             <div class="profile-detailes d-flex justify-content-between gap-3 flex-column col-md-6">
 
@@ -19,7 +19,7 @@
                         Name :
                     </x-slot:name>
                     <x-slot:value>
-                        Username
+                        {{$user->name}}
                     </x-slot:value>
                 </x-profile-info>
 
@@ -28,7 +28,7 @@
                         Email :
                     </x-slot:name>
                     <x-slot:value>
-                        Om@gmail.com
+                        {{$user->email}}
                     </x-slot:value>
                 </x-profile-info>
 
@@ -37,7 +37,7 @@
                         Phone Number :
                     </x-slot:name>
                     <x-slot:value>
-                        01099330322
+                        {{$user->phone}}
                     </x-slot:value>
                 </x-profile-info>
 
@@ -46,7 +46,7 @@
                         Address :
                     </x-slot:name>
                     <x-slot:value>
-                        33 El Fouad Street, Al Attarin, Alexandria, Alexandria Governorate, Egypt
+                        {{$user->address}}
                     </x-slot:value>
                 </x-profile-info>
 
