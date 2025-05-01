@@ -5,15 +5,19 @@
     <div class="shop-category p-2 border-bottom">
         <h5 class="py-2">Category</h5>
         <div class="category list-unstyled fs-4">
-            <x-category-input name="fruits" id="fruits">Fruits</x-category-input>
-            <x-category-input name="vegetables" id="vegetables">Vegetables</x-category-input>
-            <x-category-input name="drinks" id="drinks">Drinks</x-category-input>
-            <x-category-input name="dryFruit" id="dryFruit">Dry Fruit</x-category-input>
-            <x-category-input name="oil" id="oil">Oil</x-category-input>
-            <x-category-input name="bakeryItems" id="bakeryItems">Bakery Items</x-category-input>
-            <x-category-input name="milkShake" id="milkShake">Milk Shake</x-category-input>
-            <x-category-input name="detergents" id="detergents">Detergents</x-category-input>
-            <x-category-input name="milkAndEggs" id="milkAndEggs">Milk & Eggs</x-category-input>
+            <form action="{{ route('shop.index') }}" method="get">
+                @foreach ($categories as $category)
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" id="category" value="{{$category->id}}" @checked(request('category') == $category->id) onchange="this.form.submit()">
+                    <label class="form-check-label" for="category">{{$category->name}}</label>
+                </div>
+                @endforeach
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" id="categoryAll" value="" @checked(request('category') == '') onchange="this.form.submit()">
+                    <label class="form-check-label" for="categoryAll">All</label>
+                </div>
+            </form>
+            
         </div>
     </div>
 

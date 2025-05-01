@@ -146,15 +146,15 @@
 <div class="allcat position-absolute">
     <div class="container">
         <ul class="category list-unstyled fs-4">
-            <x-category-link href="">Fruits</x-category-link>
-            <x-category-link href="">Vegetables</x-category-link>
-            <x-category-link href="">Drinks</x-category-link>
-            <x-category-link href="">Dry Fruit</x-category-link>
-            <x-category-link href="">Oil</x-category-link>
-            <x-category-link href="">Bakery Items</x-category-link>
-            <x-category-link href="">Milk Shake</x-category-link>
-            <x-category-link href="">Detergents</x-category-link>
-            <x-category-link href="">Milk & Eggs</x-category-link>
+                <form action="{{ route('shop.index') }}" method="get">
+                    @foreach ($categories as $category)
+                    <x-category-link  :category="$category">{{ $category->name }}</x-category-link>
+                    @endforeach
+                </form>
+                
+                
+            
+            
         </ul>
     </div>
 </div>

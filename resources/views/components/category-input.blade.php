@@ -1,8 +1,8 @@
-<a>
+{{-- <label>
     <input
-        type="checkbox"
+        type="radio"
         {{$attributes}}
-        onclick="handleClick(this)"
+        onchange="this.form.submit()"
     />
     {{$slot}}
-</a>
+</label> --}}

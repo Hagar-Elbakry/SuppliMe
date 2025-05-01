@@ -16,10 +16,18 @@
                 <div
                     class="row d-flex justify-content-center align-items-center gap-4"
                 >
-                    @foreach ($products as $product)
-                       <x-shop-product-cart :product="$product"/>
-                        {{-- <x-product-cart :product="$product"/> --}}
-                    @endforeach
+                    @forelse($products as $product)
+                        <x-shop-product-cart :product="$product"/>
+                    @empty
+                        <div class="alert alert-success text-center" role="alert" id="empty-cart">
+                            <h4 class="alert-heading">No Products Found !</h4>
+                            <p>Try to change the category or check back later.</p>
+                            
+                        </div>
+                        
+                        
+                    @endforelse 
+                    
                 </div>
                 {{-- <div class="slide mt-4 d-flex justify-content-center align-items-center gap-3 fw-medium">
                     <a href=""><i class="bi bi-chevron-left mt-1 text-decoration-none text-dark"></i></a>
@@ -29,7 +37,7 @@
                     <a href=""><i class="bi bi-chevron-right mt-1 text-decoration-none text-dark"></i></a>
                 </div> --}}
                 <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
-                    {{ $products->links('vendor.pagination.bootstrap-5') }}
+                    {{ $products->appends(['category' => request('category')])->links('vendor.pagination.bootstrap-5') }}
                 </div>
 
             </div>
