@@ -16,17 +16,22 @@
             <div
                 class="row d-flex justify-content-center align-items-center gap-4"
             >
-{{--            start loop--}}
-                @include('_shop-product-cart')
-{{--                end loop--}}
+                @foreach ($products as $product)
+                    @include('_shop-product-cart')
+                    {{-- <x-product-cart :product="$product"/> --}}
+                @endforeach
             </div>
-            <div class="slide mt-4 d-flex justify-content-center align-items-center gap-3 fw-medium">
+            {{-- <div class="slide mt-4 d-flex justify-content-center align-items-center gap-3 fw-medium">
                 <a href=""><i class="bi bi-chevron-left mt-1 text-decoration-none text-dark"></i></a>
                 <a href="" class="text-decoration-none text-light one py-1 px-2 rounded-circle">1</a>
                 <a href="" class="text-decoration-none text-dark py-1 px-2">2</a>
                 <a href="" class="text-decoration-none text-dark py-1 px-2">3</a>
                 <a href=""><i class="bi bi-chevron-right mt-1 text-decoration-none text-dark"></i></a>
+            </div> --}}
+            <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+                {{ $products->links('vendor.pagination.bootstrap-5') }}
             </div>
+            
         </div>
     </div>
 </div>

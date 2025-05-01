@@ -52,7 +52,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/{id}/track', [OrderController::class, 'show'])->name('orders.show');
 
     Route::get('/delivery',[DeliveryController::class,'index'])->name('delivery.index');
+    Route::post('/delivery',[DeliveryController::class,'store'])->name('delivery.store');
     Route::get('/wishlist',[FavouriteController::class,'index'])->name('favourite.index');
+    Route::post('/wishlist',[FavouriteController::class,'store'])->name('favourite.store');
+    Route::delete('/wishlist',[FavouriteController::class,'destroyAll'])->name('favourite.destroyAll');
+    Route::delete('/wishlist/{product}',[FavouriteController::class,'destroy'])->name('favourite.destroy');
+    Route::post('/whishlist/add-all-to-cart',[FavouriteController::class,'addAllToCart'])->name('favourite.addAllToCart');
 
     Route::get('/product/{product}',[ProductController::class,'show'])->name('product.show');
 

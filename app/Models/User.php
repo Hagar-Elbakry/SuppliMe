@@ -69,7 +69,7 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class);
     }
     public function products(){
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class ,'product_user','user_id','product_id')->withTimestamps();
     }
 
     public function image() : Attribute {
