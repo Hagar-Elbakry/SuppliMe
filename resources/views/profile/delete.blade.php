@@ -12,6 +12,7 @@
                 <x-form-error name="password_confirmation"/>
                 <button type="submit" class="btn text-light fw-medium rounded-3 m-lg-2" >DELETE</button>
             </form>
+            <a href="{{route('profile.show', $user)}}" class="text-decoration-none">Cancel</a>
 
         </div>
     </div>
