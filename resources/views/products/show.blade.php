@@ -5,13 +5,13 @@
 <div class="main-title text-center pt-5">
     <h1>Shop</h1>
     <p>
-        <a href="/" class="text-decoration-none text-dark"
+        <a href="{{route('home')}}" class="text-decoration-none text-dark"
         >Home /
         </a>
-        <a href="/shop" class="text-decoration-none text-dark"
+        <a href="{{route('shop.index')}}" class="text-decoration-none text-dark"
         >Shop /</a
         >
-        <a href="" class="text-decoration-none text-dark"
+        <a href="{{route('product.show', $product)}}" class="text-decoration-none text-dark"
         >Product Details</a
         >
     </p>
@@ -27,7 +27,7 @@
             <div class="col-md-6">
                 <p class="text-success fw-medium fs-4 mb-0">{{ $product->category->name }}</p>
                 <h3>{{ $product->name }}</h3>
-                
+
         <form action="{{ route('review.store') }}" method="post" id="rating-form">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -48,7 +48,7 @@
                 @else
                     <div class="mb-2">
                         <p class="fw-medium fs-5">
-                            ${{ $product->price }} 
+                            ${{ $product->price }}
                         </p>
                     </div>
                 @endif

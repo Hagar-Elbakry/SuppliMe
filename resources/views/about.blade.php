@@ -3,7 +3,7 @@
 <x-nav/>
 <div class="main-title text-center pt-5">
     <h1>About Us</h1>
-    <x-header href="/about">About Us</x-header>
+    <x-header href="{{route('about')}}">About Us</x-header>
 </div>
 <div class="about">
     <div class="container">
@@ -32,7 +32,7 @@
                         <p class="text-black-50">Convenient and Reliable Delivery</p>
                     </li>
                 </ul>
-                <a href="/" class="text-decoration-none text-dark"
+                <a href="{{route('home')}}" class="text-decoration-none text-dark"
                 ><p class="fs-1">Supplime</p></a
                 >
             </div>

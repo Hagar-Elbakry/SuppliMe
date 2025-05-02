@@ -3,7 +3,7 @@
 <div class="main-form text-center rounded-4 py-3">
     <div class="container d-flex justify-content-center  flex-column">
         <h3>Register</h3>
-        <form action="/register" method="post" class="d-flex justify-content-between align-items-center gap-3 flex-column mt-1">
+        <form action="{{route('register')}}" method="post" class="d-flex justify-content-between align-items-center gap-3 flex-column mt-1">
             @csrf
            <x-auth-input type="test" name="name" :value="old('name')" placeholder="Name" required/>
             <x-form-error name="name"/>
@@ -22,7 +22,7 @@
 
         <div class="sign d-flex justify-content-center mt-2">
             <p class="me-2">Already have an account?</p>
-            <a href="/login" class=" fw-medium text-decoration-none">Log In</a>
+            <a href="{{route('login')}}" class=" fw-medium text-decoration-none">Log In</a>
         </div>
     </div>
 </div>

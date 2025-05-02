@@ -13,7 +13,7 @@
                     {{ intval($product->activeDiscount()->discount_percentage) }}% off
                 </p>
             @endif
-            
+
             <form action="{{ route('favourite.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -21,9 +21,9 @@
                     <i class="bi {{ auth()->check() && auth()->user()->products->contains($product->id) ? 'bi-heart-fill text-danger' : 'bi-heart text-secondary' }} fs-4 p-2"></i>
                 </button>
             </form>
-            
+
         </div>
-        <a href="/product/{{$product->id}}">
+        <a href="{{route('product.show', $product)}}">
         <img
             src={{ asset($product->image) }}
             class="img-fluid"

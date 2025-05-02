@@ -6,14 +6,14 @@
     <div class="main-title text-center pt-5">
         <h1>Payment</h1>
         <p>
-            <a href="/" class="text-decoration-none text-dark"
+            <a href="{{route('home')}}" class="text-decoration-none text-dark"
             >Home /
             </a>
-            <a href="/cart" class="text-decoration-none text-dark"
+            <a href="{{route('cart.index')}}" class="text-decoration-none text-dark"
             >Shoppingcart /</a
             >
 
-            <a href="/payment" class="text-decoration-none text-dark"
+            <a href="{{route('payment.index', $order)}}" class="text-decoration-none text-dark"
             >Payment</a
             >
         </p>
@@ -25,7 +25,7 @@
                 <div class="deatails col-12 col-md-auto col-lg-12">
                     <h4 class="mb-4">Select Payment Method</h4>
 
-                    <form action="/payment/create" method="post">
+                    <form action="{{route('payment.store')}}" method="post">
                         @csrf
                         <input type="hidden" name="order_id" value="{{$order->id}}"/>
                         <x-payment-field>

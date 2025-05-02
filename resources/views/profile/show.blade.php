@@ -4,13 +4,13 @@
 <x-nav/>
 <div class="main-title text-center pt-5">
     <h1>Profile</h1>
-    <x-header href="/profile/{{auth()->user()->name}}">Profile</x-header>
+    <x-header href="{{route('profile.show', $user)}}">Profile</x-header>
 </div>
 <div class="main-profile">
     <div class="container d-flex justify-content-center">
         <div class="d-flex flex-column flex-md-row align-items-start gap-5">
             <div class="image col-md-6 d-flex justify-content-center align-items-start">
-                <img src="{{$user->profile_image}}" class="img-fluid" alt="">
+                <img src="{{$user->profileImage}}" class="img-fluid" alt="">
 
             </div>
             <div class="profile-detailes d-flex justify-content-between gap-3 flex-column col-md-6">
@@ -54,11 +54,11 @@
                 <div class="bs d-flex justify-content-start align-items-center gap-4 ">
                 <div class="edit-but p-4 border border-success rounded-4">
                     <i class="fa-solid fa-pen me-2 text-light"></i>
-                    <a href="/profile/{{auth()->user()->name}}/edit" class="text-decoration-none text-light text-uppercase ">Edit Profile</a>
+                    <a href="{{route('profile.edit', $user)}}" class="text-decoration-none text-light text-uppercase ">Edit Profile</a>
                 </div>
                     @if(auth()->user()->image)
                         <div class="del p-4 border border-success rounded-4">
-                        <form action="/profile/{{$user->name}}/deleteImage" method="post">
+                        <form action="{{route('profile.deleteImage', $user)}}" method="post">
                             @csrf
                             @method('PATCH')
                             <i class="fa-solid fa-trash text-success" style="margin-left: 60px"></i>

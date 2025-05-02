@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[HomeController::class,'index'])->name('home');
-Route::view('/about','about');
+Route::view('/about','about')->name('about');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/{user:name}',[ProfileController::class,'show'])->name('profile.show');

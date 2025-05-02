@@ -4,7 +4,7 @@
     <x-nav/>
     <div class="main-title text-center pt-5">
         <h1>Shop</h1>
-        <x-header href="/shop">Shop</x-header>
+        <x-header href="{{route('shop.index')}}">Shop</x-header>
     </div>
     <div class="shop">
         <div
@@ -29,13 +29,6 @@
                     @endforelse
 
                 </div>
-                {{-- <div class="slide mt-4 d-flex justify-content-center align-items-center gap-3 fw-medium">
-                    <a href=""><i class="bi bi-chevron-left mt-1 text-decoration-none text-dark"></i></a>
-                    <a href="" class="text-decoration-none text-light one py-1 px-2 rounded-circle">1</a>
-                    <a href="" class="text-decoration-none text-dark py-1 px-2">2</a>
-                    <a href="" class="text-decoration-none text-dark py-1 px-2">3</a>
-                    <a href=""><i class="bi bi-chevron-right mt-1 text-decoration-none text-dark"></i></a>
-                </div> --}}
                 <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
                     {{ $products->appends(['category' => request('category')])->links('vendor.pagination.bootstrap-5') }}
                 </div>

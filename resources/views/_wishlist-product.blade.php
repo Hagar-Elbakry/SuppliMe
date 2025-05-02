@@ -4,7 +4,7 @@
     <div
         class="item-ph d-flex justify-content-between align-items-center gap-2"
     >
-    <form action="{{ route('favourite.destroy', $product->id) }}') }}" method="POST" >
+    <form action="{{ route('favourite.destroy', $product->id) }}" method="POST" >
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-danger">
@@ -28,18 +28,12 @@
         class="item-disc d-flex justify-content-between align-items-center gap-5"
     >
         @php
-            
+
             if($product->activeDiscount()){
                 $product->price = $product->getDiscountedPrice();
             }
         @endphp
         <p>${{ $product->price }}</p>
-        {{-- <div
-            class="quan px-1"
-        >
-            <p>{{ $product->created_at }}</p>
-        </div> --}}
-        {{-- <a href="./product-deatails.html" class="text-decoration-none rounded-3 text-light p-2 btn btn-success"> Add to cart</a> --}}
         <form action="{{ route('cart.store', $product->id) }}" method="POST" class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
             @csrf
             @if($product->stock_quantity > 0)

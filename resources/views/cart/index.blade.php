@@ -5,7 +5,7 @@
 
     <div class="main-title text-center pt-5">
         <h1>shopping Cart</h1>
-        <x-header href="/cart">Shopping Cart</x-header>
+        <x-header href="{{route('cart.index')}}">Shopping Cart</x-header>
     </div>
     @if ($products->isEmpty())
 
@@ -98,7 +98,7 @@
                                 </li>
                             </ul>
                     <div class="check text-center rounded-pill p-3">
-                        <form action="/checkout" method="post">
+                        <form action="{{route('checkout.store')}}" method="post">
                             @csrf
                             <button type="submit" class=" text-dark text-decoration-none px-5 py-2 rounded-pill">
                                 Checkout

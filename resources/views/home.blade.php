@@ -16,13 +16,13 @@
             >
                 <a
                     class="btn rounded-3 text-light main-btn mt-3"
-                    href="/shop"
+                    href="{{route('shop.index')}}"
                     target="_blank"
                 >
                     Shop Now
                 </a>
                 <a
-                    href="/shop"
+                    href="{{route('shop.index')}}"
                     class="text-dark p-1 text-decoration-none mt-3 p-1 border-bottom border-black"
                 >View All Products</a
                 >

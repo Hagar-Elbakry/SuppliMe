@@ -5,7 +5,7 @@
 <x-nav/>
 <div class="main-title text-center pt-5">
     <h1>Edit Your Profile</h1>
-   <x-header href="/profile/{{$user->name}}/edit">Your Profile</x-header>
+   <x-header href="{{route('profile.edit', $user)}}">Your Profile</x-header>
 </div>
 <div class="main-edit">
     <div class="container mt-5">
@@ -14,7 +14,7 @@
                 <div class="card shadow-sm mb-3">
                     <div class="card-body">
                         <h3 class="card-title mb-4 text-center">Edit Profile</h3>
-                        <form action="/profile/{{$user->name}}/update" method="post" enctype="multipart/form-data">
+                        <form action="{{route('profile.update', $user)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             <x-edit-label for="name">

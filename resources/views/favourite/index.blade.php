@@ -4,10 +4,9 @@
 <x-nav/>
 <div class="main-title text-center pt-5">
     <h1>Wishlist</h1>
-    <x-header href="/wishlist">Wishlist</x-header>
+    <x-header href="{{route('favourite.index')}}">Wishlist</x-header>
 </div>
     @if ($favouriteProducts->isEmpty())
-    <!-- Empty Cart State (hidden by default, show when cart is empty) -->
     <div class="alert alert-success text-center" role="alert" id="empty-cart">
         <h4 class="alert-heading">Your Wishlist is Empty!</h4>
         <p>Looks like you haven't added any items to your wishlist yet.</p>
@@ -29,7 +28,6 @@
                             class="infos d-flex justify-content-between align-items-center"
                         >
                             <p>Price</p>
-                            {{-- <p>Date address</p> --}}
                             <p>add</p>
                         </div>
                     </div>
@@ -39,7 +37,7 @@
                     <div
                         class="clear d-flex justify-content-end align-items-center py-4 gap-5"
                     >
-                        
+
                         <div class="clear d-flex justify-content-end align-items-center py-4">
                             <form action="{{ route('favourite.destroyAll') }}" method="POST">
                                 @csrf
@@ -70,7 +68,7 @@
                     <div
                         class="clear d-flex justify-content-end align-items-center py-4 gap-5"
                     >
-                        
+
                         <div class="clear d-flex justify-content-end align-items-center py-4">
                             <form action="{{ route('favourite.destroyAll') }}" method="POST">
                                 @csrf

@@ -32,6 +32,6 @@ class PaymentController extends Controller
             'transaction_id' => $transactionId ?? null,
         ]);
         request()->user()->notify(new PaymentReceived($amount, $paymentMethod));
-        return redirect('/notifications');
+        return redirect(route('notifications.show'));
     }
 }

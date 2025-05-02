@@ -1,14 +1,14 @@
 <div class="nav">
     <div class="container d-flex justify-content-between align-items-center">
         <div class="logos text-center px-3 d-flex align-items-center">
-            <a href="/" class="text-decoration-none text-light">
+            <a href="{{route('home')}}" class="text-decoration-none text-light">
                 <h2 class="fw-bold">Supplime</h2>
                 <p class="cust-p text-uppercase">Supermarket</p>
             </a>
         </div>
         <div class="search d-flex justify-content-center align-items-center">
             <i class="fa-solid fa-magnifying-glass fs-5 search-icon"></i>
-            <form action="/products" method="GET" class="d-flex" role="search">
+            <form action="{{route('search.index')}}" method="GET" class="d-flex" role="search">
                 <input
                     class="form-control rounded-0 border-0"
                     type="text"
@@ -34,20 +34,20 @@
                     class="list-unstyled d-flex justify-content-between align-items-center gap-2"
                 >
                     <li class="nav-item">
-                        <a href="/notifications" class="text-light fs-3"
+                        <a href="{{route('notifications.show')}}" class="text-light fs-3"
                         ><i class="fa-regular fa-bell fw-normal"></i
                             ></a>
                     </li>
-                    <x-nav-link href="/orders">My Orders</x-nav-link>
+                    <x-nav-link href="{{route('orders.index')}}">My Orders</x-nav-link>
                     <x-nav-link href="{{ auth()->check() ? '/profile/'.auth()->user()->name : route('login') }}">Profile</x-nav-link>
 
                     @auth
-                    <form action="/logout" method="POST" class="d-line">
+                    <form action="{{route('logout')}}" method="POST" class="d-line">
                         @csrf
                         <button type="submit" class="btn nav-link text-white p-0 m-0" style="white-space: nowrap">Log Out</button>
                     </form>
                         @else
-                    <x-nav-link href="/login">Log In</x-nav-link>
+                            <x-nav-link href="{{route('login')}}">Log In</x-nav-link>
                         @endauth
                 </ul>
             </div>
@@ -55,14 +55,14 @@
                 class="icons d-flex justify-content-between align-items-center gap-3"
             >
                 <a
-                    href="/cart"
+                    href="{{route('cart.index')}}"
                     class="bg-warning text-light cart text-decoration-none rounded-circle p-2"
                 ><i class="fa-solid fa-cart-shopping fs-3"></i
                     ></a>
-                <a href="/wishlist" class="text-light"
+                <a href="{{route('favourite.index')}}" class="text-light"
                 ><i class="fa-regular fa-heart fs-3"></i
                     ></a>
-                <a href="/delivery"
+                <a href="{{route('delivery.index')}}"
                 ><img
                         src="/assets/imgs/delivery_5457874.png"
                         class="icon-size img-fluid"
@@ -82,32 +82,32 @@
 
             <div class="collapse position-absolute  z-3" id="menu" style="top: 60px; left: 0; width: 250px;">
                 <div class="card card-body border-0 rounded-2">
-                    <x-mobile-nav-link href="/orders">My Orders</x-mobile-nav-link>
+                    <x-mobile-nav-link href="{{route('orders.index')}}">My Orders</x-mobile-nav-link>
                     <x-mobile-nav-link href="{{ auth()->check() ? '/profile/'.auth()->user()->name : route('login') }}">Profile</x-mobile-nav-link>
-                    <x-mobile-nav-link href="/notifications">Notifications</x-mobile-nav-link>
-                    <x-mobile-nav-link href="/cart">Shopping Cart</x-mobile-nav-link>
-                    <x-mobile-nav-link href="/wishlist">Favorites</x-mobile-nav-link>
-                    <x-mobile-nav-link href="/delivery">Delivery</x-mobile-nav-link>
+                    <x-mobile-nav-link href="{{route('notifications.show')}}">Notifications</x-mobile-nav-link>
+                    <x-mobile-nav-link href="{{route('cart.index')}}">Shopping Cart</x-mobile-nav-link>
+                    <x-mobile-nav-link href="{{route('favourite.index')}}">Favorites</x-mobile-nav-link>
+                    <x-mobile-nav-link href="{{route('delivery.index')}}">Delivery</x-mobile-nav-link>
                     @auth
-                        <form action="/logout" method="POST" class="d-line">
+                        <form action="{{route('logout')}}" method="POST" class="d-line">
                             @csrf
                             <button type="submit" class="btn nav-link text-white p-0 m-0 bg-white" style="white-space: nowrap">Log Out</button>
                         </form>
                     @else
-                        <x-mobile-nav-link class="nav-link text-black p-0 m-0 " href="/login">Log In</x-mobile-nav-link>
+                        <x-mobile-nav-link class="nav-link text-black p-0 m-0 " href="{{route('login')}}">Log In</x-mobile-nav-link>
                     @endauth
                 </div>
             </div>
 
         </div>
         <div class="f-logo rounded-pill">
-            <a href="/" class="text-decoration-none text-light fw-bold fs-3 p-4">Supplime</a>
+            <a href="{{route('home')}}" class="text-decoration-none text-light fw-bold fs-3 p-4">Supplime</a>
         </div>
         <div class="f-searche">
             <i class="fa-solid fa-magnifying-glass fs-5 f-search-icon"></i>
         </div>
         <div id="floating-search" class="position-absolute bg-white p-2 rounded shadow d-none" style="top: 70px; right: 20px; z-index: 999;">
-            <form action="/products" method="GET" class="d-flex" role="search">
+            <form action="{{route('search.index')}}" method="GET" class="d-flex" role="search">
                 <input
                     class="form-control me-2"
                     type="text"
@@ -135,10 +135,10 @@
             <ul
                 class="list-unstyled d-flex justify-content-center align-items-center gap-4"
             >
-                <x-link href="/" :active="request()->is('/')">Home</x-link>
-                <x-link href="/about" :active="request()->is('about')">About</x-link>
-                <x-link href="/shop" :active="request()->is('shop')">Shop</x-link>
-                <x-link href="/contact" :active="request()->is('contact')">Contact Us</x-link>
+                <x-link href="{{route('home')}}" :active="request()->is('/')">Home</x-link>
+                <x-link href="{{route('about')}}" :active="request()->is('about')">About</x-link>
+                <x-link href="{{route('shop.index')}}" :active="request()->is('shop')">Shop</x-link>
+                <x-link href="{{route('contact-us.index')}}" :active="request()->is('contact')">Contact Us</x-link>
             </ul>
         </div>
     </div>
@@ -151,10 +151,6 @@
                     <x-category-link  :category="$category">{{ $category->name }}</x-category-link>
                     @endforeach
                 </form>
-
-
-
-
         </ul>
     </div>
 </div>

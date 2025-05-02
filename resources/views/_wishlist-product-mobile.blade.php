@@ -14,7 +14,6 @@
             <img src="{{ asset($product->image) }}" class="rounded me-3" alt="{{ $product->name }}" style="width: 50px; height: 50px;">
             <div>
                 <div><strong>Price:</strong> ${{ $product->price }}</div>
-                {{-- <div><strong>Date Address</strong> 15 july 2025</div> --}}
                 <form action="{{ route('cart.store', $product->id) }}" method="POST" class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
                     @csrf
                     @if($product->stock_quantity > 0)

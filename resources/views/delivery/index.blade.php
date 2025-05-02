@@ -4,7 +4,7 @@
 <x-nav/>
     <div class="main-title text-center pt-5">
         <h1>Track Your Order</h1>
-        <x-header href="/delivery">Delivery</x-header>
+        <x-header href="{{route('delivery.index')}}">Delivery</x-header>
     </div>
 <div class="track">
     <div class="container">
@@ -18,12 +18,12 @@
                         @csrf
                         <div class="order-id d-flex flex-column mb-4">
                             <label for="order-id" class="fw-medium fs-4 mb-2">Order ID*</label>
-                            <input 
-                                type="text" 
-                                name="order_id" 
-                                id="order-id" 
-                                class="form-control w-100 p-3 rounded-3 border border-1 shadow-sm" 
-                                placeholder="Enter Your Order ID" 
+                            <input
+                                type="text"
+                                name="order_id"
+                                id="order-id"
+                                class="form-control w-100 p-3 rounded-3 border border-1 shadow-sm"
+                                placeholder="Enter Your Order ID"
                                 required
                             >
                             @error('order_id')
