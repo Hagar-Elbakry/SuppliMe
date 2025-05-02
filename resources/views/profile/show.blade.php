@@ -61,8 +61,9 @@
                         <form action="{{route('profile.deleteImage', $user)}}" method="post">
                             @csrf
                             @method('PATCH')
-                            <i class="fa-solid fa-trash text-success" style="margin-left: 60px"></i>
-                            <button type="submit" class="text-decoration-none text-success nav-link text-uppercase">Delete Your Image</button>
+                            <button type="submit" class="text-decoration-none text-success nav-link text-uppercase">
+                                <i class="fa-solid fa-trash me-2"></i>Delete Your Image
+                            </button>
                         </form>
                     </div>
                     @endif
