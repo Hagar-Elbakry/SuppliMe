@@ -60,7 +60,7 @@
     >
         @foreach ($categories as $category)
             @if($category->activeDiscount())
-            <x-discount :color="$category->color"  :discount="$category->activeDiscount()->discount_percentage"  :category="$category->name"  :description="$category->description"  :img="$category->image"/>
+            <x-discount :color="$category->color"  :discount="$category->activeDiscount()->discount_percentage"  :category="$category"  :description="$category->description"  :img="$category->image"/>
             @endif
         @endforeach
 
