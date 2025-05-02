@@ -298,6 +298,51 @@ class ProductSeeder extends Seeder
             'description' => 'Pure sunflower oil, excellent for light cooking and dressings. High in vitamin E and low in saturated fats, it’s a heart-healthy option for your culinary needs.',
             'category_id' => 5,
         ]);
+        Product::create([
+            'name' => 'Toast',
+            'image' => './images/products/Toast.png',
+            'price' => 80,
+            'weight' => 100,
+            'stock_quantity' => 420,
+            'description' => ' Crispy and golden toast, perfect for breakfast or a quick snack. Pair it with your favorite spread for a delicious start to the day.',
+            'category_id' => 6,
+        ]);
+        Product::create([
+            'name' => 'Cake',
+            'image' => './images/products/Cake.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 100,
+            'description' => 'Moist and flavorful cake, baked to perfection. Ideal for celebrations or a sweet treat with tea or coffee.',
+            'category_id' => 6,
+        ]);
+        Product::create([
+            'name' => 'Sweet Dinner Rolls',
+            'image' => './images/products/SweetDinnerRolls.png',
+            'price' => 450,
+            'weight' => 100,
+            'stock_quantity' => 150,
+            'description' => 'Soft and sweet dinner rolls, great for any meal. Enjoy them fresh or use them as a base for sandwiches and sliders.',
+            'category_id' => 6,
+        ]);
+        Product::create([
+            'name' => 'Donuts',
+            'image' => './images/products/Donuts.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 100,
+            'description' => 'Fluffy and assorted donuts with delightful toppings. A perfect indulgence for any time of the day, available in a variety of flavors.',
+            'category_id' => 6,
+        ]);
+        Product::create([
+            'name' => 'Cookies',
+            'image' => './images/products/Cookies.png',
+            'price' => 200,
+            'weight' => 120,
+            'stock_quantity' => 100,
+            'description' => 'Chewy and delicious cookies packed with chocolate chips. Perfect for snacking or sharing with family and friends.',
+            'category_id' => 6,
+        ]);
         
         
     }
