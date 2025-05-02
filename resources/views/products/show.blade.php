@@ -77,9 +77,13 @@
                             @endif
                         </form>
                     </div>
-                    <a href="" class="text-decoration-none text-dark m-lg-5">
-                        <i class="fa-regular fa-heart fs-3 "></i
-                        ></a>
+                    <form action="{{ route('favourite.store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <button type="submit" class="btn p-0 border-0 bg-white rounded-circle">
+                            <i class="bi {{ auth()->check() && auth()->user()->products->contains($product->id) ? 'bi-heart-fill text-danger' : 'bi-heart text-secondary' }} fs-4 p-2"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

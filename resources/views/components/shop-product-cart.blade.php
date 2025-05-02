@@ -22,11 +22,9 @@
         </form>
 
     </div>
-        <img
-            src="{{ asset($product->image) }}"
-            class="img-fluid"
-            alt="{{ $product->name }}"
-        />
+        <a href="{{ route('product.show', $product->id) }}">
+            <img src="{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid" />
+        </a>
     </div>
     <div
         class="item-content d-flex justify-content-between gap-3 flex-column"
