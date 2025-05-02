@@ -55,12 +55,14 @@ class CategorySeeder extends Seeder
             'name' => 'Milk Shake',
             'description' => 'Creamy beverages made by blending milk, ice cream, and flavorings like chocolate, vanilla, or fruit, often topped with whipped cream.',
             'image'=>'./images/categories/milkshake.png',
+            'color' => 'fre-veg'
         ]);
 
         Category::create([
             'name' => 'Detergents',
             'description' => 'Cleaning agents, typically synthetic, used for laundry, dishwashing, or surface cleaning, designed to remove dirt and stains.',
             'image'=>'./images/categories/detergents.png',
+            'color' => 'fre-fru'
         ]);
 
         Category::create([
