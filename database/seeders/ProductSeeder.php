@@ -442,6 +442,51 @@ class ProductSeeder extends Seeder
             'description' => 'bottle of Purex 4-in-1 detergent with Oxi, delivering powerful clean, stain defense, advanced freshness, and brightening. Offers 92 loads, making it an economical choice for large households.',
             'category_id' => 8,
         ]);
+        Product::create([
+            'name' => 'Almarai Full Fat Fresh Milk',
+            'image' => './images/products/AlmaraiFullFatFreshMilk.png',
+            'price' => 50,
+            'weight' => 100,
+            'stock_quantity' => 50,
+            'description' => 'bottle of Almarai Full Fat Fresh Milk, offering rich and creamy goodness straight from the farm. Perfect for drinking, cooking, or adding to your daily beverages.',
+            'category_id' => 9,
+        ]);
+        Product::create([
+            'name' => 'Almarai Chocolate Milk',
+            'image' => './images/products/AlmaraiChocolateMilk.png',
+            'price' => 15,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'carton of Almarai Chocolate Milk, blending the wholesome taste of fresh milk with a delicious chocolate flavor. Ideal for a quick, tasty treat on the go.',
+            'category_id' => 9,
+        ]);
+        Product::create([
+            'name' => 'Almarai Rayeb Natural Plain',
+            'image' => './images/products/AlmaraiRayebNaturalPlain.png',
+            'price' => 30,
+            'weight' => 900,
+            'stock_quantity' => 150,
+            'description' => 'bottle of Almarai Rayeb, a natural plain fermented milk drink. Rich in probiotics, it’s a refreshing and healthy choice for any time of the day.',
+            'category_id' => 9,
+        ]);
+        Product::create([
+            'name' => 'Almarai Full Fat Fresh Milk',
+            'image' => './images/products/AlmaraiMilk.png',
+            'price' => 20,
+            'weight' => 100,
+            'stock_quantity' => 150,
+            'description' => 'Almarai Full Fat Fresh Milk, perfect for single servings. Enjoy the pure, creamy taste of fresh milk anytime, anywhere.',
+            'category_id' => 9,
+        ]);
+        Product::create([
+            'name' => 'Almarai Strawberry Milk',
+            'image' => './images/products/AlmaraiStrawberryMilk.png',
+            'price' => 25,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'bottle of Almarai Strawberry Milk, combining fresh milk with the sweet, fruity flavor of strawberries. A delightful and nutritious drink for kids and adults alike.',
+            'category_id' => 9,
+        ]);
         
         
     }
