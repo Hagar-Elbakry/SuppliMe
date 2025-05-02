@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ShoppingController extends Controller
 {
     public function index(Request $request){
-        // random products with pagination
+
         $products = Product::inRandomOrder()->paginate(6);
         $category_id = $request->query('category');
         if($category_id){
@@ -20,5 +20,5 @@ class ShoppingController extends Controller
         return view('shopping.index',compact('products' , 'categories'));
     }
 
-    
+
 }

@@ -8,9 +8,10 @@
 </div>
 <div class="main-profile">
     <div class="container d-flex justify-content-center">
-        <div class="row">
-            <div class="image me-4 col-md-6 d-flex justify-content-center align-items-start">
+        <div class="d-flex flex-column flex-md-row align-items-start gap-5">
+            <div class="image col-md-6 d-flex justify-content-center align-items-start">
                 <img src="{{$user->profile_image}}" class="img-fluid" alt="">
+
             </div>
             <div class="profile-detailes d-flex justify-content-between gap-3 flex-column col-md-6">
 
@@ -50,10 +51,21 @@
                     </x-slot:value>
                 </x-profile-info>
 
-
+                <div class="bs d-flex justify-content-start align-items-center gap-4 ">
                 <div class="edit-but p-4 border border-success rounded-4">
                     <i class="fa-solid fa-pen me-2 text-light"></i>
                     <a href="/profile/{{auth()->user()->name}}/edit" class="text-decoration-none text-light text-uppercase ">Edit Profile</a>
+                </div>
+                    @if(auth()->user()->image)
+                        <div class="del p-4 border border-success rounded-4">
+                        <form action="/profile/{{$user->name}}/deleteImage" method="post">
+                            @csrf
+                            @method('PATCH')
+                            <i class="fa-solid fa-trash text-success" style="margin-left: 60px"></i>
+                            <button type="submit" class="text-decoration-none text-success nav-link text-uppercase">Delete Your Image</button>
+                        </form>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

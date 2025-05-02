@@ -30,6 +30,7 @@ Route::view('/about','about');
 Route::middleware('auth')->group(function () {
     Route::get('/profile/{user:name}',[ProfileController::class,'show'])->name('profile.show');
     Route::get('/profile/{user:name}/edit',[ProfileController::class,'edit'])->name('profile.edit');
+    Route::patch('/profile/{user:name}/deleteImage',[ProfileController::class,'deleteImage'])->name('profile.deleteImage');
     Route::patch('/profile/{user:name}/update',[ProfileController::class,'update'])->name('profile.update');
     Route::get('/profile/{user:name}/delete',[ProfileController::class,'delete'])->name('profile.delete');
     Route::delete('/profile/{user:name}/destroy',[ProfileController::class,'destroy'])->name('profile.destroy');

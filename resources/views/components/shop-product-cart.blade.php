@@ -24,7 +24,7 @@
     </div>
         <img
             src="{{ asset($product->image) }}"
-            class="img-fluid"
+            class="img-fluid"  style="height: 200px; object-fit: contain;"
             alt="{{ $product->name }}"
         />
     </div>

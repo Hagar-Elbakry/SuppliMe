@@ -11,15 +11,7 @@
     margin-top: var(--t-margin);
     margin-bottom: var(--t-margin);
 }
-.profile input {
-    width: 80%;
-}
-.pro {
-    width: 75%;
-}
-.profile .btn {
-    background-color: var(--main-color);
-}
+
 .edit-but {
     width: fit-content;
     background-color: var(--main-color);

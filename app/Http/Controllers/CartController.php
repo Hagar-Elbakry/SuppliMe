@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\User;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +11,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        //! test with any user untile doing authentication
+
         if (!Auth::check()) {
             $user = User::find(2);
             if ($user instanceof User) {
@@ -41,7 +40,7 @@ class CartController extends Controller
         } else {
             $cart->products()->attach($product_id, ['quantity' => 1]);
         }
-        // return redirect()->route('cart.index');
+
         return redirect()->back();
     }
     public function updateQuantity($product_id, $action)

@@ -8,7 +8,7 @@
     </div>
     <div class="shop">
         <div
-            class="container d-flex justify-content-between align-items-start gap-5"
+            class="container d-flex justify-content-start align-items-start gap-5"
         >
             @include('_category-options')
 
@@ -22,12 +22,12 @@
                         <div class="alert alert-success text-center" role="alert" id="empty-cart">
                             <h4 class="alert-heading">No Products Found !</h4>
                             <p>Try to change the category or check back later.</p>
-                            
+
                         </div>
-                        
-                        
-                    @endforelse 
-                    
+
+
+                    @endforelse
+
                 </div>
                 {{-- <div class="slide mt-4 d-flex justify-content-center align-items-center gap-3 fw-medium">
                     <a href=""><i class="bi bi-chevron-left mt-1 text-decoration-none text-dark"></i></a>

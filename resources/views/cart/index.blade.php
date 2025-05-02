@@ -8,7 +8,7 @@
         <x-header href="/cart">Shopping Cart</x-header>
     </div>
     @if ($products->isEmpty())
-        <!-- Empty Cart State (hidden by default, show when cart is empty) -->
+
         <div class="alert alert-success text-center" role="alert" id="empty-cart">
             <h4 class="alert-heading">Your Cart is Empty!</h4>
             <p>Looks like you haven't added any items to your cart yet.</p>
@@ -41,12 +41,12 @@
                                 <p>Subtotal</p>
                             </div>
                         </div>
-                        {{-- intialize the variables --}}
+
                         @php
                             $totalItems = 0;
                             $subTotal = 0;
                         @endphp
-                        {{-- loop through the products --}}
+
                         @foreach($products as $product)
                             @php
                                 $totalItems += $product->pivot->quantity;
@@ -72,7 +72,7 @@
                         @foreach($products as $product)
                             @include('_cart-product-mobile')
                         @endforeach
-                        
+
                     </div>
                     <div class="summary col-12 col-md-12 col-lg-4 rounded-4 border border-black px-0">
                         <p class="fw-medium  border-bottom border-black py-3 px-3">Order Summary</p>

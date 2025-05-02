@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +50,12 @@ class ProfileController extends Controller
         return redirect(route('profile.show',$user));
     }
 
+    public function deleteImage(User $user) {
+        Storage::delete($user->image);
+        $user->update(['image'=>null]);
+        return redirect(route('profile.show',$user));
+    }
+
     public function delete (User $user) {
         if(Auth::user()->id != $user->id) {
             abort(403,'not authorized');
@@ -61,9 +66,11 @@ class ProfileController extends Controller
         $attributes =  request()->validate([
             'password' => ['required','confirmed', 'current_password']
         ]);
-        Storage::delete($user->image);
+        if($user->image) {
+            Storage::delete($user->image);
+        }
         $user->delete();
         Auth::logout();
-        return redirect('/');
+        return redirect(route('home'));
     }
 }

@@ -14,7 +14,7 @@ class OrderService
         DB::beginTransaction();
 
         try {
-             // create order in order table in database
+
             $order = Order::create([
                 'user_id'          => Auth::id(),
                 'total_price'            => $cart->products->sum(function($p){
@@ -23,10 +23,10 @@ class OrderService
                 }) ,
                 'shipping_address' => Auth::user()->address,
                 'shipping_cost'   => 20,
-                'status'         => 'pending',  
+                'status'         => 'pending',
             ]);
 
-            // create order details in order_details table in database
+
             foreach ($cart->products as $product) {
                 $qty = $product->pivot->quantity;
                 OrderDetail::create([
@@ -36,20 +36,20 @@ class OrderService
                     'price' => $product->price,
                     'sub_total' => $product->price * $qty,
                 ]);
-                
-                // check if product has enough stock
+
+
                 if ($product->stock_quantity < $qty) {
                     DB::rollBack();
                     throw new \Exception('Not enough stock for product: ' . $product->name);
                 }
-                // decrement product stock
+
                 $product->decrement('stock_quantity', $qty);
             }
 
-            // empty the cart
+
             $cart->products()->detach();
 
-            // add to shipping table
+
             Shipping::create([
                 'tracking_number' => 'TRK-' . strtoupper(uniqid()),
                 'order_id' => $order->id,

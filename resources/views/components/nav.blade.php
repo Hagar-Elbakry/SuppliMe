@@ -94,7 +94,7 @@
                             <button type="submit" class="btn nav-link text-white p-0 m-0 bg-white" style="white-space: nowrap">Log Out</button>
                         </form>
                     @else
-                        <x-nav-link href="/login">Log In</x-nav-link>
+                        <x-mobile-nav-link class="nav-link text-black p-0 m-0 " href="/login">Log In</x-mobile-nav-link>
                     @endauth
                 </div>
             </div>
@@ -151,10 +151,10 @@
                     <x-category-link  :category="$category">{{ $category->name }}</x-category-link>
                     @endforeach
                 </form>
-                
-                
-            
-            
+
+
+
+
         </ul>
     </div>
 </div>

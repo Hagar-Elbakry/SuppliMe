@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\interfaces\PaymentMethod;
 use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Payments\PaymentFactory;
 use App\Notifications\PaymentReceived;
 

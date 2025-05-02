@@ -33,7 +33,6 @@ class ProductSeeder extends Seeder
             'description' => 'A curved, yellow tropical fruit with soft, sweet flesh rich in potassium, fiber, and vitamins B6 & C. Commonly eaten fresh, in smoothies, or as a cooking ingredient.',
             'category_id' => 1,
         ]);
-
         Product::create([
             'name' => 'guava',
             'image' => './images/products/guava.png',

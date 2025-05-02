@@ -9,13 +9,13 @@
 
             <div class="row justify-content-center" id="searchResults">
                 @forelse($products as $product)
-                    <x-shop-product-cart class="me-3" :product="$product"/>
+                    <x-shop-product-cart class="me-3 mt-2" :product="$product"/>
                 @empty
                     <div class="alert alert-success text-center" role="alert" id="empty-cart">
                         <h4 class="alert-heading">No products matching your search.</h4>
                     </div>
                 @endforelse
-
+                {{$products->appends(request()->query())->links()}}
             </div>
         </div>
 
