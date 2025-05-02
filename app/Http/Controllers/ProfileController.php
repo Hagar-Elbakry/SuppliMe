@@ -30,6 +30,9 @@ class ProfileController extends Controller
     }
 
     public function update(User $user) {
+        if (Auth::user()->id!== $user->id) {
+            abort(403,'not authorized');
+        }
         $attributes = request()->validate([
             'name' => ['required', 'string'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->ignore($user)],
@@ -51,6 +54,9 @@ class ProfileController extends Controller
     }
 
     public function deleteImage(User $user) {
+        if (Auth::user()->id!== $user->id) {
+            abort(403,'not authorized');
+        }
         Storage::delete($user->image);
         $user->update(['image'=>null]);
         return redirect(route('profile.show',$user));
@@ -63,6 +69,9 @@ class ProfileController extends Controller
         return view('profile.delete', compact('user'));
     }
     public function destroy(User $user) {
+        if (Auth::user()->id!== $user->id) {
+            abort(403,'not authorized');
+        }
         $attributes =  request()->validate([
             'password' => ['required','confirmed', 'current_password']
         ]);
