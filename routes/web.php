@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DeliveryController;
@@ -16,8 +15,6 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShoppingController;
 use App\Http\Controllers\SupportMessageController;
 use App\Http\Controllers\UserNotificationsController;
-use App\Models\Review;
-use App\Models\SupportMessage;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,58 +24,68 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::view('/about','about')->name('about');
 
+Route::group(['prefix' => '/profile/', 'as' => 'profile.', 'middleware' => 'auth'], function () {
+    Route::get('{user:name}',[ProfileController::class,'show'])->name('show');
+    Route::get('{user:name}/edit',[ProfileController::class,'edit'])->name('edit');
+    Route::patch('{user:name}/deleteImage',[ProfileController::class,'deleteImage'])->name('deleteImage');
+    Route::patch('{user:name}/update',[ProfileController::class,'update'])->name('update');
+    Route::get('{user:name}/delete',[ProfileController::class,'delete'])->name('delete');
+    Route::delete('{user:name}/destroy',[ProfileController::class,'destroy'])->name('destroy');
+});
+
+Route::group(['prefix' => '/cart', 'as' => 'cart.', 'middleware' => 'auth'], function () {
+    Route::get('',[CartController::class,'index'])->name('index');
+    Route::post('/{product}',[CartController::class,'store'])->name('store');
+    Route::get('/{product_id}/update/{action}', [CartController::class, 'updateQuantity'])->name('updateQuantity');
+    Route::delete('',[CartController::class,'destroyAll'])->name('destroyAll');
+    Route::delete('/{product}',[CartController::class,'destroy'])->name('destroy');
+});
+
+Route::group(['prefix' => '/payment/', 'as' => 'payment.', 'middleware' => 'auth'], function () {
+    Route::get('{orderId}',[PaymentController::class,'index'])->name('index');
+    Route::post('create',[PaymentController::class,'store'])->name('store');
+});
+
+Route::group(['prefix' => '/orders', 'as' => 'orders.', 'middleware' => 'auth'], function () {
+    Route::get('', [OrderController::class, 'index'])->name('index');
+    Route::get('/{id}/track', [OrderController::class, 'show'])->name('show');
+});
+
+Route::group(['prefix' => '/delivery', 'as' => 'delivery.', 'middleware' => 'auth'], function () {
+    Route::get('',[DeliveryController::class,'index'])->name('index');
+    Route::post('',[DeliveryController::class,'store'])->name('store');
+});
+
+Route::group(['prefix' => '/wishlist', 'as' => 'favourite.', 'middleware' => 'auth'], function () {
+    Route::get('',[FavouriteController::class,'index'])->name('index');
+    Route::post('',[FavouriteController::class,'store'])->name('store');
+    Route::delete('',[FavouriteController::class,'destroyAll'])->name('destroyAll');
+    Route::delete('/{product}',[FavouriteController::class,'destroy'])->name('destroy');
+    Route::post('/add-all-to-cart',[FavouriteController::class,'addAllToCart'])->name('addAllToCart');
+});
+
+Route::group(['prefix' => '/contact', 'as' => 'contact-us.', 'middleware' => 'auth'], function (){
+    Route::get('',[SupportMessageController::class,'index'])->name('index');
+    Route::post('',[SupportMessageController::class,'store'])->name('store');
+});
+
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/{user:name}',[ProfileController::class,'show'])->name('profile.show');
-    Route::get('/profile/{user:name}/edit',[ProfileController::class,'edit'])->name('profile.edit');
-    Route::patch('/profile/{user:name}/deleteImage',[ProfileController::class,'deleteImage'])->name('profile.deleteImage');
-    Route::patch('/profile/{user:name}/update',[ProfileController::class,'update'])->name('profile.update');
-    Route::get('/profile/{user:name}/delete',[ProfileController::class,'delete'])->name('profile.delete');
-    Route::delete('/profile/{user:name}/destroy',[ProfileController::class,'destroy'])->name('profile.destroy');
 
     Route::get('/shop',[ShoppingController::class,'index'])->name('shop.index');
 
-
-    Route::get('/cart',[CartController::class,'index'])->name('cart.index');
-    Route::post('/cart/{product}',[CartController::class,'store'])->name('cart.store');
-    Route::get('/cart/{product_id}/update/{action}', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
-    Route::delete('/cart',[CartController::class,'destroyAll'])->name('cart.destroyAll');
-    Route::delete('/cart/{product}',[CartController::class,'destroy'])->name('cart.destroy');
-
-
     Route::post('/checkout',[CheckoutController::class,'store'])->name('checkout.store');
-    Route::get('/payment/{orderId}',[PaymentController::class,'index'])->name('payment.index');
-    Route::post('/payment/create',[PaymentController::class,'store'])->name('payment.store');
-
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('/orders/{id}/track', [OrderController::class, 'show'])->name('orders.show');
-
-    Route::get('/delivery',[DeliveryController::class,'index'])->name('delivery.index');
-    Route::post('/delivery',[DeliveryController::class,'store'])->name('delivery.store');
-    Route::get('/wishlist',[FavouriteController::class,'index'])->name('favourite.index');
-    Route::post('/wishlist',[FavouriteController::class,'store'])->name('favourite.store');
-    Route::delete('/wishlist',[FavouriteController::class,'destroyAll'])->name('favourite.destroyAll');
-    Route::delete('/wishlist/{product}',[FavouriteController::class,'destroy'])->name('favourite.destroy');
-    Route::post('/wishlist/add-all-to-cart',[FavouriteController::class,'addAllToCart'])->name('favourite.addAllToCart');
 
     Route::get('/product/{product}',[ProductController::class,'show'])->name('product.show');
     Route::get('/products', [SearchController::class, 'index'])->name('search.index');
 
     Route::get('/notifications',[UserNotificationsController::class,'show'])->name('notifications.show');
 
-    Route::get('/contact',[SupportMessageController::class,'index'])->name('contact-us.index');
-    Route::post('/contact',[SupportMessageController::class,'store'])->name('contact-us.store');
-
     Route::post('/rate',[ReviewController::class,'store'])->name('review.store');
-    Route::post('/logout',[AuthenticatedSessionController::class,'destroy'])->name('logout');
 });
 
-Route::middleware('guest')->group(function () {
-    Route::get('/register',[RegisteredUserController::class,'create'])->name('register');
-    Route::post('/register',[RegisteredUserController::class,'store'])->name('register.store');
+require __DIR__.'/auth.php';
 
-    Route::get('/login',[AuthenticatedSessionController::class,'create'])->name('login');
-    Route::post('/login',[AuthenticatedSessionController::class,'store'])->name('login.store');
-});
+
 
 
 
