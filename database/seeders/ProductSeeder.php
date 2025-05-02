@@ -199,5 +199,61 @@ class ProductSeeder extends Seeder
             'description' => 'A vibrant blend of multiple fruit juices (typically tropical or citrus-based) designed specifically for cocktail mixing or standalone consumption. Offers balanced sweetness and acidity to complement spirits while delivering authentic fruit flavors.',
             'category_id' => 3,
         ]);
+        Product::create([
+            'name' => 'Almonds',
+            'image' => './images/products/Almonds.png',
+            'price' => 200,
+            'weight' => 100,
+            'stock_quantity' => 20,
+            'description' => 'Premium quality almonds, rich in healthy fats, protein, and vitamin E. Perfect for snacking, baking, or adding to your favorite recipes.',
+            'category_id' => 4,
+        ]);
+        Product::create([
+            'name' => 'Pistachios',
+            'image' => './images/products/pistachios.png',
+            'price' => 300,
+            'weight' => 100,
+            'stock_quantity' => 50,
+            'description' => 'Delicious and nutritious pistachios, packed with antioxidants, fiber, and essential minerals. Ideal as a tasty snack or a healthy topping.',
+            'category_id' => 4,
+        ]);
+        Product::create([
+            'name' => 'Raisins',
+            'image' => './images/products/raisins.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'Sweet and juicy raisins, made from dried grapes, offering a natural source of energy, iron, and potassium. Great for snacking or mixing into cereals and desserts.',
+            'category_id' => 4,
+        ]);
+        Product::create([
+            'name' => 'Cashews',
+            'image' => './images/products/cashews.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'Creamy and buttery cashews, loaded with heart-healthy monounsaturated fats and magnesium. Enjoy them roasted or raw as a delightful snack.',
+            'category_id' => 4,
+        ]);
+        Product::create([
+            'name' => 'Figs',
+            'image' => './images/products/figs.png',
+            'price' => 400,
+            'weight' => 100,
+            'stock_quantity' => 150,
+            'description' => 'Naturally sweet dried figs, rich in fiber, calcium, and antioxidants. Perfect for a healthy snack or as an ingredient in salads and baked goods.',
+            'category_id' => 4,
+        ]);
+        Product::create([
+            'name' => 'Walnuts',
+            'image' => './images/products/walnuts.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'Crunchy walnuts, a great source of omega-3 fatty acids and antioxidants. Excellent for snacking, salads, or adding a nutty flavor to your dishes.',
+            'category_id' => 4,
+        ]);
+        
+        
     }
 }
