@@ -253,6 +253,51 @@ class ProductSeeder extends Seeder
             'description' => 'Crunchy walnuts, a great source of omega-3 fatty acids and antioxidants. Excellent for snacking, salads, or adding a nutty flavor to your dishes.',
             'category_id' => 4,
         ]);
+        Product::create([
+            'name' => 'Crystal Corn Oil',
+            'image' => './images/products/CrystalCornOil.png',
+            'price' => 100,
+            'weight' => 100,
+            'stock_quantity' => 200,
+            'description' => 'High-quality corn oil, perfect for frying, baking, and salad dressings. Known for its light texture and rich flavor, it’s a versatile addition to any kitchen.',
+            'category_id' => 5,
+        ]);
+        Product::create([
+            'name' => 'Gandour Corn Oil',
+            'image' => './images/products/GandourCornOil.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'Premium corn oil from Gandour, ideal for cooking and deep-frying. Packed with essential fatty acids, it enhances the taste of your favorite dishes with a smooth finish.',
+            'category_id' => 5,
+        ]);
+        Product::create([
+            'name' => 'Noor Corn Oil',
+            'image' => './images/products/NoorCornOil.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 200,
+            'description' => 'Pure and natural Noor corn oil, great for everyday cooking. Its neutral taste and high smoke point make it suitable for stir-frying, grilling, and more.',
+            'category_id' => 5,
+        ]);
+        Product::create([
+            'name' => 'Alfa Corn Oil',
+            'image' => './images/products/AlfaCornOil.png',
+            'price' => 300,
+            'weight' => 100,
+            'stock_quantity' => 50,
+            'description' => 'Alfa corn oil, a healthy choice for cooking and sautéing. Rich in vitamin E and antioxidants, it’s perfect for maintaining a balanced diet.',
+            'category_id' => 5,
+        ]);
+        Product::create([
+            'name' => 'Sunflower Oil',
+            'image' => './images/products/SunflowerOil.png',
+            'price' => 400,
+            'weight' => 200,
+            'stock_quantity' => 70,
+            'description' => 'Pure sunflower oil, excellent for light cooking and dressings. High in vitamin E and low in saturated fats, it’s a heart-healthy option for your culinary needs.',
+            'category_id' => 5,
+        ]);
         
         
     }
