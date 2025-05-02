@@ -343,6 +343,51 @@ class ProductSeeder extends Seeder
             'description' => 'Chewy and delicious cookies packed with chocolate chips. Perfect for snacking or sharing with family and friends.',
             'category_id' => 6,
         ]);
+        Product::create([
+            'name' => 'Strawberry Milkshake',
+            'image' => './images/products/StrawberryMilkshake.png',
+            'price' => 150,
+            'weight' => 100,
+            'stock_quantity' => 50,
+            'description' => 'A refreshing strawberry milkshake, blended with fresh strawberries and creamy milk. Perfect for a fruity and cool treat on any day.',
+            'category_id' => 7,
+        ]);
+        Product::create([
+            'name' => 'Blueberry Milkshake',
+            'image' => './images/products/BlueberryMilkshake.png',
+            'price' => 110,
+            'weight' => 100,
+            'stock_quantity' => 70,
+            'description' => 'A rich and smooth blueberry milkshake, packed with the natural goodness of blueberries. Ideal for a healthy and delicious indulgence.',
+            'category_id' => 7,
+        ]);
+        Product::create([
+            'name' => 'Lotus Milkshake',
+            'image' => './images/products/LotusMilkshake.png',
+            'price' => 150,
+            'weight' => 100,
+            'stock_quantity' => 150,
+            'description' => 'A decadent Lotus milkshake, infused with the unique flavor of Lotus biscuits. A perfect blend of creaminess and crunch for dessert lovers.',
+            'category_id' => 7,
+        ]);
+        Product::create([
+            'name' => 'Mango Milkshake',
+            'image' => './images/products/MangoMilkshake.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'A tropical mango milkshake, made with ripe mangoes and a creamy base. Great for a refreshing and exotic drink experience.',
+            'category_id' => 7,
+        ]);
+        Product::create([
+            'name' => 'Vanilla Milkshake',
+            'image' => './images/products/VanillaMilkshake.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'A classic vanilla milkshake, smooth and creamy with a rich vanilla flavor. Perfect as a timeless treat or paired with your favorite snacks.',
+            'category_id' => 7,
+        ]);
         
         
     }
