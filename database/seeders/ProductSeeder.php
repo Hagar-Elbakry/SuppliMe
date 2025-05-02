@@ -388,6 +388,60 @@ class ProductSeeder extends Seeder
             'description' => 'A classic vanilla milkshake, smooth and creamy with a rich vanilla flavor. Perfect as a timeless treat or paired with your favorite snacks.',
             'category_id' => 7,
         ]);
+        Product::create([
+            'name' => 'Lex Regular Fresh Gel',
+            'image' => './images/products/LexRegularFreshGel.png',
+            'price' => 80,
+            'weight' => 100,
+            'stock_quantity' => 50,
+            'description' => 'A floral-scented laundry gel designed for regular washing, offering 32 washes with perfume capsules for a long-lasting fresh fragrance. Ideal for everyday laundry needs with a gentle yet effective cleaning formula.',
+            'category_id' => 8,
+        ]);
+        Product::create([
+            'name' => 'Persil Universal Gel',
+            'image' => './images/products/PersilUniversalGel.png',
+            'price' => 180,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'A versatile green gel detergent providing 20 washes, formulated for tough stain removal while being gentle on colors. Perfect for all fabric types in automatic washing machines.',
+            'category_id' => 8,
+        ]);
+        Product::create([
+            'name' => 'Tide Automatic Downy Scent',
+            'image' => './images/products/TideAutomaticDownyScent.png',
+            'price' => 200,
+            'weight' => 100,
+            'stock_quantity' => 50,
+            'description' => 'orange bottle of Tide automatic detergent with Downy scent, tough on stains and gentle on colors. Infused with a floral fragrance, it ensures a deep clean and soft finish for your laundry.',
+            'category_id' => 8,
+        ]);
+        Product::create([
+            'name' => 'Persil ProClean Scent Boost Blossom Breeze',
+            'image' => './images/products/Persil.png',
+            'price' => 350,
+            'weight' => 150,
+            'stock_quantity' => 30,
+            'description' => 'A blue gel detergent with a 50-wash capacity, featuring deep clean technology and scent boost for up to 100 days of freshness. The Blossom Breeze scent leaves clothes revitalized and pleasantly fragrant.',
+            'category_id' => 8,
+        ]);
+        Product::create([
+            'name' => 'Purex Dirt Lift Action Crystals Fresh Cherry Blossom',
+            'image' => './images/products/Purex.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'A red bottle of Purex detergent with Dirt Lift Action, offering 30 days of crystal fresh scent in Fresh Cherry Blossom. Provides bright clean results with smart value, suitable for everyday use.',
+            'category_id' => 8,
+        ]);
+        Product::create([
+            'name' => 'Purex 4-in-1 + Oxi Bright Clean',
+            'image' => './images/products/Purex4-in-1.png',
+            'price' => 150,
+            'weight' => 80,
+            'stock_quantity' => 150,
+            'description' => 'bottle of Purex 4-in-1 detergent with Oxi, delivering powerful clean, stain defense, advanced freshness, and brightening. Offers 92 loads, making it an economical choice for large households.',
+            'category_id' => 8,
+        ]);
         
         
     }
