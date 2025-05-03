@@ -15,7 +15,9 @@
                         <h4 class="alert-heading">No products matching your search.</h4>
                     </div>
                 @endforelse
+                <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
                 {{$products->appends(request()->query())->links()}}
+                </div>
             </div>
         </div>
 

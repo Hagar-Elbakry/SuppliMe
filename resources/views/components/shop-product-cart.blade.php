@@ -8,7 +8,7 @@
         class="fav d-flex justify-content-between align-items-start gap-2 w-100 position-absolute"
     >
         @if($product->getDiscountPercentage() > 0)
-            <p class="rounded-5 rounded-start py-1 px-3 text-light">
+            <p class="badge bg-success rounded-5 rounded-start py-1 px-3 text-light">
                 {{ intval($product->getDiscountPercentage()) }}% off
             </p>
         @endif
