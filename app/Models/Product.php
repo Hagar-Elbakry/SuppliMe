@@ -31,25 +31,49 @@ class Product extends Model
         return $this->hasMany(Discount::class);
     }
 
-    public function activeDiscount(){
-        return $this->discounts()->where('discount_type','product')
-        ->where('start_date','<=',now())
-        ->where('end_date','>=',now())
-        ->first();
+    public function activeDiscount()
+    {
+        $productDiscount = $this->discounts()->where('discount_type', 'product')
+                            ->where('start_date', '<=', now())
+                            ->where('end_date', '>=', now())
+                            ->first();
+        $categoryDiscount = $this->category->activeDiscount();
+        return [
+            'product' => $productDiscount,
+            'category' => $categoryDiscount
+        ];
     }
-    public static function activeDaliyDiscount(){
-        return self::all()->filter(function($product){
-            $discount = $product->activeDiscount();
-            return $discount && $discount->is_daily ;
+
+    public static function activeDailyDiscount()
+    {
+        return self::all()->filter(function ($product) {
+            $discounts = $product->activeDiscount();
+            $productDiscount = $discounts['product'];
+            $categoryDiscount = $discounts['category'];
+
+            return ($productDiscount && $productDiscount->is_daily) || 
+                ($categoryDiscount && $categoryDiscount->is_daily);
         });
     }
-    public function getDiscountPercentage(){
-        $productDiscount = $this->activeDiscount();
-        $categoryDiscount = $this->category->activeDiscount();
-        return $productDiscount ? $productDiscount->discount_percentage : ($categoryDiscount ? $categoryDiscount->discount_percentage : 0);
+
+    public function getDiscountPercentage()
+    {
+        $discounts = $this->activeDiscount();
+        $productDiscount = $discounts['product'];
+        $categoryDiscount = $discounts['category'];
+        $totalDiscount = 0;
+        if ($productDiscount) {
+            $totalDiscount += $productDiscount->discount_percentage;
+        }
+        if ($categoryDiscount) {
+            $totalDiscount += $categoryDiscount->discount_percentage;
+        }
+        return $totalDiscount;
     }
-    public function getDiscountedPrice(){
-        $discount  = $this->getDiscountPercentage();
-        return $discount ? $this->price -($this->price*($discount/100)) : $this->price;
+
+    public function getDiscountedPrice()
+    {
+        $discountPercentage = $this->getDiscountPercentage();
+        return $discountPercentage ? $this->price - ($this->price * ($discountPercentage / 100)) : $this->price;
     }
 }

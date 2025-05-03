@@ -50,7 +50,7 @@
                         @foreach($products as $product)
                             @php
                                 $totalItems += $product->pivot->quantity;
-                                if($product->activeDiscount()){
+                                if($product->getDiscountPercentage() > 0){
                                     $product->price = $product->getDiscountedPrice();
                                 }
                                 $subTotal += $product->pivot->quantity * $product->price;

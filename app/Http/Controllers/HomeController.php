@@ -13,7 +13,7 @@ class HomeController extends Controller
 
         $featuredProducts = Product::where('is_featured',1)->get();
 
-        $dailyOffers = Product::activeDaliyDiscount();
+        $dailyOffers = Product::activeDailyDiscount();
 
         $bestSellers = Product::inRandomOrder()->take(6)->get();
         return view('home',compact('categories','featuredProducts','dailyOffers','bestSellers'));

@@ -18,7 +18,7 @@ class OrderService
             $order = Order::create([
                 'user_id'          => Auth::id(),
                 'total_price'            => $cart->products->sum(function($p){
-                    $price  = $p->activeDiscount() ? $p->getDiscountedPrice() : $p->price;
+                    $price  = $p->getDiscountPercentage() > 0 ? $p->getDiscountedPrice() : $p->price;
                     return $price * $p->pivot->quantity;
                 }) ,
                 'shipping_address' => Auth::user()->address,

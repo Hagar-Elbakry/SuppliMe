@@ -29,7 +29,7 @@
     >
         @php
 
-            if($product->activeDiscount()){
+            if($product->getDiscountPercentage() > 0){
                 $product->price = $product->getDiscountedPrice();
             }
         @endphp

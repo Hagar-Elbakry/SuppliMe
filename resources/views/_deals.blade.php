@@ -6,7 +6,7 @@
             class="fav position-relative w-100"
         >
             <p class="rounded-3 py-1 px-2 text-light position-absolute top-0 start-0 m-2 z-2" style="min-width: 60px; text-align: center; ">
-                {{ intval($product->activeDiscount()->discount_percentage) }}% off
+                {{ intval($product->getDiscountPercentage()) }}% off
             </p>
             <form action="{{ route('favourite.store') }}" method="post" class="position-absolute start-0 ms-2 z-1" style="top: 50px; left: 10px;">
                 @csrf
