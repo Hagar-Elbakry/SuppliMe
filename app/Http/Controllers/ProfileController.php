@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -68,7 +69,7 @@ class ProfileController extends Controller
         }
         return view('profile.delete', compact('user'));
     }
-    public function destroy(User $user) {
+    public function destroy(Request $request, User $user) {
         if (Auth::user()->id!== $user->id) {
             abort(403,'not authorized');
         }
@@ -80,6 +81,8 @@ class ProfileController extends Controller
         }
         $user->delete();
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect(route('home'));
     }
 }
