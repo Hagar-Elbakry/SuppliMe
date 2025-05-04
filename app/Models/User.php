@@ -18,7 +18,6 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $guarded = [];
-    protected $appends = ['profile_image'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -72,9 +71,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Product::class ,'product_user','user_id','product_id')->withTimestamps();
     }
 
-    public function ProfileImage() : Attribute {
+    protected function image() : Attribute {
         return Attribute::make(
-            get: fn()=> $this->image ? asset('storage/'.$this->image) : asset('/images/default-avatar.jpg')
+            get: fn($value)=> asset($value ? '/storage/'.$value: '/images/default-avatar.jpg')
         );
     }
 }

@@ -45,8 +45,8 @@ class ProfileController extends Controller
 
         Hash::make($attributes['password']);
         if(request('image')){
-            if($user->image) {
-                Storage::delete($user->image);
+            if($user->getRawOriginal('image')) {
+                Storage::delete($user->getRawOriginal('image'));
             }
             $attributes['image'] = request('image')->store('avatars');
         }
@@ -58,7 +58,7 @@ class ProfileController extends Controller
         if (Auth::user()->id!== $user->id) {
             abort(403,'not authorized');
         }
-        Storage::delete($user->image);
+        Storage::delete($user->getRawOriginal('image'));
         $user->update(['image'=>null]);
         return redirect(route('profile.show',$user));
     }
@@ -76,8 +76,8 @@ class ProfileController extends Controller
         $attributes =  request()->validate([
             'password' => ['required','confirmed', 'current_password']
         ]);
-        if($user->image) {
-            Storage::delete($user->image);
+        if($user->getRawOriginal('image')) {
+            Storage::delete($user->getRawOriginal('image'));
         }
         $user->delete();
         Auth::logout();
