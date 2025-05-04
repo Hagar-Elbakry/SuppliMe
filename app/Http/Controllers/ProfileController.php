@@ -48,7 +48,7 @@ class ProfileController extends Controller
             if($user->image) {
                 Storage::delete($user->image);
             }
-            $attributes['image'] = request('image')->store('avatars','public');
+            $attributes['image'] = request('image')->store('avatars');
         }
         $user->update($attributes);
         return redirect(route('profile.show',$user));
