@@ -23,7 +23,7 @@ class CartController extends Controller
         return view('cart.index', compact('products'));
     }
 
-    public function store(Request $request , $product_id) {
+    public function store($product_id) {
         if (!Auth::check()) {
             $user = User::find(2);
             if ($user instanceof User) {
