@@ -12,6 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
         rel="stylesheet"
@@ -30,5 +31,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/supplime.js">
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            @if (session('welcome'))
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Welcome',
+                        text: '{{ session('welcome') }}',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        showCloseButton: true,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        position: 'center',
+                    });
+                </script>
+            @endif
+                
 </body>
 </html>

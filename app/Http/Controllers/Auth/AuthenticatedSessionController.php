@@ -23,6 +23,7 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
         request()->session()->regenerate();
+        session()->flash('welcome','Welcome, '.auth()->user()->name.' SuppliMe Happy To Have You Back :)');
         return redirect()->intended();
     }
 
