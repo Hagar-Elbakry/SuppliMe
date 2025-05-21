@@ -39,7 +39,7 @@
                         title: 'Welcome',
                         text: '{{ session('welcome') }}',
                         showConfirmButton: true,
-                        confirmButtonText: 'OK',
+                        confirmButtonText: 'Thank You',
                         showCloseButton: true,
                         timer: 5000,
                         timerProgressBar: true,
