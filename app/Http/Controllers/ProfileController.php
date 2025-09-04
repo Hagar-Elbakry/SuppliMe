@@ -76,6 +76,7 @@ class ProfileController extends Controller
         $attributes =  request()->validate([
             'password' => ['required','confirmed', 'current_password']
         ]);
+
         if($user->getRawOriginal('image')) {
             Storage::delete($user->getRawOriginal('image'));
         }

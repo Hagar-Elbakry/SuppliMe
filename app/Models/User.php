@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Panel;
+use Illuminate\Support\Facades\Storage;
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -73,9 +75,9 @@ class User extends Authenticatable implements FilamentUser
         return $this->belongsToMany(Product::class ,'product_user','user_id','product_id')->withTimestamps();
     }
 
-    protected function image() : Attribute {
+    protected function defaultImage() : Attribute {
         return Attribute::make(
-            get: fn($value)=> asset($value ? '/storage/'.$value: '/images/default-avatar.jpg')
+            get: fn($value, $attributes)=> $attributes['image'] ? Storage::disk('public')->url($attributes['image']) : asset('images/default-avatar.jpg'),
         );
     }
     public function canAccessPanel(Panel $panel): bool
