@@ -22,7 +22,7 @@
     </div>
     <div class="image">
         <img
-            src="{{$img}}"
+            src="{{'storage/'.$img}}"
             class="img-fluid"
             alt=""
         />
