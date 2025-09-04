@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DeliveryController;
@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::view('/about','about')->name('about');
 
+
 Route::group(['prefix' => '/profile/', 'as' => 'profile.', 'middleware' => 'auth'], function () {
     Route::get('{user:name}',[ProfileController::class,'show'])->name('show');
     Route::get('{user:name}/edit',[ProfileController::class,'edit'])->name('edit');
@@ -41,7 +42,7 @@ Route::group(['prefix' => '/cart', 'as' => 'cart.', 'middleware' => 'auth'], fun
     Route::delete('/{product}',[CartController::class,'destroy'])->name('destroy');
 });
 
-Route::group(['prefix' => '/payment/', 'as' => 'payment.', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => '/payment/', 'as' => 'payment.', 'middleware' => 'auth', 'verified'], function () {
     Route::get('{orderId}',[PaymentController::class,'index'])->name('index');
     Route::post('create',[PaymentController::class,'store'])->name('store');
 });
