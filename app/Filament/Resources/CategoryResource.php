@@ -88,10 +88,7 @@ class CategoryResource extends Resource
 
                 TextColumn::make('description')
                     ->label('Description')
-                    ->limit(20)
-                    ->sortable()
-                    ->searchable()
-                    ->toggleable(),
+                    ->limit(20),
 
 
                 BadgeColumn::make('color')
@@ -100,13 +97,16 @@ class CategoryResource extends Resource
                         'warning' => 'fre-fru',
                         'info' => 'fre-veg',
                     ])
-                    ->sortable()
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('created_at')
                     ->label('Created At')
                     ->date()
                     ->sortable(),
+                TextColumn::make('updated_at')
+                ->label('Updated At')
+                ->date()
+                ->sortable(),
             ])
             ->filters([
                 SelectFilter::make('color')
@@ -121,7 +121,7 @@ class CategoryResource extends Resource
                     ViewAction::make(),
                     EditAction::make(),
                     DeleteAction::make(),
-                ])
+                ])->tooltip('Actions')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
