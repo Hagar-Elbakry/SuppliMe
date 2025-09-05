@@ -138,12 +138,12 @@ class ProductResource extends Resource
                 TextColumn::make('created_at')
                 ->date()
                 ->label('Created At')
-                ->toggleable(),
+                ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('updated_at')
                 ->date()
                 ->label('Updated At')
-                ->toggleable(),
+                ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 TernaryFilter::make('is_featured')

@@ -2,7 +2,11 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\CategoryResource\RelationManagers\ProductsRelationManager;
 use Filament\Forms;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Tables;
 use App\Models\Category;
 use Filament\Forms\Form;
@@ -130,10 +134,33 @@ class CategoryResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                ImageEntry::make('image')
+                    ->label('')
+                ->disk('public')
+                ->circular(),
+               \Filament\Infolists\Components\Section::make()
+                ->schema([
+                    TextEntry::make('name'),
+                    TextEntry::make('description'),
+                    TextEntry::make('color')
+                      ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'fre-fru' => 'warning',
+                        'fre-veg' => 'info',
+                    })
+                    ->hidden(fn ($state) => is_null($state)),
+                ])
+            ]);
+    }
+
     public static function getRelations(): array
     {
         return [
-            //
+            ProductsRelationManager::class
         ];
     }
 
@@ -142,6 +169,7 @@ class CategoryResource extends Resource
         return [
             'index' => Pages\ListCategories::route('/'),
             'create' => Pages\CreateCategory::route('/create'),
+            'view' => Pages\ViewCategory::route('/{record}'),
             'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }
