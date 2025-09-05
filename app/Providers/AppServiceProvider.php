@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\Product;
 use App\Models\Category;
 use App\Observers\UserObserver;
+use App\Observers\ProductObserver;
 use App\Observers\CategorylObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -27,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         User::observe(UserObserver::class);
         Category::observe(CategorylObserver::class);
+        Product::observe(ProductObserver::class);
     }
 }
