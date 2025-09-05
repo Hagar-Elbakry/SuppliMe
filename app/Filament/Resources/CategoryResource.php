@@ -79,7 +79,6 @@ class CategoryResource extends Resource
                 ImageColumn::make('image')
                     ->label('Image')
                     ->disk('public')
-                    ->getStateUsing(fn ($record) => asset('storage/' . $record->image))
                     ->rounded(),
 
                 TextColumn::make('name')
