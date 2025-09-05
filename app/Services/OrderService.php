@@ -53,7 +53,6 @@ class OrderService
             Shipping::create([
                 'tracking_number' => 'TRK-' . strtoupper(uniqid()),
                 'order_id' => $order->id,
-                'user_id' => 3 ,
                 'estimated_delivery' => now()->addDays(5),
             ]);
 
