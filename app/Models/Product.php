@@ -8,7 +8,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'product_id'
+        'name' , 'description' , 'price','weight' , 'image' , 'category_id' , 'stock_quantity' ,'is_featured'
     ];
     public function orderDetails(){
         return $this->hasMany(OrderDetail::class);
@@ -52,7 +52,7 @@ class Product extends Model
             $productDiscount = $discounts['product'];
             $categoryDiscount = $discounts['category'];
 
-            return ($productDiscount && $productDiscount->is_daily) || 
+            return ($productDiscount && $productDiscount->is_daily) ||
                 ($categoryDiscount && $categoryDiscount->is_daily);
         });
     }
