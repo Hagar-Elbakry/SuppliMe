@@ -25,7 +25,7 @@
         </div>
         <a href="{{route('product.show', $product)}}">
         <img
-            src={{ asset($product->image) }}
+            src={{ asset('storage/'.$product->image) }}
             class="img-fluid"
             alt={{ $product->name }}
         />

@@ -11,7 +11,7 @@
             </form>
         </div>
         <div class="d-flex align-items-center mb-2">
-            <img src="{{ asset($product->image) }}" class="rounded me-3" alt="{{ $product->name }}" style="width: 50px; height: 50px;">
+            <img src="{{ asset('storage/'.$product->image) }}" class="rounded me-3" alt="{{ $product->name }}" style="width: 50px; height: 50px;">
             <div>
                 <div><strong>Price:</strong> ${{ $product->price }}</div>
                 <form action="{{ route('cart.store', $product->id) }}" method="POST" class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">

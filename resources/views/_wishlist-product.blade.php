@@ -13,7 +13,7 @@
     </form>
         <div class="image mx-2">
             <img
-                src="{{ asset($product->image) }}"
+                src="{{ asset('storage/'.$product->image) }}"
                 class="img-fluid rounded-4 border border-secondary-subtle d-none d-md-block"
                 alt=""
                 style="width: 80px; height: 80px"

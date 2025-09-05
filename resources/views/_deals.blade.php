@@ -17,7 +17,7 @@
             </form>
         </div>
         <a href="{{route('product.show', $product)}}">
-            <img src={{ asset($product->image) }} alt="{{ $product->name }}" style="width: 300px; height:300px; object-fit: contain;" />
+            <img src={{ asset('storage/'.$product->image) }} alt="{{ $product->name }}" style="width: 300px; height:300px; object-fit: contain;" />
         </a>
     </div>
     <div class="item-disc">

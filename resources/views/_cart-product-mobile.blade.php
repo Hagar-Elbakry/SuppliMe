@@ -9,7 +9,7 @@
             </form>
         </div>
         <div class="d-flex align-items-center mb-2">
-            <img src="{{ asset($product->image) }}" class="rounded me-3" alt={{ $product->name }}>
+            <img src="{{ asset('storage/'.$product->image) }}" class="rounded me-3" alt={{ $product->name }}>
             <div>
                 <div><strong>Price:</strong> ${{ $product->price }}</div>
                 <div><strong>Subtotal:</strong> ${{ $product->pivot->quantity * $product->price }}</div>

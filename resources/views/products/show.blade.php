@@ -22,7 +22,7 @@
             <div
                 class="col-md-5 product-image p-2 border border-1 rounded-5 text-center"
             >
-            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" style="width: 400px; height:400px; object-fit: contain;" />
+            <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->name }}" style="width: 400px; height:400px; object-fit: contain;" />
             </div>
             <div class="col-md-6">
                 <p class="text-success fw-medium fs-4 mb-0">{{ $product->category->name }}</p>

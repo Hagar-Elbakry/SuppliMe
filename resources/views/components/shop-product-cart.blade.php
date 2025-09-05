@@ -24,12 +24,12 @@
     </div>
         <a href="{{ route('product.show', $product->id) }}">
         <img
-            src="{{ asset($product->image) }}"
+            src="{{ asset('storage/'.$product->image) }}"
             class="img-fluid"  style="height: 200px; object-fit: contain;"
             alt="{{ $product->name }}"
         />
         </a>
-        
+
     </div>
     <div
         class="item-content d-flex justify-content-between gap-3 flex-column"
