@@ -10,7 +10,7 @@
             @foreach ($order->orderDetails as $orderDetail)
                 <div class="image-detailed d-flex justify-content-start my-3">
                     <img
-                        src="{{ asset($orderDetail->product->image) }}"
+                        src="{{ asset('storage/'.$orderDetail->product->image) }}"
                         class="img-fluid me-2 border border-1 rounded-4"
                         alt="{{ $orderDetail->product->name }}"
                     />
@@ -20,8 +20,8 @@
                     </div>
                 </div>
             @endforeach
-            
-            
+
+
         </div>
         <div
             class="total p-3 d-flex justify-content-between align-items-center border-bottom border-1"

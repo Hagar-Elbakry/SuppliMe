@@ -7,7 +7,7 @@
     <div class="order-detailes p-3 border-bottom border-1">
         @foreach ($order->orderDetails as $orderDetail)
             <div class="image-detailed d-flex justify-content-start my-3">
-                <img src={{ asset($orderDetail->product->image) }} class="img-fluid me-2 border border-1 rounded-4" alt="">
+                <img src={{ asset('storage/'.$orderDetail->product->image) }} class="img-fluid me-2 border border-1 rounded-4" alt="">
                 <div class="image-disc">
                     <h5>{{ $orderDetail->product->name }}</h5>
                     <p class="text-black-50">{{ $orderDetail->product->weight }} g | {{ $orderDetail->quantity }}Qty</p>
