@@ -9,14 +9,14 @@ class OrderController extends Controller
 {
     public function index() {
         $orders = Order::where('user_id', Auth::user()->id)
-            ->with(['orderDetails.product', 'payment'])
+            ->with(['orderDetails.product'])
             ->latest()
             ->get();
         return view('orders.index', compact('orders'));
     }
     public function show($orderId) {
         $order = Order::where('user_id', Auth::user()->id)
-            ->with(['orderDetails.product', 'payment','shipping'])
+            ->with(['orderDetails.product','shipping'])
             ->findOrFail($orderId);
         return view('orders.show', compact('order'));
     }

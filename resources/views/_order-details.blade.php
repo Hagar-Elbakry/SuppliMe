@@ -18,8 +18,18 @@
     </div>
 
         <div class="total px-3 py-2 d-flex justify-content-between align-items-center">
+            <p class="mb-0">Sub Total</p>
+            <p class="mb-0">${{ $order->total_price }}</p>
+        </div>
+
+        <div class="total px-3 py-2 d-flex justify-content-between align-items-center">
+            <p class="mb-0">Shipping Cost</p>
+            <p class="mb-0">${{$order->shipping_cost}}</p>
+        </div>
+
+        <div class="total px-3 py-2 d-flex justify-content-between align-items-center">
             <p class="mb-0">Total</p>
-            <p class="mb-0">${{ $order->payment->amount }}</p>
+            <p class="mb-0">${{ $order->total_price + $order->shipping_cost}}</p>
         </div>
         <div class="total px-3 py-2 d-flex justify-content-between align-items-center">
             <p class="mb-0">Status</p>

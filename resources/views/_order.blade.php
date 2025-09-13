@@ -32,7 +32,7 @@
         <div
             class="total p-3 d-flex justify-content-between align-items-center"
         >
-            <p>Delivered</p>
+            <p>Shipping Cost</p>
             <p>${{ $order->shipping_cost }}</p>
         </div>
     </div>
