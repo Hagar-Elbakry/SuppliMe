@@ -317,11 +317,8 @@ class OrderResource extends Resource
 
             ])
             ->actions([
-                ActionGroup::make([
-                    ViewAction::make(),
-                    EditAction::make(),
-                    DeleteAction::make(),
-                ])->tooltip('Actions')
+                EditAction::make() ,
+                DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
