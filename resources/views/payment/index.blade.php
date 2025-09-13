@@ -57,12 +57,20 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <label for="governate" class="form-label">Governorate</label>
-                                <input type="text" id="governate" name="governate" class="form-control @error('governate') is-invalid @enderror" value="{{ old('governate') }}" required>
-                                @error('governate')
+                                <label for="governorate_id" class="form-label">Governorate</label>
+                                <select id="governorate_id" name="governorate_id" class="form-control @error('governorate_id') is-invalid @enderror" required>
+                                    <option value="">Select Governorate</option>
+                                    @foreach($governorates as $gov)
+                                        <option value="{{ $gov->id }}" {{ old('governorate_id') == $gov->id ? 'selected' : '' }}>
+                                            {{ $gov->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('governorate_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+
                         </div>
 
                         <div class="mb-4">

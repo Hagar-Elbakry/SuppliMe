@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Order;
+use App\Models\Governorate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('address');
             $table->string('city');
-            $table->string('governate');
+            $table->foreignIdFor(Governorate::class)->constrained()->onDelete('cascade');
             $table->string('phone');
             $table->foreignIdFor(Order::class)->constrained()->onDelete('cascade');
             $table->timestamps();

@@ -11,7 +11,7 @@ class Address extends Model
         'last_name',
         'address',
         'city',
-        'governate',
+        'governorate_id',
         'phone',
         'order_id',
     ];

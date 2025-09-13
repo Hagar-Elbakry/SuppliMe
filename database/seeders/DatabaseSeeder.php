@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             SupportMessageSeeder::class,
             DiscountSeeder::class,
-            
+            GovernoratesSeeder::class
         ]);
     }
 }

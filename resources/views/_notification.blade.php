@@ -6,9 +6,9 @@
             <p>
                 @if($notification->type == 'App\Notifications\PaymentReceived')
                     @if($notification->data['paymentMethod'] == 'visa')
-                    The amount is: {{$notification->data['amount']}}$ has been paid with visa successfully.
+                    The amount is: (including shipping cost) {{$notification->data['amount']}}$ has been paid with visa successfully.
                         @else
-                        The total amount is {{$notification->data['amount']}}$ and will be paid cash on delivery.
+                        The total amount is: (including shipping cost)  {{$notification->data['amount']}}$ and will be paid cash on delivery.
                     @endif
                 @endif
             </p>
