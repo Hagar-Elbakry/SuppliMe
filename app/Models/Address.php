@@ -18,4 +18,9 @@ class Address extends Model
     public function order(){
         return $this->belongsTo(Order::class);
     }
+    public function governorate()
+    {
+        return $this->belongsTo(Governorate::class);
+    }
+
 }

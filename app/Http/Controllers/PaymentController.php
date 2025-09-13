@@ -19,6 +19,8 @@ class PaymentController extends Controller
     }
 
     public function store(Request $request) {
+
+        // dd($request->all());
         $validated = $request->validate([
             'order_id'     => 'required|exists:orders,id',
             'first_name'   => 'required|string|max:255',

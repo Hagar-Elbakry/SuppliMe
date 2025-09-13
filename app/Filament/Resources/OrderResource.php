@@ -11,8 +11,10 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\Governorate;
 use Illuminate\Support\Number;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Wizard;
@@ -57,11 +59,8 @@ class OrderResource extends Resource
                                 ->label('Customer')
                                 ->searchable()
                                 ->preload()
-                                ->required()
-                                ->reactive()
-                                ->afterStateUpdated(fn ($state, callable $set) =>
-                                    $set('shipping_address', User::find($state)?->address)
-                                ),
+                                ->required(),
+
 
                             Select::make('status')
                                 ->options([
@@ -71,15 +70,44 @@ class OrderResource extends Resource
                                 ])
                                 ->required(),
 
+                            Select::make('payment_method')
+                            ->label('Payment Method')
+                            ->options([
+                                'cash' => 'Cash on Delivery',
+                                'visa' => 'Visa',
+                            ])
+                            ->required(),
+
+                            Repeater::make('address')
+                            ->relationship('address')
+                            ->schema([
+                                TextInput::make('first_name')->required(),
+                                TextInput::make('last_name')->required(),
+                                TextInput::make('address')->required(),
+                                TextInput::make('city')->required(),
+                                Select::make('governorate_id')
+                                    ->label('Governorate')
+                                    ->relationship('governorate', 'name')
+                                    ->preload()
+                                    ->reactive()
+                                    ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                                        $governorate = Governorate::find($state);
+                                        $set('../../shipping_cost', $governorate->shipping_cost);
+                                    })
+                                    ->required(),
+                                TextInput::make('phone')->required(),
+                            ])
+                            ->columns(2)
+                            ->maxItems(1),
 
 
-                            TextInput::make('shipping_address')
-                                ->disabled()
-                                ->dehydrated(),
 
                             TextInput::make('shipping_cost')
                                 ->numeric()
+                                ->disabled()
+                                ->dehydrated()
                                 ->required(),
+
                         ]),
 
                         //* Order Details
@@ -198,7 +226,7 @@ class OrderResource extends Resource
                             Select::make('shipping.status')
                                 ->options([
                                     'assigned' => 'Assigned',
-                                    'processing' => 'Processing',
+                                    'unassigned' => 'Unassigned',
                                     'delivered' => 'Delivered',
                                 ])
                                 ->required()
@@ -232,23 +260,41 @@ class OrderResource extends Resource
                     ]),
 
                 TextColumn::make('total_price')
+                ->getStateUsing(fn ($record) => $record->total_price + ($record->shipping_cost ?? 0))
                 ->money('EGP'),
 
                 TextColumn::make('shipping.tracking_number')
-                ->label('Tracking')
+                ->label('Tracking NUM')
                 ->searchable(),
 
                 BadgeColumn::make('shipping.status')
                     ->label('Shipping Status')
                     ->colors([
-                        'warning' => 'assigned',
-                        'info' => 'processing',
+                        'info' => 'assigned',
+                        'danger' => 'unassigned',
                         'success' => 'delivered',
                     ]),
 
                 TextColumn::make('shipping.user.name')
                 ->label('Delivery')
+                ->searchable()
+                ->default('❌'),
+
+                TextColumn::make('payment_method')
+                ->label('Payment Method')
                 ->searchable(),
+
+                TextColumn::make('address.city')
+                ->label('City')
+                ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('address.governorate.name')
+                    ->label('Governorate')
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('address.address')
+                    ->label('Address')
+                    ->toggleable(isToggledHiddenByDefault: true),
 
 
                 TextColumn::make('created_at')
@@ -287,7 +333,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+
         ];
     }
 
