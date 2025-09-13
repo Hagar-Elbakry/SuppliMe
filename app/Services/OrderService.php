@@ -21,9 +21,7 @@ class OrderService
                     $price  = $p->getDiscountPercentage() > 0 ? $p->getDiscountedPrice() : $p->price;
                     return $price * $p->pivot->quantity;
                 }) ,
-                'shipping_address' => Auth::user()->address,
-                'shipping_cost'   => 20,
-                'status'         => 'pending',
+                
             ]);
 
 

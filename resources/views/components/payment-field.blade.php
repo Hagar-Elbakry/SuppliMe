@@ -2,4 +2,6 @@
     <div class="form-check">
         {{$slot}}
     </div>
+
+    
 </div>
