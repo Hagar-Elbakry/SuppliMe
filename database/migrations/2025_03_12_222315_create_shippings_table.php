@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('shippings', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['assigned', 'processing', 'delivered'])->default('assigned');
+            $table->enum('status', ['unassigned','assigned', 'delivered'])->default('unassigned');
             $table->string('tracking_number');
             $table->timestamp('estimated_delivery');
             $table->foreignIdFor(User::class)->nullable()->constrained()->onDelete('set null');
