@@ -17,12 +17,15 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function orderDetails(){
         return $this->hasMany(OrderDetail::class);
     }
 
     public function shipping(){
         return $this->hasOne(Shipping::class);
+    }
+    public function address(){
+        return $this->hasOne(Address::class);
     }
 }
