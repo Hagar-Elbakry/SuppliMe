@@ -13,7 +13,7 @@ class OrderOverview extends BaseWidget
         return [
             Stat::make('All Orders',  Order::all()->count()),
             Stat::make('Processing Orders',  Order::where('status', 'processing')->count()),
-            Stat::make('Shipped Order',  Shipping::where('status', 'completed')->count()),
+            Stat::make('Shipped Order',  Shipping::where('status', 'delivered')->count()),
             Stat::make('Average Price',  number_format((Order::avg('total_price')) ?? 0 , 2) . ' EGP')
         ];
     }
