@@ -88,15 +88,6 @@ class UserResource extends Resource
                         ->disk('public')
                         ->directory('avatars'),
                 ])->columnSpanFull(),
-
-                Section::make('Contact Information')
-                ->schema([
-                        Group::make()
-                    ->schema([
-                        TextInput::make('phone'),
-                        TextInput::make('address'),
-                    ])->columns(2)
-                ])->columnSpanFull(),
             ]);
     }
 
@@ -120,17 +111,10 @@ class UserResource extends Resource
                   ->default('-')
                 ->money('EGP')
                 ->searchable(),
-                TextColumn::make('phone')
-                ->default('-'),
-                TextColumn::make('address')
-                ->searchable()
-                ->default('-'),
                 TextColumn::make('created_at')
-                ->date()
-                ->toggleable(isToggledHiddenByDefault:  true),
+                ->date(),
                 TextColumn::make('updated_at')
-                ->date()
-                ->toggleable(isToggledHiddenByDefault:  true),
+                ->date(),
             ])
             ->filters([
                  SelectFilter::make('role')
