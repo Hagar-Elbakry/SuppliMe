@@ -2,8 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use App\Models\User;
+use App\Filament\Resources\OrderResource\Widgets\OrderOverview;
 use Filament\Tables;
 use App\Models\Order;
 use App\Models\Product;
@@ -36,11 +35,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Components\ToggleButtons;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\OrderResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\OrderResource\RelationManagers;
 use Guava\FilamentIconSelectColumn\Tables\Columns\IconSelectColumn;
 
 class OrderResource extends Resource
@@ -329,6 +325,13 @@ class OrderResource extends Resource
             'index' => Pages\ListOrders::route('/'),
             'create' => Pages\CreateOrder::route('/create'),
             'edit' => Pages\EditOrder::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            OrderOverview::class,
         ];
     }
 }
