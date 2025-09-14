@@ -77,4 +77,11 @@ class Product extends Model
         $discountPercentage = $this->getDiscountPercentage();
         return $discountPercentage ? $this->price - ($this->price * ($discountPercentage / 100)) : $this->price;
     }
+
+    protected $casts = [
+        'price' => 'float',
+        'weight' => 'float',
+        'stock_quantity' => 'integer',
+    ];
+
 }

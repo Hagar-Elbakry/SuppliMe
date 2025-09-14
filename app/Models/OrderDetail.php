@@ -13,6 +13,11 @@ class OrderDetail extends Model
         'price',
         'sub_total'
     ];
+    protected $casts = [
+        'price' => 'float',
+        'quantity' => 'integer',
+        'sub_total' => 'float'
+    ];
     public function order(){
         return $this->belongsTo(Order::class);
     }

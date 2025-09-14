@@ -15,6 +15,10 @@ class Order extends Model
         'payment_status',
         'status',
     ];
+    protected $casts = [
+        'total_price' => 'float',
+        'shipping_cost' => 'float',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);
