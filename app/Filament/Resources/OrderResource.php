@@ -2,19 +2,19 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\OrderStatus;
-use App\Enums\ShippingStatus;
 use Filament\Forms;
 use App\Models\User;
-use Filament\Forms\Components\ToggleButtons;
 use Filament\Tables;
 use App\Models\Order;
 use App\Models\Product;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Forms\Form;
+use App\Enums\OrderStatus;
 use Filament\Tables\Table;
 use App\Models\Governorate;
+use App\Enums\PaymentStatus;
+use App\Enums\ShippingStatus;
 use Illuminate\Support\Number;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Radio;
@@ -34,6 +34,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Wizard\Step;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\OrderResource\Pages;
@@ -69,6 +70,13 @@ class OrderResource extends Resource
                         ->inline()
                         ->options(OrderStatus::class)
                         ->default(OrderStatus::Pending)
+                        ->required()
+                        ->columnSpanFull(),
+
+                        ToggleButtons::make('payment_status')
+                        ->inline()
+                        ->options(PaymentStatus::class)
+                        ->default(PaymentStatus::Pending)
                         ->required()
                         ->columnSpanFull(),
 
@@ -250,6 +258,9 @@ class OrderResource extends Resource
                 ->label('Payment Method')
                 ->searchable(),
 
+                TextColumn::make('payment_status')
+                ->badge(),
+
                 TextColumn::make('address.city')
                 ->label('City')
                 ->toggleable(isToggledHiddenByDefault: true),
@@ -279,8 +290,11 @@ class OrderResource extends Resource
 
             ])
             ->actions([
-                EditAction::make() ,
-                DeleteAction::make()
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ])->tooltip('Actions')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -21,6 +21,7 @@ class Order extends Model
         'total_price' => 'float',
         'shipping_cost' => 'float',
         'status' => \App\Enums\OrderStatus::class,
+        'payment_status' => \App\Enums\PaymentStatus::class
     ];
     public function user()
     {
