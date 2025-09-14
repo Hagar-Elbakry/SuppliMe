@@ -56,6 +56,9 @@ class OrderResource extends Resource
                 Wizard::make([
                 //* Order Info
                 Step::make('Order Info')
+                    ->icon('heroicon-o-shopping-bag')
+                    ->schema([
+                        Section::make('Order & Payment Info')
                     ->schema([
                         Select::make('user_id')
                             ->relationship(
@@ -66,29 +69,36 @@ class OrderResource extends Resource
                             ->label('Customer')
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         ToggleButtons::make('status')
-                        ->inline()
-                        ->options(OrderStatus::class)
-                        ->default(OrderStatus::Pending)
-                        ->required()
-                        ->columnSpanFull(),
+                            ->inline()
+                            ->options(OrderStatus::class)
+                            ->default(OrderStatus::Pending)
+                            ->required(),
 
                         ToggleButtons::make('payment_status')
-                        ->inline()
-                        ->options(PaymentStatus::class)
-                        ->default(PaymentStatus::Pending)
-                        ->required()
-                        ->columnSpanFull(),
+                            ->inline()
+                            ->options(PaymentStatus::class)
+                            ->default(PaymentStatus::Pending)
+                            ->required(),
 
-                    Select::make('payment_method')
-                        ->label('Payment Method')
-                        ->options([
-                            'cash' => 'Cash on Delivery',
-                            'visa' => 'Visa',
-                        ])
+                        Select::make('payment_method')
+                            ->label('Payment Method')
+                            ->options([
+                                'cash' => 'Cash on Delivery',
+                                'visa' => 'Visa',
+                            ])
+                            ->required(),
+
+                        TextInput::make('shipping_cost')
+                        ->numeric()
+                        ->disabled()
+                        ->dehydrated()
                         ->required(),
+                    ])
+                    ->columns(2),
 
                 Section::make('Address Info')
                     ->relationship('address')
@@ -111,15 +121,12 @@ class OrderResource extends Resource
                     ])
                     ->columns(2),
 
-                TextInput::make('shipping_cost')
-                ->numeric()
-                ->disabled()
-                ->dehydrated()
-                ->required(),
+
         ]),
 
         //* Order Details
         Step::make('Order Details')
+            ->icon('heroicon-o-clipboard-document-list')
             ->schema([
                 Repeater::make('orderDetails')
                     ->relationship()
@@ -189,6 +196,7 @@ class OrderResource extends Resource
 
             //* Shipping
             Step::make('Shipping Info')
+                ->icon('heroicon-o-truck')
                 ->schema([
                     Section::make('Shipping Info')
                         ->relationship('shipping')
