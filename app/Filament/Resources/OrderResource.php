@@ -30,6 +30,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\Placeholder;
@@ -40,6 +41,7 @@ use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\OrderResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\OrderResource\RelationManagers;
+use Guava\FilamentIconSelectColumn\Tables\Columns\IconSelectColumn;
 
 class OrderResource extends Resource
 {
@@ -234,8 +236,9 @@ class OrderResource extends Resource
                 ->sortable()
                 ->searchable(),
 
-                TextColumn::make('status')
-                ->badge(),
+                IconSelectColumn::make('status')
+                ->options(OrderStatus::class)
+                ->closeOnSelection(),
 
                 TextColumn::make('total_price')
                 ->getStateUsing(fn ($record) => $record->total_price + ($record->shipping_cost ?? 0))
@@ -245,8 +248,9 @@ class OrderResource extends Resource
                 ->label('Tracking NUM')
                 ->searchable(),
 
-                TextColumn::make('shipping.status')
-                ->badge(),
+                IconSelectColumn::make('shipping.status')
+                ->options(ShippingStatus::class)
+                ->closeOnSelection(),
 
 
                 TextColumn::make('shipping.user.name')
@@ -258,8 +262,9 @@ class OrderResource extends Resource
                 ->label('Payment Method')
                 ->searchable(),
 
-                TextColumn::make('payment_status')
-                ->badge(),
+                IconSelectColumn::make('payment_status')
+                ->options(PaymentStatus::class)
+                ->closeOnSelection(),
 
                 TextColumn::make('address.city')
                 ->label('City')
@@ -281,7 +286,7 @@ class OrderResource extends Resource
                 TextColumn::make('updated_at')
                     ->date()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
+            ])->recordUrl(null)
             ->filters([
                 SelectFilter::make('status')
                 ->options(OrderStatus::class)
