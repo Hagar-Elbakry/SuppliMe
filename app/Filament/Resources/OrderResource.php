@@ -2,8 +2,11 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\OrderStatus;
+use App\Enums\ShippingStatus;
 use Filament\Forms;
 use App\Models\User;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Tables;
 use App\Models\Order;
 use App\Models\Product;
@@ -62,13 +65,12 @@ class OrderResource extends Resource
                             ->preload()
                             ->required(),
 
-                        Select::make('status')
-                            ->options([
-                                'pending' => 'Pending',
-                                'processing' => 'Processing',
-                                'completed' => 'Completed',
-                            ])
-                            ->required(),
+                        ToggleButtons::make('status')
+                        ->inline()
+                        ->options(OrderStatus::class)
+                        ->default(OrderStatus::Pending)
+                        ->required()
+                        ->columnSpanFull(),
 
                     Select::make('payment_method')
                         ->label('Payment Method')
@@ -200,13 +202,11 @@ class OrderResource extends Resource
                                 ->searchable()
                                 ->preload(),
 
-                            Select::make('status')
-                                ->options([
-                                    'assigned' => 'Assigned',
-                                    'unassigned' => 'Unassigned',
-                                    'delivered' => 'Delivered',
-                                ])
-                                ->required(),
+                            ToggleButtons::make('status')
+                            ->inline()
+                            ->options(ShippingStatus::class)
+                            ->default(ShippingStatus::Unassigned)
+                            ->required(),
                         ])
                         ->columns(2),
         ]),
@@ -226,13 +226,8 @@ class OrderResource extends Resource
                 ->sortable()
                 ->searchable(),
 
-                BadgeColumn::make('status')
-                    ->label('Status')
-                    ->colors([
-                        'warning' => 'pending',
-                        'info' => 'processing',
-                        'success' => 'completed',
-                    ]),
+                TextColumn::make('status')
+                ->badge(),
 
                 TextColumn::make('total_price')
                 ->getStateUsing(fn ($record) => $record->total_price + ($record->shipping_cost ?? 0))
@@ -242,13 +237,9 @@ class OrderResource extends Resource
                 ->label('Tracking NUM')
                 ->searchable(),
 
-                BadgeColumn::make('shipping.status')
-                    ->label('Shipping Status')
-                    ->colors([
-                        'info' => 'assigned',
-                        'danger' => 'unassigned',
-                        'success' => 'delivered',
-                    ]),
+                TextColumn::make('shipping.status')
+                ->badge(),
+
 
                 TextColumn::make('shipping.user.name')
                 ->label('Delivery')
@@ -282,11 +273,7 @@ class OrderResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('status')
-                ->options([
-                    'pending' => 'Pending',
-                    'processing' => 'Processing',
-                    'completed' => 'Completed',
-                ])
+                ->options(OrderStatus::class)
                 ->label('Order Status'),
 
 

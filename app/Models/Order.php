@@ -15,9 +15,12 @@ class Order extends Model
         'payment_status',
         'status',
     ];
+
+
     protected $casts = [
         'total_price' => 'float',
         'shipping_cost' => 'float',
+        'status' => \App\Enums\OrderStatus::class,
     ];
     public function user()
     {

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ShippingStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Shipping extends Model
@@ -19,4 +20,7 @@ class Shipping extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    protected $casts = [
+        'status' => ShippingStatus::class,
+    ];
 }
