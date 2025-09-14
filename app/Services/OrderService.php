@@ -21,7 +21,7 @@ class OrderService
                     $price  = $p->getDiscountPercentage() > 0 ? $p->getDiscountedPrice() : $p->price;
                     return $price * $p->pivot->quantity;
                 }) ,
-                
+
             ]);
 
 
