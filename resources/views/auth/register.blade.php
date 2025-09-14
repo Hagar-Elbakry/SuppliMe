@@ -13,10 +13,6 @@
             <x-form-error name="password"/>
             <x-auth-input type="password" name="password_confirmation" placeholder="Re-type Password" required/>
             <x-form-error name="password_confirmation"/>
-            <x-auth-input type="text" name="phone" :value="old('phone')" placeholder="Phone" required/>
-            <x-form-error name="phone"/>
-            <x-auth-input type="text" name="address" :value="old('address')" placeholder="Address" required/>
-            <x-form-error name="address"/>
             <button type="submit" class="btn text-light fw-medium mt-3 rounded-3 m-lg-2">Register</button>
         </form>
 
