@@ -4,6 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\RelationManagers\DiscountsRelationManager;
 use Filament\Forms;
+use Filament\Infolists;
+use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Tables;
 use App\Models\Product;
 use Filament\Forms\Form;
@@ -168,6 +173,27 @@ class ProductResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                ImageEntry::make('image')
+                    ->label('')
+                    ->disk('public')
+                    ->circular(),
+                Infolists\Components\Section::make()
+                    ->schema([
+                        TextEntry::make('name'),
+                        TextEntry::make('description'),
+                        TextEntry::make('price')->prefix('EGP '),
+                        TextEntry::make('weight')->suffix(' kg'),
+                        TextEntry::make('stock_quantity')->label('Stock Quantity'),
+                       IconEntry::make('is_featured')->label('Featured')->boolean(),
+                        TextEntry::make('category.name')->label('Category'),
+                    ])
+            ]);
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -180,6 +206,7 @@ class ProductResource extends Resource
         return [
             'index' => Pages\ListProducts::route('/'),
             'create' => Pages\CreateProduct::route('/create'),
+            'view' => Pages\ViewProduct::route('/{record}'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
     }
