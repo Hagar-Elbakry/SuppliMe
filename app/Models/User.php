@@ -56,7 +56,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $this->hasMany(Order::class);
     }
 
-    
+
     public function shippings()
     {
         return $this->hasMany(Shipping::class);
@@ -79,6 +79,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     }
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->role === 'admin';
+        return match ($panel->getId()) {
+            'admin' => $this->role === 'admin',
+            'delivery' => $this->role === 'delivery',
+            default => false,
+        };
     }
+
 }

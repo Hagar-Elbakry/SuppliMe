@@ -52,7 +52,7 @@ Route::group(['prefix' => '/orders', 'as' => 'orders.', 'middleware' => 'auth'],
     Route::get('/{id}/track', [OrderController::class, 'show'])->name('show');
 });
 
-Route::group(['prefix' => '/delivery', 'as' => 'delivery.', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => '/delivery-track', 'as' => 'delivery.', 'middleware' => 'auth'], function () {
     Route::get('',[DeliveryController::class,'index'])->name('index');
     Route::post('',[DeliveryController::class,'store'])->name('store');
 });
