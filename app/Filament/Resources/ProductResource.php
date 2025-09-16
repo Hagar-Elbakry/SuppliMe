@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\RelationManagers\DiscountsRelationManager;
+use App\Filament\Resources\ProductResource\RelationManagers\ReviewsRelationManager;
 use Filament\Forms;
 use Filament\Infolists;
 use Filament\Infolists\Components\Group;
@@ -208,7 +209,8 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            DiscountsRelationManager::class
+            DiscountsRelationManager::class,
+            ReviewsRelationManager::class
         ];
     }
 

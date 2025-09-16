@@ -101,9 +101,6 @@ class ProductsRelationManager extends RelationManager
                     ->label('Product Name')
                     ->sortable(),
 
-                TextColumn::make('category.name')
-                    ->label('Category'),
-
                 TextColumn::make('price')
                     ->money('EGP')
                     ->sortable(),
