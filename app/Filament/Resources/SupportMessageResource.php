@@ -19,6 +19,8 @@ class SupportMessageResource extends Resource
 {
     protected static ?string $model = SupportMessage::class;
 
+    protected static ?int $navigationSort = 7;
+
     protected static ?string $navigationIcon = 'heroicon-o-envelope-open';
 
     public static function form(Form $form): Form
