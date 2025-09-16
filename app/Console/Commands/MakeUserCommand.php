@@ -62,16 +62,31 @@ class MakeUserCommand extends Command
     {
         //* return static::getUserModel()::create($this->getUserData());
         $data = $this->getUserData();
-        $data['role'] = 'admin';
+
+        $role = $this->choice(
+        'Which role do you want to assign to this user?',
+        ['admin', 'delivery'],
+        0 // default admin
+        );
+
+        $data['role'] = $role;
 
         return static::getUserModel()::create($data);
     }
 
     protected function sendSuccessMessage(Authenticatable $user): void
     {
-        $loginUrl = Filament::getLoginUrl();
+        $role = $user->getAttribute('role');
 
-        $this->components->info('Success! ' . ($user->getAttribute('email') ?? $user->getAttribute('username') ?? 'You') . " may now log in at {$loginUrl}");
+        $loginUrl = match ($role) {
+            'delivery' => url('/delivery/login'),
+            default    => url('/admin/login'),
+        };
+
+        $this->components->info(
+            'Success! ' . ($user->getAttribute('email') ?? $user->getAttribute('username') ?? 'You')
+            . " may now log in at {$loginUrl}"
+        );
     }
 
     protected function getAuthGuard(): Guard
