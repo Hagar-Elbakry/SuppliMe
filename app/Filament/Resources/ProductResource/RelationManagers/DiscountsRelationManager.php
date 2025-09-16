@@ -57,6 +57,8 @@ class DiscountsRelationManager extends RelationManager
                                 'product' => 'Product',
                                 'category' => 'Category',
                             ])
+                            ->disableOptionWhen(fn (string $value): bool => $value === 'category')
+                            ->default('product')
                             ->reactive()
                             ->inline()
                             ->inlineLabel(false)
@@ -64,21 +66,11 @@ class DiscountsRelationManager extends RelationManager
 
 
 
-                        Select::make('product_id')
-                            ->label('Product')
-                            ->relationship('product', 'name')
-                            ->searchable()
-                            ->preload()
-                            ->hidden(fn (callable $get) => $get('discount_type') !== 'product')
-                            ->required(fn (callable $get) => $get('discount_type') === 'product'),
+                        TextInput::make('product_id')
+                            ->label('product')
+                            ->default($this->ownerRecord->name)
+                            ->disabled(),
 
-                        Select::make('category_id')
-                            ->label('Category')
-                            ->relationship('category', 'name')
-                            ->searchable()
-                            ->preload()
-                            ->hidden(fn (callable $get) => $get('discount_type') !== 'category')
-                            ->required(fn (callable $get) => $get('discount_type') === 'category'),
 
                         Grid::make(2)
                             ->schema([

@@ -37,12 +37,10 @@ class ProductsRelationManager extends RelationManager
                             ->required()
                             ->maxLength(255),
 
-                        Select::make('category_id')
+                        TextInput::make('category_id')
                             ->label('Category')
-                            ->relationship('category', 'name')
-                            ->searchable()
-                            ->preload()
-                            ->required(),
+                            ->default($this->ownerRecord->name)
+                            ->disabled(),
 
                         FileUpload::make('image')
                             ->label('Product Image')
