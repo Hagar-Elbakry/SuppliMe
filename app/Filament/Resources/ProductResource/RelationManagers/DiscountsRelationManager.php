@@ -100,12 +100,12 @@ class DiscountsRelationManager extends RelationManager
             ->columns([
                 TextColumn::make('discount_percentage'),
                IconColumn::make('is_daily')->boolean()->label('Daily?'),
-                TextColumn::make('created_at')
+                TextColumn::make('start_date')
                     ->dateTime()
-                    ->label('Created At'),
-                TextColumn::make('updated_at')
+                    ->label('Start Date'),
+                TextColumn::make('end_date')
                     ->dateTime()
-                    ->label('Updated At'),
+                    ->label('End Date'),
             ])
             ->filters([
                 //

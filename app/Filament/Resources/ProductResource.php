@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\RelationManagers\DiscountsRelationManager;
 use Filament\Forms;
 use Filament\Infolists;
+use Filament\Infolists\Components\Group;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
@@ -183,14 +184,24 @@ class ProductResource extends Resource
                     ->circular(),
                 Infolists\Components\Section::make()
                     ->schema([
-                        TextEntry::make('name'),
+                        Group::make()
+                        ->schema([
+                            TextEntry::make('name'),
+                            TextEntry::make('category.name')->label('Category'),
+                        ])->columns(2),
+                        Group::make()
+                            ->schema([
+                                TextEntry::make('price')->prefix('EGP '),
+                                TextEntry::make('weight')->suffix(' kg'),
+                            ])->columns(2),
+                        Group::make()
+                            ->schema([
+                                TextEntry::make('stock_quantity')->label('Stock Quantity'),
+                                IconEntry::make('is_featured')->label('Featured')->boolean(),
+                            ])->columns(2),
+
                         TextEntry::make('description'),
-                        TextEntry::make('price')->prefix('EGP '),
-                        TextEntry::make('weight')->suffix(' kg'),
-                        TextEntry::make('stock_quantity')->label('Stock Quantity'),
-                       IconEntry::make('is_featured')->label('Featured')->boolean(),
-                        TextEntry::make('category.name')->label('Category'),
-                    ])
+                    ])->columnSpanFull()
             ]);
     }
 
