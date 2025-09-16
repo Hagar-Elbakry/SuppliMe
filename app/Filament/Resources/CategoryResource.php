@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\CategoryResource\RelationManagers\DiscountsRelationManager;
 use App\Filament\Resources\CategoryResource\RelationManagers\ProductsRelationManager;
 use Filament\Forms;
 use Filament\Infolists\Components\ImageEntry;
@@ -160,7 +161,8 @@ class CategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            ProductsRelationManager::class
+            ProductsRelationManager::class,
+            DiscountsRelationManager::class
         ];
     }
 

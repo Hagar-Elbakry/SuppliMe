@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\ProductResource\RelationManagers\DiscountsRelationManager;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Product;
@@ -170,7 +171,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            DiscountsRelationManager::class
         ];
     }
 
