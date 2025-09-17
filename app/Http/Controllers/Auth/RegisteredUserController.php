@@ -26,7 +26,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Mail::to($user->email)->send(new WelcomeEmail($user));
+        Mail::to($user->email)->queue(new WelcomeEmail($user));
 
         Auth::login($user);
         return redirect(route('home'));
