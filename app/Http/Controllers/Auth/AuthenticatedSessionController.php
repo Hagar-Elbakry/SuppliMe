@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginUserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -11,12 +12,8 @@ class AuthenticatedSessionController extends Controller
     public function create() {
         return view('auth.login');
     }
-    public function store() {
-        $attributes = request()->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
+    public function store(LoginUserRequest $request) {
+        $attributes = $request->validated();
         if(!Auth::attempt($attributes)){
             throw ValidationException::withMessages([
                 'email'=>'The provided credentials do not match our records.'
