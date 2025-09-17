@@ -3,92 +3,92 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     public function index()
     {
-
-        if (!Auth::check()) {
-            $user = User::find(2);
-            if ($user instanceof User) {
-                Auth::login($user);
-            }
-        }
-        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+        $cart = $this->getOrCreate();
         $products = $cart->products()->withPivot('quantity')->get();
         return view('cart.index', compact('products'));
     }
 
-    public function store($product_id) {
-        if (!Auth::check()) {
-            $user = User::find(2);
-            if ($user instanceof User) {
-                Auth::login($user);
-            }
-        }
-        $user = Auth::user();
-        $cart = Cart::firstOrCreate(['user_id' => $user->id]);
-        $cartProduct = $cart->products()->where('product_id', $product_id)->first();
+    /**
+     * @return mixed
+     */
+    public function getOrCreate()
+    {
+        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+        return $cart;
+    }
+
+    public function store(Product $product)
+    {
+        $cart = $this->getOrCreate();
+        $cartProduct = $this->getCartProduct($cart, $product);
         if ($cartProduct) {
-            $cart->products()->updateExistingPivot($product_id, [
+            $cart->products()->updateExistingPivot($product->id, [
                 'quantity' => $cartProduct->pivot->quantity + 1
             ]);
         } else {
-            $cart->products()->attach($product_id, ['quantity' => 1]);
+            $cart->products()->attach($product->id, ['quantity' => 1]);
         }
-
         return redirect()->back();
     }
+
+    /**
+     * @param $cart
+     * @param  Product  $product
+     * @return mixed
+     */
+    public function getCartProduct($cart, Product $product)
+    {
+        $cartProduct = $cart->products()->where('product_id', $product->id)->first();
+        return $cartProduct;
+    }
+
     public function updateQuantity($product_id, $action)
     {
-        if (!Auth::check()) {
-            $user = User::find(2);
-            if ($user instanceof User) {
-                Auth::login($user);
-            }
-        }
-        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
-        $cartProduct = $cart->products()->where('product_id', $product_id)->first();
+        $cart = $this->getOrCreate();
+        $cartProduct = $this->getCartProduct($cart, Product::find($product_id));
         if ($cartProduct) {
             $quantity = $cartProduct->pivot->quantity;
-            if ($action === 'increase') {
-                $quantity++;
-            } elseif ($action === 'decrease' && $quantity > 1) {
-                $quantity--;
-            }
+            $quantity = $this->getQuantity($action, $quantity);
             $cart->products()->updateExistingPivot($product_id, ['quantity' => $quantity]);
         }
         return redirect()->back();
     }
 
-
-    public function destroy($id) {
-        if (!Auth::check()) {
-            $user = User::find(2);
-            if ($user instanceof User) {
-                Auth::login($user);
-            }
+    /**
+     * @param $action
+     * @param $quantity
+     * @return int|mixed
+     */
+    public function getQuantity($action, $quantity): mixed
+    {
+        if ($action === 'increase') {
+            $quantity++;
+        } elseif ($action === 'decrease' && $quantity > 1) {
+            $quantity--;
         }
-        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
-        $cartProduct = $cart->products()->where('product_id', $id)->first();
+        return $quantity;
+    }
+
+    public function destroy(Product $product)
+    {
+        $cart = $this->getOrCreate();
+        $cartProduct = $this->getCartProduct($cart, $product);
         if ($cartProduct) {
-            $cart->products()->detach($id);
+            $cart->products()->detach($product->id);
         }
         return redirect()->back();
-
     }
-    public function destroyAll() {
-        if (!Auth::check()) {
-            $user = User::find(2);
-            if ($user instanceof User) {
-                Auth::login($user);
-            }
-        }
-        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+
+    public function destroyAll()
+    {
+        $cart = $this->getOrCreate();
         $cart->products()->detach();
         return redirect()->back();
     }

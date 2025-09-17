@@ -5,29 +5,29 @@
         class="image d-flex justify-content-center align-items-start position-relative"
     >
         <div
-        class="fav d-flex justify-content-between align-items-start gap-2 w-100 position-absolute"
-    >
-        @if($product->getDiscountPercentage() > 0)
-            <p class="badge bg-success rounded-5 rounded-start py-1 px-3 text-light">
-                {{ intval($product->getDiscountPercentage()) }}% off
-            </p>
-        @endif
+            class="fav d-flex justify-content-between align-items-start gap-2 w-100 position-absolute"
+        >
+            @if($product->getDiscountPercentage() > 0)
+                <p class="badge bg-success rounded-5 rounded-start py-1 px-3 text-light">
+                    {{ intval($product->getDiscountPercentage()) }}% off
+                </p>
+            @endif
 
-        <form action="{{ route('favourite.store') }}" method="post">
-            @csrf
-            <input type="hidden" name="product_id" value="{{ $product->id }}">
-            <button type="submit" class="btn p-0 border-0 bg-white rounded-circle">
-                <i class="bi {{ auth()->check() && auth()->user()->products->contains($product->id) ? 'bi-heart-fill text-danger' : 'bi-heart text-secondary' }} fs-4 p-2"></i>
-            </button>
-        </form>
+            <form action="{{ route('favourite.store') }}" method="post">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <button type="submit" class="btn p-0 border-0 bg-white rounded-circle">
+                    <i class="bi {{ auth()->check() && auth()->user()->products->contains($product->id) ? 'bi-heart-fill text-danger' : 'bi-heart text-secondary' }} fs-4 p-2"></i>
+                </button>
+            </form>
 
-    </div>
+        </div>
         <a href="{{ route('product.show', $product->id) }}">
-        <img
-            src="{{ asset('storage/'.$product->image) }}"
-            class="img-fluid"  style="height: 200px; object-fit: contain;"
-            alt="{{ $product->name }}"
-        />
+            <img
+                src="{{ asset('storage/'.$product->image) }}"
+                class="img-fluid" style="height: 200px; object-fit: contain;"
+                alt="{{ $product->name }}"
+            />
         </a>
 
     </div>
@@ -54,13 +54,15 @@
                 class="add d-flex justify-content-between align-items-start gap-2"
             >
                 @if($product->getDiscountPercentage() > 0)
-                <p class="text-nowrap">
-                    ${{ $product->getDiscountedPrice() }} <del class="text-black-50 ms-2">${{ $product->price }}</del>
-                </p>
+                    <p class="text-nowrap">
+                        ${{ $product->getDiscountedPrice() }}
+                        <del class="text-black-50 ms-2">${{ $product->price }}</del>
+                    </p>
                 @else
                     <p class="text-nowrap">${{ $product->price }}</p>
                 @endif
-                <form action="{{ route('cart.store', $product->id) }}" method="POST" class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
+                <form action="{{ route('cart.store', $product) }}" method="POST"
+                      class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
                     @csrf
                     @if($product->stock_quantity > 0)
                         <button type="submit" class="btn btn-sm" style="background-color: #b2f2bb; color: #155724;">

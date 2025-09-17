@@ -4,7 +4,7 @@
     <div
         class="item-ph d-flex justify-content-between align-items-center gap-2"
     >
-        <form action="{{ route('cart.destroy', $product->id) }}') }}" method="POST" >
+        <form action="{{ route('cart.destroy', $product) }}') }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">
@@ -28,7 +28,7 @@
         class="item-disc d-flex justify-content-between align-items-center gap-5"
     >
 
-            <p>${{ $product->price }}</p>
+        <p>${{ $product->price }}</p>
 
         <div
             class="quan d-flex justify-content-between align-items-center gap-4 rounded-pill border border-secondary px-1"
