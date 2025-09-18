@@ -10,19 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class CheckoutController extends Controller
 {
     public function store(OrderService $orderService) {
-
-
-        if (!Auth::check()) {
-            $user = User::find(2);
-            if ($user instanceof User) {
-                Auth::login($user);
-            }
-        }
         $user = Auth::user() ;
-        $cart = Cart::with('products')->where('user_id', $user->id)->first();
         try{
-            $order = $orderService->placeOrder($cart);
-            return redirect('/payment/'.$order->id);
+            $order = $orderService->placeOrder($user);
+            return redirect()->route('payment.index', $order->id);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to place order: ' . $e->getMessage());
         }
