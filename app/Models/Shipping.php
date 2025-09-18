@@ -14,13 +14,17 @@ class Shipping extends Model
         'tracking_number',
         'estimated_delivery',
     ];
-    public function order(){
-        return $this->belongsTo(Order::class);
-    }
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
     protected $casts = [
         'status' => ShippingStatus::class,
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

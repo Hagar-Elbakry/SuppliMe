@@ -40,7 +40,7 @@ Route::group(['prefix' => '/cart', 'as' => 'cart.', 'middleware' => 'auth'], fun
 });
 
 Route::group(['prefix' => '/payment/', 'as' => 'payment.', 'middleware' => 'auth', 'verified'], function () {
-    Route::get('{orderId}', [PaymentController::class, 'index'])->name('index');
+    Route::get('{order}', [PaymentController::class, 'index'])->name('index');
     Route::post('create', [PaymentController::class, 'store'])->name('store');
 });
 

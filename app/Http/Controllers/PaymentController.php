@@ -2,47 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\Payment;
+use App\Http\Requests\StorePaymentRequest;
 use App\Models\Governorate;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Payments\PaymentFactory;
+use App\Models\Order;
 use App\Notifications\PaymentReceived;
+use App\Payments\PaymentFactory;
 
 class PaymentController extends Controller
 {
-    public function index($order_id) {
-        $order = Order::findOrFail($order_id);
+    public function index(Order $order)
+    {
+        $order = $this->getOrder($order);
         $governorates = Governorate::all();
-        return view('payment.index',compact('order' ,'governorates'));
+        return view('payment.index', compact('order', 'governorates'));
     }
 
-    public function store(Request $request) {
+    /**
+     * @param  Order  $order
+     * @return mixed
+     */
+    public function getOrder(Order $order)
+    {
+        $order = Order::findOrFail($order->id);
+        return $order;
+    }
 
-        // dd($request->all());
-        $validated = $request->validate([
-            'order_id'     => 'required|exists:orders,id',
-            'first_name'   => 'required|string|max:255',
-            'last_name'    => 'required|string|max:255',
-            'address'      => 'required|string|max:255',
-            'city'         => 'required|string|max:255',
-            'governorate_id'    => 'required|exists:governorates,id',
-            'phone'        => 'required|string|max:20',
-            'payment_method' => 'required|in:cash,visa',
-        ]);
+    public function store(StorePaymentRequest $request)
+    {
+        $validated = $request->validated();
         $paymentMethod = PaymentFactory::createPayment($validated['payment_method'])->pay();
-        $order = Order::findOrFail($validated['order_id']);
+        $order = $this->getOrder(Order::find($validated['order_id']));
 
-
-        $order->address()->create([
-            'first_name' => $validated['first_name'],
-            'last_name'  => $validated['last_name'],
-            'address'    => $validated['address'],
-            'city'       => $validated['city'],
-            'governorate_id'  => $validated['governorate_id'],
-            'phone'      => $validated['phone'],
-        ]);
+        $this->storeAddress($order, $validated);
 
         $order->update([
             'payment_method' => $paymentMethod,
@@ -54,5 +45,22 @@ class PaymentController extends Controller
 
         request()->user()->notify(new PaymentReceived($amount, $paymentMethod));
         return redirect(route('notifications.show'));
+    }
+
+    /**
+     * @param  mixed  $order
+     * @param  mixed  $validated
+     * @return void
+     */
+    public function storeAddress(mixed $order, mixed $validated): void
+    {
+        $order->address()->create([
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'address' => $validated['address'],
+            'city' => $validated['city'],
+            'governorate_id' => $validated['governorate_id'],
+            'phone' => $validated['phone'],
+        ]);
     }
 }
