@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\TrackOrderRequest;
 
 class DeliveryController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('delivery.index');
     }
-    public function store(Request $request){
-        $request->validate([
-            'order_id' => 'required|integer|exists:orders,id',
-        ]);
+
+    public function store(TrackOrderRequest $request)
+    {
+        $request->validated();
         return redirect()->route('orders.show', $request->order_id);
     }
 }
