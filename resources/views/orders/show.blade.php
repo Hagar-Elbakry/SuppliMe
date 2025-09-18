@@ -62,14 +62,14 @@
 
 @php
     $status = [
-        'assigned'=>'In Progress',
-        'processing'=>'On the Way',
+        'unassigned'=>'In Progress',
+        'assigned'=>'On the Way',
         'delivered'=>'Delivered'
     ];
 @endphp
 <script>
 
-    const currentStatus = "{{ $status[$order->shipping->status] ?? 'Order Placed' }}";
+    const currentStatus = "{{ $status[$order->shipping->status->value] ?? 'Order Placed' }}";
 
     const statusMap = {
         "Order Placed": 1,
