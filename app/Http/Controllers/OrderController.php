@@ -7,17 +7,20 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $orders = Order::where('user_id', Auth::user()->id)
             ->with(['orderDetails.product'])
             ->latest()
             ->get();
         return view('orders.index', compact('orders'));
     }
-    public function show($orderId) {
+
+    public function show(Order $order)
+    {
         $order = Order::where('user_id', Auth::user()->id)
-            ->with(['orderDetails.product','shipping'])
-            ->findOrFail($orderId);
+            ->with(['orderDetails.product', 'shipping'])
+            ->findOrFail($order->id);
         return view('orders.show', compact('order'));
     }
 }

@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFavouriteProductRequest;
 use App\Models\Cart;
-use Illuminate\Http\Request;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class FavouriteController extends Controller
 {
-    private function userProducts(){
+    public function index()
+    {
+        $favouriteProducts = $this->userProducts();
+        return view('favourite.index', compact('favouriteProducts'));
+    }
+
+    private function userProducts()
+    {
         return Auth::user()->products()->get();
     }
 
-    public function index(){
-        $favouriteProducts = $this->userProducts();
-        return view('favourite.index',compact('favouriteProducts'));
-    }
-
-    public function store(Request $request){
-        $request->validate([
-            'product_id' => 'required|exists:products,id',
-        ]);
+    public function store(StoreFavouriteProductRequest $request)
+    {
+        $request->validated();
 
         $userProducts = $this->userProducts();
 
@@ -31,17 +33,20 @@ class FavouriteController extends Controller
         return redirect()->back();
     }
 
-    public function destroy($productId){
-        Auth::user()->products()->detach($productId);
+    public function destroy(Product $product)
+    {
+        Auth::user()->products()->detach($product->id);
         return back();
     }
-    
-    public function destroyAll(){
+
+    public function destroyAll()
+    {
         Auth::user()->products()->detach();
         return redirect()->back();
     }
 
-    public function addAllToCart(){
+    public function addAllToCart()
+    {
         $favouriteProducts = $this->userProducts();
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
 
