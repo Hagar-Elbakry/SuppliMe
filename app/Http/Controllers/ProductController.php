@@ -24,7 +24,7 @@ class ProductController extends Controller
      * @param $product
      * @return null
      */
-    public function getRate($product): null
+    public function getRate($product): null|string
     {
         $user = Auth::user();
         if ($user) {
