@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRatingRequest;
 use App\Models\Review;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreRatingRequest $request)
     {
-        
-        $request->validate([
-            
-            'rating' => ['required','in:1,2,3,4,5']
-            
-        ]);
-        
-        $review =Review::updateOrCreate(
+        $request->validated();
+        $review = Review::updateOrCreate(
             [
                 'product_id' => $request->product_id,
                 'user_id' => Auth::id(),
@@ -26,7 +20,7 @@ class ReviewController extends Controller
                 'rate' => $request->rating,
             ]
         );
-        return redirect()->back()->with('rating',$review->rate);
-        
+        return redirect()->back()->with('rating', $review->rate);
+
     }
 }
