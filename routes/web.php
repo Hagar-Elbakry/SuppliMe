@@ -23,13 +23,25 @@ Route::view('/about', 'about')->name('about');
 
 
 Route::group(['prefix' => '/profile/', 'as' => 'profile.', 'middleware' => 'auth'], function () {
-    Route::get('{user:name}', [ProfileController::class, 'show'])->name('show');
-    Route::get('{user:name}/edit', [ProfileController::class, 'edit'])->name('edit');
-    Route::patch('{user:name}/deleteImage', [ProfileController::class, 'deleteImage'])->name('deleteImage');
-    Route::patch('{user:name}/update', [ProfileController::class, 'update'])->name('update');
-    Route::get('{user:name}/delete', [ProfileController::class, 'delete'])->name('delete');
-    Route::delete('{user:name}/destroy', [ProfileController::class, 'destroy'])->name('destroy');
+    //* view premission
+    Route::middleware('can:view,user')->group(function () {
+        Route::get('{user:name}', [ProfileController::class, 'show'])->name('show');
+    });
+
+    //* update premission
+    Route::middleware('can:update,user')->group(function () {
+        Route::get('{user:name}/edit', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('{user:name}/deleteImage', [ProfileController::class, 'deleteImage'])->name('deleteImage');
+        Route::patch('{user:name}/update', [ProfileController::class, 'update'])->name('update');
+    });
+
+    //* delete premission
+    Route::middleware('can:delete,user')->group(function () {
+        Route::get('{user:name}/delete', [ProfileController::class, 'delete'])->name('delete');
+        Route::delete('{user:name}/destroy', [ProfileController::class, 'destroy'])->name('destroy');
+    });
 });
+
 
 Route::group(['prefix' => '/cart', 'as' => 'cart.', 'middleware' => 'auth'], function () {
     Route::get('', [CartController::class, 'index'])->name('index');

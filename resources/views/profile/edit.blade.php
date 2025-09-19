@@ -5,7 +5,7 @@
 <x-nav/>
 <div class="main-title text-center pt-5">
     <h1>Edit Your Profile</h1>
-   <x-header href="{{route('profile.edit', $user)}}">Your Profile</x-header>
+    <x-header href="{{route('profile.edit', $user)}}">Your Profile</x-header>
 </div>
 <div class="main-edit">
     <div class="container mt-5">
@@ -33,21 +33,7 @@
                             </x-edit-label>
                             <x-form-error name="email"/>
 
-                            <x-edit-label for="phone">
-                                <x-slot:name>
-                                    Phone
-                                </x-slot:name>
-                                <x-edit-input name="phone" type="text" id="phone" value="{{$user->phone}}" required/>
-                            </x-edit-label>
-                            <x-form-error name="phone"/>
 
-                            <x-edit-label for="address">
-                                <x-slot:name>
-                                    Address
-                                </x-slot:name>
-                                <x-edit-input name="address" type="text" id="address" value="{{$user->address}}" required/>
-                            </x-edit-label>
-                            <x-form-error name="address"/>
 
                             <x-edit-label for="image">
                                 <x-slot:name>
