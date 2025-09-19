@@ -46,7 +46,19 @@
                         position: 'center',
                     });
                 </script>
+            @elseif (session('success'))
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: '{{ session('success') }}',
+                        showCloseButton: true,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        position: 'center',
+                })
+                </script>
             @endif
-                
+
 </body>
 </html>
