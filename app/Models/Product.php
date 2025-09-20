@@ -50,5 +50,13 @@ class Product extends Model
         return $this->hasMany(Discount::class);
     }
 
+    public function scopeFilterByCategory($query, $categoryId)
+    {
+        if ($categoryId && !Category::where('id', $categoryId)->exists()) {
+            abort(404);
+        }
+        return $query->when($categoryId, fn($q) => $q->where('category_id', $categoryId));
+    }
+
 
 }

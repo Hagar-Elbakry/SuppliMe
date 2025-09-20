@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
-    public function store(OrderService $orderService) {
+    public function __invoke(OrderService $orderService) {
         $user = Auth::user() ;
         try{
             $order = $orderService->placeOrder($user);

@@ -7,12 +7,7 @@
     <h1>Contact Us</h1>
     <x-header href="{{route('contact-us.index')}}">Contact Us</x-header>
 </div>
-@if(session('success'))
-    <div class="d-flex justify-content-center align-items-center mt-5">
-        <div class="alert alert-success text-center px-4 py-2 w-50 shadow-sm">{{ session('success') }}</div>
-    </div>
 
-@endif
 <div class="contact">
     <div class="container">
         <div class="row align-items-start">

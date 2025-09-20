@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SupportMessage;
 use Illuminate\Http\Request;
+use App\Models\SupportMessage;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreSupportMessageRequest;
 
 class SupportMessageController extends Controller
 {
@@ -12,20 +13,10 @@ class SupportMessageController extends Controller
         $user = Auth::user();
         return view('contact.contact',compact('user'));
     }
-    public function store(Request $request){
-        $request->validate([
-            'name' => ['required','string'],
-            'email' => ['required','email', 'exists:users,email'],
-            'phone' => ['required'],
-            'message' => ['required','string']
-        ]);
-        SupportMessage::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'user_id' => Auth::id(),
-            'message' => $request->message
-        ]);
+    public function store(StoreSupportMessageRequest $request){
+        $data = $request->validated();
+        $data['user_id'] = Auth::id();
+        SupportMessage::create($data);
         return redirect()->back()->with('success','Your message has been sent successfully');
     }
 }

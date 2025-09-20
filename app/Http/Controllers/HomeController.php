@@ -8,7 +8,7 @@ use App\Services\DiscountService;
 
 class HomeController extends Controller
 {
-    public function index(DiscountService $discountService)
+    public function __invoke(DiscountService $discountService)
     {
 
         $categories = Category::all();

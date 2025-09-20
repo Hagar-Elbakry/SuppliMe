@@ -11,8 +11,18 @@
                 @forelse($products as $product)
                     <x-shop-product-cart class="me-3 mt-2" :product="$product"/>
                 @empty
-                    <div class="alert alert-success text-center" role="alert" id="empty-cart">
-                        <h4 class="alert-heading">No products matching your search.</h4>
+                    <div class="empty-results text-center">
+                        <lottie-player
+                            src="{{ asset('animations/empty-cart.json') }}"
+                            background="transparent"
+                            speed="1"
+                            style="width: 300px; height: 300px; margin: auto;"
+                            loop
+                            autoplay>
+                        </lottie-player>
+                        <h1 class="error-code">404</h1>
+                        <p class="error-message">Oops! No products found matching your search.</p>
+                        <a href="{{ url('/') }}" class="btn-back">Back to Home</a>
                     </div>
                 @endforelse
                 <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
