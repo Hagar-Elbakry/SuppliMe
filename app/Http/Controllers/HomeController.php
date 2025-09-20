@@ -7,7 +7,7 @@ use App\Models\Category;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function __invoke(){
 
         $categories = Category::all();
 

@@ -3,22 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Http\Requests\SearchRequest;
 
 
 class SearchController extends Controller
 {
-    public function index() {
-        $products = [];
-
-        if(!request()->has('search') || empty(request('search'))) {
-            return redirect()->back();
-        }
-
-        request()->validate([
-            'search' => 'required|string'
-        ]);
-        $products = Product::where('name', 'like', '%' . request('search') . '%')->paginate(3);
-
+    public function __invoke(SearchRequest $request) {
+        $search = $request->input('search');
+        $products = Product::where('name', 'like', "%{$search}%")->paginate(3);
         return view('search-result', compact('products'));
     }
 }

@@ -17,3 +17,80 @@
 .myorders .order-head {
      background-color: var(--sec-color);
 }
+
+
+.empty-results {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 100px 0;
+    padding: 40px;
+    animation: fadeIn 1s ease-in-out;
+    overflow: hidden;
+}
+
+.bg-illustration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        repeating-linear-gradient(to right, #f5f5f5 0px, #f5f5f5 80px, transparent 80px, transparent 160px),
+        repeating-linear-gradient(to bottom, #f5f5f5 0px, #f5f5f5 40px, transparent 40px, transparent 80px);
+    opacity: 0.4;
+    z-index: -1;
+    animation: slide-bg 6s linear infinite;
+}
+
+.cart-svg svg {
+    color: #28a745;
+    animation: swing 2s infinite;
+}
+
+.error-code {
+    font-size: 100px;
+    font-weight: bold;
+    color: #ff4d4d;
+    margin: 20px 0 10px;
+}
+
+.error-message {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #28a745;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.btn-back:hover {
+    background: #218838;
+}
+
+@keyframes swing {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slide-bg {
+    from { background-position: 0 0, 0 0; }
+    to { background-position: 160px 80px, 0 80px; }
+}

@@ -84,4 +84,12 @@ class Product extends Model
         'stock_quantity' => 'integer',
     ];
 
+    public function scopeFilterByCategory($query, $categoryId)
+    {
+        if ($categoryId && !Category::where('id', $categoryId)->exists()) {
+            abort(404);
+        }
+        return $query->when($categoryId, fn($q) => $q->where('category_id', $categoryId));
+    }
+
 }

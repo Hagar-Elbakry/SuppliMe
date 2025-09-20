@@ -17,6 +17,7 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
         rel="stylesheet"
     />
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script
         src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT.js"
         crossorigin="anonymous"

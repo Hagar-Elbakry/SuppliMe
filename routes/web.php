@@ -18,7 +18,7 @@ use App\Http\Controllers\UserNotificationsController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', HomeController::class)->name('home');
 Route::view('/about', 'about')->name('about');
 
 
@@ -81,14 +81,14 @@ Route::group(['prefix' => '/contact', 'as' => 'contact-us.', 'middleware' => 'au
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/shop', [ShoppingController::class, 'index'])->name('shop.index');
+    Route::get('/shop', ShoppingController::class)->name('shop.index');
 
-    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::post('/checkout', CheckoutController::class)->name('checkout.store');
 
     Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
-    Route::get('/products', [SearchController::class, 'index'])->name('search.index');
+    Route::get('/products', SearchController::class)->name('search.index');
 
-    Route::get('/notifications', [UserNotificationsController::class, 'show'])->name('notifications.show');
+    Route::get('/notifications', UserNotificationsController::class)->name('notifications.show');
 
     Route::post('/rate', [ReviewController::class, 'store'])->name('review.store');
 });
