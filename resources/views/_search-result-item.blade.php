@@ -7,14 +7,20 @@
         <div class="card-body text-center">
             <h6 class="card-title mb-1">{{$product->name}}</h6>
             <p class="text-muted small mb-1">{{$product->weight}} Kg</p>
-            @if($product->activeDiscount())
+            @php
+                use App\Services\DiscountService;
+                $discountService = app(DiscountService::class);
+            @endphp
+            @if($discountService->activeDiscount())
                 <p class="text-nowrap">
-                    ${{ $product->getDiscountedPrice() }} <del class="text-black-50 ms-2">${{ $product->price }}</del>
+                    ${{ $discountService->getDiscountedPrice($product) }}
+                    <del class="text-black-50 ms-2">${{ $product->price }}</del>
                 </p>
             @else
                 <p class="text-nowrap">${{ $product->price }}</p>
             @endif
-            <form action="{{ route('cart.store', $product->id) }}" method="POST" class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
+            <form action="{{ route('cart.store', $product->id) }}" method="POST"
+                  class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
                 @csrf
                 @if($product->stock_quantity > 0)
                     <button type="submit" class="btn btn-sm" style="background-color: #b2f2bb; color: #155724;">

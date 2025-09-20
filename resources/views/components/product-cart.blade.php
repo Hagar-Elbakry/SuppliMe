@@ -1,5 +1,7 @@
 @php
+    use App\Services\DiscountService;
     use illuminate\Support\Str ;
+    $discountService = app(DiscountService::class);
 @endphp
 <div {{ $attributes->merge(['class' => 'product rounded-4 p-4 col-lg-4 col-md-4 col-sm-6']) }}>
     <div
@@ -8,9 +10,9 @@
         <div
             class="fav d-flex justify-content-between align-items-start gap-2 w-100 position-absolute"
         >
-            @if($product->getDiscountPercentage() > 0)
+            @if($discountService->getDiscountPercentage($product) > 0)
                 <p class="rounded-5 rounded-start py-1 px-3 text-light">
-                    {{ intval($product->getDiscountPercentage()) }}% off
+                    {{ intval($discountService->getDiscountPercentage($product)) }}% off
                 </p>
             @endif
 
@@ -53,9 +55,9 @@
             <div
                 class=" d-flex justify-content-between align-items-start gap-2"
             >
-                @if($product->getDiscountPercentage() > 0)
+                @if($discountService->getDiscountPercentage($product) > 0)
                     <p class="text-nowrap">
-                        ${{ $product->getDiscountedPrice() }}
+                        ${{ $discountService->getDiscountedPrice($product) }}
                         <del class="text-black-50 ms-2">${{ $product->price }}</del>
                     </p>
                 @else

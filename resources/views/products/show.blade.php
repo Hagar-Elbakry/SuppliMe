@@ -1,3 +1,7 @@
+@php
+    use App\Services\DiscountService;
+    $discountService = app(DiscountService::class);
+@endphp
 <x-head>
     <link rel="stylesheet" href="/assets/css/about.css"/>
     <link rel="stylesheet" href="/assets/css/product-details.css"/>
@@ -41,10 +45,10 @@
                         </div>
                         <button type="submit" class="btn btn-warning mt-3">Rate</button>
                     </form>
-                    @if ($product->activeDiscount())
+                    @if ($discountService->activeDiscount($product))
                         <div class="mb-2">
                             <p class="fw-medium fs-5">
-                                ${{ $product->getDiscountedPrice() }}
+                                ${{ $discountService->getDiscountedPrice($product) }}
                                 <del class="text-black-50 ms-2">${{ $product->price }}</del>
                             </p>
                         </div>

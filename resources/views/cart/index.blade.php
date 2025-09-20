@@ -1,3 +1,4 @@
+@php use App\Services\DiscountService; @endphp
 <x-head>
     <link rel="stylesheet" href="/assets/css/about.css"/>
     <link rel="stylesheet" href="/assets/css/shoppingcart.css"/>
@@ -13,7 +14,7 @@
             <h4 class="alert-heading">Your Cart is Empty!</h4>
             <p>Looks like you haven't added any items to your cart yet.</p>
             <a href="{{ route('home') }}" class="btn mt-2"
-                style="background-color: #ffc107; color: #000; border: 1px solid #ffc107;">
+               style="background-color: #ffc107; color: #000; border: 1px solid #ffc107;">
                 Start Shopping
             </a>
         </div>
@@ -49,11 +50,12 @@
 
                         @foreach($products as $product)
                             @php
-                                $totalItems += $product->pivot->quantity;
-                                if($product->getDiscountPercentage() > 0){
-                                    $product->price = $product->getDiscountedPrice();
-                                }
-                                $subTotal += $product->pivot->quantity * $product->price;
+                                $discountService = app(DiscountService::class);
+                                    $totalItems += $product->pivot->quantity;
+                                    if($discountService->getDiscountPercentage($product) > 0){
+                                        $product->price = $discountService->getDiscountedPrice($product);
+                                    }
+                                    $subTotal += $product->pivot->quantity * $product->price;
                             @endphp
                             @include('_cart-product')
                         @endforeach
@@ -97,14 +99,15 @@
                                     <p>${{ $subTotal }}</p>
                                 </li> --}}
                             </ul>
-                    <div class="check text-center rounded-pill p-3">
-                        <form action="{{route('checkout.store')}}" method="post">
-                            @csrf
-                            <button type="submit" class=" text-dark text-decoration-none px-5 py-2 rounded-pill">
-                                Checkout
-                            </button>
-                        </form>
-                    </div>
+                            <div class="check text-center rounded-pill p-3">
+                                <form action="{{route('checkout.store')}}" method="post">
+                                    @csrf
+                                    <button type="submit"
+                                            class=" text-dark text-decoration-none px-5 py-2 rounded-pill">
+                                        Checkout
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

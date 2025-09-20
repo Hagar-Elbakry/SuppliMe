@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
+use App\Services\DiscountService;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(DiscountService $discountService)
+    {
 
         $categories = Category::all();
 
-        $featuredProducts = Product::where('is_featured',1)->get();
+        $featuredProducts = Product::where('is_featured', 1)->get();
 
-        $dailyOffers = Product::activeDailyDiscount();
+        $dailyOffers = $discountService->activeDailyDiscount();
 
         $bestSellers = Product::inRandomOrder()->take(6)->get();
-        return view('home',compact('categories','featuredProducts','dailyOffers','bestSellers'));
+        return view('home', compact('categories', 'featuredProducts', 'dailyOffers', 'bestSellers'));
     }
 }

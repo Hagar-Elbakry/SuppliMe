@@ -4,13 +4,13 @@
     <div
         class="item-ph d-flex justify-content-between align-items-center gap-2"
     >
-    <form action="{{ route('favourite.destroy', $product->id) }}" method="POST" >
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-    </form>
+        <form action="{{ route('favourite.destroy', $product->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </form>
         <div class="image mx-2">
             <img
                 src="{{ asset('storage/'.$product->image) }}"
@@ -28,13 +28,15 @@
         class="item-disc d-flex justify-content-between align-items-center gap-5"
     >
         @php
-
-            if($product->getDiscountPercentage() > 0){
-                $product->price = $product->getDiscountedPrice();
-            }
+            use App\Services\DiscountService;
+            $discountService = app(DiscountService::class);
+              if($discountService->getDiscountPercentage($product) > 0){
+                  $product->price = $discountService->getDiscountedPrice($product);
+              }
         @endphp
         <p>${{ $product->price }}</p>
-        <form action="{{ route('cart.store', $product->id) }}" method="POST" class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
+        <form action="{{ route('cart.store', $product->id) }}" method="POST"
+              class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">
             @csrf
             @if($product->stock_quantity > 0)
                 <button type="submit" class="btn btn-sm" style="background-color: #b2f2bb; color: #155724;">

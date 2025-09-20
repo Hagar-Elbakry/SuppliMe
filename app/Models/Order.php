@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatus;
+use App\Enums\PaymentStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -20,22 +22,27 @@ class Order extends Model
     protected $casts = [
         'total_price' => 'float',
         'shipping_cost' => 'float',
-        'status' => \App\Enums\OrderStatus::class,
-        'payment_status' => \App\Enums\PaymentStatus::class
+        'status' => OrderStatus::class,
+        'payment_status' => PaymentStatus::class
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function orderDetails(){
+    public function orderDetails()
+    {
         return $this->hasMany(OrderDetail::class);
     }
 
-    public function shipping(){
+    public function shipping()
+    {
         return $this->hasOne(Shipping::class);
     }
-    public function address(){
+
+    public function address()
+    {
         return $this->hasOne(Address::class);
     }
 }

@@ -7,12 +7,15 @@
         <div
             class="fav d-flex justify-content-between align-items-start gap-2 w-100 position-absolute"
         >
-            @if($product->getDiscountPercentage() > 0)
+            @php
+                use App\Services\DiscountService;
+                $discountService = app(DiscountService::class);
+            @endphp
+            @if($discountService->getDiscountPercentage($product) > 0)
                 <p class="badge bg-success rounded-5 rounded-start py-1 px-3 text-light">
-                    {{ intval($product->getDiscountPercentage()) }}% off
+                    {{ intval($discountService->getDiscountPercentage($product)) }}% off
                 </p>
             @endif
-
             <form action="{{ route('favourite.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -53,9 +56,9 @@
             <div
                 class="add d-flex justify-content-between align-items-start gap-2"
             >
-                @if($product->getDiscountPercentage() > 0)
+                @if($discountService->getDiscountPercentage($product) > 0)
                     <p class="text-nowrap">
-                        ${{ $product->getDiscountedPrice() }}
+                        ${{ $discountService->getDiscountedPrice($product) }}
                         <del class="text-black-50 ms-2">${{ $product->price }}</del>
                     </p>
                 @else
