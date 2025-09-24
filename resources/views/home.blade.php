@@ -8,7 +8,8 @@
             <p class="text-black-50 mt-4 mb-5 text-center text-md-start">
                 Welcome to SuppliMe!
                 Your one-stop online supermarket for all your daily needs.
-                At SuppliMe, we bring you a seamless shopping experience with top-quality products, unbeatable daily offers, and fast delivery right to your doorstep.
+                At SuppliMe, we bring you a seamless shopping experience with top-quality products, unbeatable daily
+                offers, and fast delivery right to your doorstep.
                 Whether you’re stocking up the kitchen or grabbing last-minute essentials — we’ve got you covered.
             </p>
             <div
@@ -29,7 +30,7 @@
             </div>
         </div>
         <div class="image col-lg-6 col-md-6 d-none d-md-block">
-            <img src="/assets/imgs/Home.png" class="img-fluid" alt=""/>
+            <img src="{{asset('assets/imgs/Home.png')}}" class="img-fluid" alt=""/>
         </div>
     </div>
     <div class="catgories px-5">
@@ -50,7 +51,7 @@
         </div>
         <div class="items p-3 d-flex flex-row overflow-x-hidden text-nowrap">
             @foreach($categories as $category)
-            @include('_category')
+                @include('_category')
             @endforeach
 
         </div>
@@ -60,7 +61,8 @@
     >
         @foreach ($categories as $category)
             @if($category->activeDiscount())
-            <x-discount :color="$category->color"  :discount="$category->activeDiscount()->discount_percentage"  :category="$category"  :description="$category->description"  :img="$category->image"/>
+                <x-discount :color="$category->color" :discount="$category->activeDiscount()->discount_percentage"
+                            :category="$category" :description="$category->description" :img="$category->image"/>
             @endif
         @endforeach
 

@@ -1,6 +1,6 @@
 <x-head>
-    <link rel="stylesheet" href="/assets/css/about.css"/>
-    <link rel="stylesheet" href="/assets/css/myorders.css"/>
+    <link rel="stylesheet" href="{{asset('assets/css/about.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/myorders.css')}}"/>
     <x-nav/>
     <div class="search" style="margin-top: 100px; margin-bottom: 100px;">
 
@@ -26,7 +26,7 @@
                     </div>
                 @endforelse
                 <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
-                {{$products->appends(request()->query())->links()}}
+                    {{$products->appends(request()->query())->links()}}
                 </div>
             </div>
         </div>
