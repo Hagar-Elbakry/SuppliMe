@@ -4,15 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Services\DiscountService;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function index()
+    public function index(DiscountService $discountService)
     {
         $cart = $this->getOrCreate();
         $products = $cart->products()->withPivot('quantity')->get();
-        return view('cart.index', compact('products'));
+        $totalItems = $products->sum('pivot.quantity');
+        $products->each(function ($product) use ($discountService) {
+            if ($discountService->getDiscountPercentage($product) > 0) {
+                $product->price = $discountService->getDiscountedPrice($product);
+            }
+        });
+        $subTotal = $products->sum(function ($product) {
+            return $product->price * $product->pivot->quantity;
+        });
+        return view('cart.index', compact('products', 'totalItems', 'subTotal'));
     }
 
     /**

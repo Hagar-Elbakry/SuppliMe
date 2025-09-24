@@ -1,7 +1,6 @@
-@php use App\Services\DiscountService; @endphp
 <x-head>
-    <link rel="stylesheet" href="/assets/css/about.css"/>
-    <link rel="stylesheet" href="/assets/css/shoppingcart.css"/>
+    <link rel="stylesheet" href="{{asset('assets/css/about.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/shoppingcart.css')}}"/>
     <x-nav/>
 
     <div class="main-title text-center pt-5">
@@ -42,21 +41,7 @@
                                 <p>Subtotal</p>
                             </div>
                         </div>
-
-                        @php
-                            $totalItems = 0;
-                            $subTotal = 0;
-                        @endphp
-
                         @foreach($products as $product)
-                            @php
-                                $discountService = app(DiscountService::class);
-                                    $totalItems += $product->pivot->quantity;
-                                    if($discountService->getDiscountPercentage($product) > 0){
-                                        $product->price = $discountService->getDiscountedPrice($product);
-                                    }
-                                    $subTotal += $product->pivot->quantity * $product->price;
-                            @endphp
                             @include('_cart-product')
                         @endforeach
                         <div class="clear d-flex justify-content-end align-items-center py-4">
@@ -89,15 +74,6 @@
                                     <p class="text-black-50">Total</p>
                                     <p>${{ $subTotal }}</p>
                                 </li>
-                                {{-- <li class="d-flex justify-content-between align-items-center gap-3 px-3">
-                                    <p class="text-black-50">Shipping</p>
-                                    <p>$20.00</p>
-                                </li> --}}
-
-                                {{-- <li class="mt-5 d-flex justify-content-between align-items-center gap-3 px-3">
-                                    <p class="text-black-50">Total</p>
-                                    <p>${{ $subTotal }}</p>
-                                </li> --}}
                             </ul>
                             <div class="check text-center rounded-pill p-3">
                                 <form action="{{route('checkout.store')}}" method="post">
