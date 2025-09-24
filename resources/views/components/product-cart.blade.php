@@ -1,8 +1,3 @@
-@php
-    use App\Services\DiscountService;
-    use illuminate\Support\Str ;
-    $discountService = app(DiscountService::class);
-@endphp
 <div {{ $attributes->merge(['class' => 'product rounded-4 p-4 col-lg-4 col-md-4 col-sm-6']) }}>
     <div
         class="image d-flex justify-content-center align-items-start position-relative"
@@ -48,7 +43,7 @@
                     <p class="">4.8</p>
                 </div>
             </div>
-            <h6 class="cust-h">{{ Str::limit($product->description) }}</h6>
+            <h6 class="cust-h">{{ Str::limit($product->description)  }}</h6>
         </div>
         <div class="price">
             <p class="mb-0 text-black-50">{{ $product->weight }}g</p>

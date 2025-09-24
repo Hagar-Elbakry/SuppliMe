@@ -39,16 +39,20 @@
                             ></a>
                     </li>
                     <x-nav-link href="{{route('orders.index')}}">My Orders</x-nav-link>
-                    <x-nav-link href="{{ auth()->check() ? '/profile/'.auth()->user()->name : route('login') }}">Profile</x-nav-link>
+                    <x-nav-link href="{{ auth()->check() ? '/profile/'.auth()->user()->name : route('login') }}">
+                        Profile
+                    </x-nav-link>
 
                     @auth
-                    <form action="{{route('logout')}}" method="POST" class="d-line">
-                        @csrf
-                        <button type="submit" class="btn nav-link text-white p-0 m-0" style="white-space: nowrap">Log Out</button>
-                    </form>
-                        @else
-                            <x-nav-link href="{{route('login')}}">Log In</x-nav-link>
-                        @endauth
+                        <form action="{{route('logout')}}" method="POST" class="d-line">
+                            @csrf
+                            <button type="submit" class="btn nav-link text-white p-0 m-0" style="white-space: nowrap">
+                                Log Out
+                            </button>
+                        </form>
+                    @else
+                        <x-nav-link href="{{route('login')}}">Log In</x-nav-link>
+                    @endauth
                 </ul>
             </div>
             <div
@@ -64,7 +68,7 @@
                     ></a>
                 <a href="{{route('delivery.index')}}"
                 ><img
-                        src="/assets/imgs/delivery_5457874.png"
+                        src="{{asset('assets/imgs/delivery_5457874.png')}}"
                         class="icon-size img-fluid"
                         alt=""
                         style="width: 50px; height: 50px"
@@ -76,14 +80,17 @@
 <div class="fake-nav p-3">
     <div class="container d-flex justify-content-between align-items-center">
         <div class="f-links position-relative">
-            <button class="btn btn-primary border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-controls="menu">
+            <button class="btn btn-primary border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                    aria-expanded="false" aria-controls="menu">
                 ☰
             </button>
 
             <div class="collapse position-absolute  z-3" id="menu" style="top: 60px; left: 0; width: 250px;">
                 <div class="card card-body border-0 rounded-2">
                     <x-mobile-nav-link href="{{route('orders.index')}}">My Orders</x-mobile-nav-link>
-                    <x-mobile-nav-link href="{{ auth()->check() ? '/profile/'.auth()->user()->name : route('login') }}">Profile</x-mobile-nav-link>
+                    <x-mobile-nav-link href="{{ auth()->check() ? '/profile/'.auth()->user()->name : route('login') }}">
+                        Profile
+                    </x-mobile-nav-link>
                     <x-mobile-nav-link href="{{route('notifications.show')}}">Notifications</x-mobile-nav-link>
                     <x-mobile-nav-link href="{{route('cart.index')}}">Shopping Cart</x-mobile-nav-link>
                     <x-mobile-nav-link href="{{route('favourite.index')}}">Favorites</x-mobile-nav-link>
@@ -91,10 +98,13 @@
                     @auth
                         <form action="{{route('logout')}}" method="POST" class="d-line">
                             @csrf
-                            <button type="submit" class="btn nav-link text-white p-0 m-0 bg-white" style="white-space: nowrap">Log Out</button>
+                            <button type="submit" class="btn nav-link text-white p-0 m-0 bg-white"
+                                    style="white-space: nowrap">Log Out
+                            </button>
                         </form>
                     @else
-                        <x-mobile-nav-link class="nav-link text-black p-0 m-0 " href="{{route('login')}}">Log In</x-mobile-nav-link>
+                        <x-mobile-nav-link class="nav-link text-black p-0 m-0 " href="{{route('login')}}">Log In
+                        </x-mobile-nav-link>
                     @endauth
                 </div>
             </div>
@@ -106,7 +116,8 @@
         <div class="f-searche">
             <i class="fa-solid fa-magnifying-glass fs-5 f-search-icon"></i>
         </div>
-        <div id="floating-search" class="position-absolute bg-white p-2 rounded shadow d-none" style="top: 70px; right: 20px; z-index: 999;">
+        <div id="floating-search" class="position-absolute bg-white p-2 rounded shadow d-none"
+             style="top: 70px; right: 20px; z-index: 999;">
             <form action="{{route('search.index')}}" method="GET" class="d-flex" role="search">
                 <input
                     class="form-control me-2"
@@ -146,11 +157,11 @@
 <div class="allcat position-absolute">
     <div class="container">
         <ul class="category list-unstyled fs-4">
-                <form action="{{ route('shop.index') }}" method="get">
-                    @foreach ($categories as $category)
-                    <x-category-link  :category="$category">{{ $category->name }}</x-category-link>
-                    @endforeach
-                </form>
+            <form action="{{ route('shop.index') }}" method="get">
+                @foreach ($categories as $category)
+                    <x-category-link :category="$category">{{ $category->name }}</x-category-link>
+                @endforeach
+            </form>
         </ul>
     </div>
 </div>
