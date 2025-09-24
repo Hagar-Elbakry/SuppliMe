@@ -1,5 +1,5 @@
 <x-head>
-    <link rel="stylesheet" href="/assets/css/profile.css" />
+    <link rel="stylesheet" href="{{asset('assets/css/profile.css')}}"/>
     <x-nav/>
 
     <div class="container py-5">
@@ -15,9 +15,9 @@
 
                         <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
                             <img src="{{$user->default_image}}"
-                                    class="img-fluid rounded-circle border border-3 border-success shadow-sm"
-                                    alt="User Image"
-                                    style="width: 200px; height: 200px; object-fit: cover;">
+                                 class="img-fluid rounded-circle border border-3 border-success shadow-sm"
+                                 alt="User Image"
+                                 style="width: 200px; height: 200px; object-fit: cover;">
                         </div>
 
                         <div class="col-md-7 p-4 d-flex flex-column justify-content-center">
@@ -34,19 +34,19 @@
 
                             <div class="d-flex gap-3 mt-4">
                                 <a href="{{route('profile.edit', $user)}}"
-                                    class="btn btn-success px-4 py-2 rounded-3 text-uppercase fw-semibold">
+                                   class="btn btn-success px-4 py-2 rounded-3 text-uppercase fw-semibold">
                                     <i class="fa-solid fa-pen me-2"></i>Edit
                                 </a>
 
                                 @if($user->getRawOriginal('image'))
-                                <form action="{{route('profile.deleteImage', $user)}}" method="post">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="submit"
-                                            class="btn btn-outline-danger px-4 py-2 rounded-3 text-uppercase fw-semibold">
-                                        <i class="fa-solid fa-trash me-2"></i>Delete Image
-                                    </button>
-                                </form>
+                                    <form action="{{route('profile.deleteImage', $user)}}" method="post">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit"
+                                                class="btn btn-outline-danger px-4 py-2 rounded-3 text-uppercase fw-semibold">
+                                            <i class="fa-solid fa-trash me-2"></i>Delete Image
+                                        </button>
+                                    </form>
                                 @endif
                             </div>
                         </div>

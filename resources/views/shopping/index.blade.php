@@ -1,6 +1,6 @@
 <x-head>
-    <link rel="stylesheet" href="/assets/css/about.css"/>
-    <link rel="stylesheet" href="/assets/css/shop.css"/>
+    <link rel="stylesheet" href="{{asset('assets/css/about.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/shoppingcart.css')}}"/>
     <x-nav/>
     <div class="main-title text-center pt-5">
         <h1>Shop</h1>
@@ -24,7 +24,6 @@
                             <p>Try to change the category or check back later.</p>
 
                         </div>
-
 
                     @endforelse
 

@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFavouriteProductRequest;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Services\DiscountService;
 use Illuminate\Support\Facades\Auth;
 
 class FavouriteController extends Controller
 {
-    public function index()
+    public function index(DiscountService $discountService)
     {
         $favouriteProducts = $this->userProducts();
+        $favouriteProducts->each(function ($product) use ($discountService) {
+            if ($discountService->getDiscountPercentage($product) > 0) {
+                $product->price = $discountService->getDiscountedPrice($product);
+            }
+        });
         return view('favourite.index', compact('favouriteProducts'));
     }
 

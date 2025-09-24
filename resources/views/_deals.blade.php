@@ -7,10 +7,6 @@
         >
             <p class="rounded-3 py-1 px-2 text-light position-absolute top-0 start-0 m-2 z-2"
                style="min-width: 60px; text-align: center; ">
-                @php
-                    use App\Services\DiscountService;
-                    $discountService = app(DiscountService::class);
-                @endphp
                 {{ intval($discountService->getDiscountPercentage($product)) }}% off
             </p>
             <form action="{{ route('favourite.store') }}" method="post" class="position-absolute start-0 ms-2 z-1"

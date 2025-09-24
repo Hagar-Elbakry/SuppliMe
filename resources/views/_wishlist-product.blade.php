@@ -27,13 +27,6 @@
     <div
         class="item-disc d-flex justify-content-between align-items-center gap-5"
     >
-        @php
-            use App\Services\DiscountService;
-            $discountService = app(DiscountService::class);
-              if($discountService->getDiscountPercentage($product) > 0){
-                  $product->price = $discountService->getDiscountedPrice($product);
-              }
-        @endphp
         <p>${{ $product->price }}</p>
         <form action="{{ route('cart.store', $product->id) }}" method="POST"
               class="px-2 rounded-pill text-decoration-none d-flex align-items-start justify-content-between gap-2">

@@ -1,7 +1,7 @@
 <x-head>
-    <link rel="stylesheet" href="/assets/css/about.css"/>
-    <link rel="stylesheet" href="/assets/css/shoppingcart.css"/>
-    <link rel="stylesheet" href="/assets/css/checkout.css"/>
+    <link rel="stylesheet" href="{{asset('assets/css/about.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/shoppingcart.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/checkout.css')}}"/>
     <x-nav/>
 
     <div class="main-title text-center pt-5">
@@ -26,48 +26,58 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="first_name" class="form-label">First Name</label>
-                                <input type="text" id="first_name" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" required>
+                                <input type="text" id="first_name" name="first_name"
+                                       class="form-control @error('first_name') is-invalid @enderror"
+                                       value="{{ old('first_name') }}" required>
                                 @error('first_name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="last_name" class="form-label">Last Name</label>
-                                <input type="text" id="last_name" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" required>
+                                <input type="text" id="last_name" name="last_name"
+                                       class="form-control @error('last_name') is-invalid @enderror"
+                                       value="{{ old('last_name') }}" required>
                                 @error('last_name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" id="address" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address')}}" required>
+                            <input type="text" id="address" name="address"
+                                   class="form-control @error('address') is-invalid @enderror"
+                                   value="{{ old('address')}}" required>
                             @error('address')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="city" class="form-label">City</label>
-                                <input type="text" id="city" name="city" class="form-control @error('city') is-invalid @enderror" value="{{ old('city') }}" required>
+                                <input type="text" id="city" name="city"
+                                       class="form-control @error('city') is-invalid @enderror"
+                                       value="{{ old('city') }}" required>
                                 @error('city')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="governorate_id" class="form-label">Governorate</label>
-                                <select id="governorate_id" name="governorate_id" class="form-control @error('governorate_id') is-invalid @enderror" required>
+                                <select id="governorate_id" name="governorate_id"
+                                        class="form-control @error('governorate_id') is-invalid @enderror" required>
                                     <option value="">Select Governorate</option>
                                     @foreach($governorates as $gov)
-                                        <option value="{{ $gov->id }}" {{ old('governorate_id') == $gov->id ? 'selected' : '' }}>
+                                        <option
+                                            value="{{ $gov->id }}" {{ old('governorate_id') == $gov->id ? 'selected' : '' }}>
                                             {{ $gov->name }}
                                         </option>
                                     @endforeach
                                 </select>
                                 @error('governorate_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -75,9 +85,11 @@
 
                         <div class="mb-4">
                             <label for="phone" class="form-label">Phone</label>
-                            <input type="text" id="phone" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" required>
+                            <input type="text" id="phone" name="phone"
+                                   class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}"
+                                   required>
                             @error('phone')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -103,9 +115,9 @@
                         </x-payment-field>
 
                         @error('payment_method')
-                                <div class="text-danger small mt-1">
-                                    {{ $message }}
-                                </div>
+                        <div class="text-danger small mt-1">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                         <div class="check text-center rounded-pill p-3 mt-4">

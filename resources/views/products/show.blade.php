@@ -1,10 +1,6 @@
-@php
-    use App\Services\DiscountService;
-    $discountService = app(DiscountService::class);
-@endphp
 <x-head>
-    <link rel="stylesheet" href="/assets/css/about.css"/>
-    <link rel="stylesheet" href="/assets/css/product-details.css"/>
+    <link rel="stylesheet" href="{{asset('assets/css/about.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/product-details.css')}}"/>
     <x-nav/>
     <div class="main-title text-center pt-5">
         <h1>Shop</h1>

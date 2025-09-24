@@ -7,10 +7,6 @@
         <div class="card-body text-center">
             <h6 class="card-title mb-1">{{$product->name}}</h6>
             <p class="text-muted small mb-1">{{$product->weight}} Kg</p>
-            @php
-                use App\Services\DiscountService;
-                $discountService = app(DiscountService::class);
-            @endphp
             @if($discountService->activeDiscount())
                 <p class="text-nowrap">
                     ${{ $discountService->getDiscountedPrice($product) }}
