@@ -1,7 +1,7 @@
 <x-head>
-    <link rel="stylesheet" href="/assets/css/treack-order.css"/>
-    <link rel="stylesheet" href="/assets/css/about.css"/>
-    <link rel="stylesheet" href="/assets/css/myorders.css"/>
+    <link rel="stylesheet" href="{{asset('assets/css/treack-order.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/about.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/myorders.css')}}"/>
     <x-nav/>
     <div class="main-title text-center pt-5">
         <h1>Order Status</h1>
@@ -45,9 +45,6 @@
                             </div>
                             <div class="expected-date d-flex justify-content-end">
                                 <p class="text-black-50">Expected :</p>
-                                @php
-                                    $estimated_delivery = Carbon\Carbon::parse($order->shipping->estimated_delivery) ;
-                                @endphp
                                 <p class="text-black-50">{{ $estimated_delivery->toDayDateTimeString() }}</p>
                             </div>
                         </div>
@@ -59,17 +56,9 @@
         </div>
     </div>
     <x-footer/>
+    <script>
 
-@php
-    $status = [
-        'unassigned'=>'In Progress',
-        'assigned'=>'On the Way',
-        'delivered'=>'Delivered'
-    ];
-@endphp
-<script>
-
-    const currentStatus = "{{ $status[$order->shipping->status->value] ?? 'Order Placed' }}";
+        const currentStatus = "{{ $status[$order->shipping->status->value] ?? 'Order Placed' }}";
 
         const statusMap = {
             "Order Placed": 1,

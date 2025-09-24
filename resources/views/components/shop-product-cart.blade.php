@@ -7,10 +7,6 @@
         <div
             class="fav d-flex justify-content-between align-items-start gap-2 w-100 position-absolute"
         >
-            @php
-                use App\Services\DiscountService;
-                $discountService = app(DiscountService::class);
-            @endphp
             @if($discountService->getDiscountPercentage($product) > 0)
                 <p class="badge bg-success rounded-5 rounded-start py-1 px-3 text-light">
                     {{ intval($discountService->getDiscountPercentage($product)) }}% off
