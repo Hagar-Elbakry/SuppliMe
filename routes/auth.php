@@ -1,18 +1,19 @@
 <?php
 
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/register', 'middleware' => 'guest'], function () {
-    Route::get('',[RegisteredUserController::class,'create'])->name('register');
-    Route::post('',[RegisteredUserController::class,'store'])->name('register.store');
+    Route::get('', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('', [RegisteredUserController::class, 'register'])->name('register.store');
 });
 
-Route::group(['prefix' => '/login', 'middleware' => 'guest'], function (){
-    Route::get('',[AuthenticatedSessionController::class,'create'])->name('login');
-    Route::post('',[AuthenticatedSessionController::class,'store'])->name('login.store');
+Route::group(['prefix' => '/login', 'middleware' => 'guest'], function () {
+    Route::get('', [AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('', [AuthenticatedSessionController::class, 'login'])->name('login.store');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/email/verify', function () {
@@ -29,5 +30,5 @@ Route::middleware('auth')->group(function () {
 
         return back()->with('message', 'Verification link sent!');
     })->middleware('throttle:6,1')->name('verification.send');
-    Route::post('/logout',[AuthenticatedSessionController::class,'destroy'])->name('logout');
+    Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
 });

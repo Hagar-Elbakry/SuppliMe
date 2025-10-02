@@ -4,31 +4,22 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
-use App\Mail\WelcomeEmail;
-use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
+use App\Services\AuthService;
 
 
 class RegisteredUserController extends Controller
 {
-    public function store(StoreUserRequest $request)
+
+    public $authService;
+
+    public function __construct(AuthService $authService)
     {
-        $request->validated();
-        $user = User::create([
-            'name' => request('name'),
-            'email' => request('email'),
-            'password' => Hash::make(request('password')),
-        ]);
+        $this->authService = $authService;
+    }
 
-
-        event(new Registered($user));
-
-        Mail::to($user->email)->queue(new WelcomeEmail($user));
-
-        Auth::login($user);
+    public function register(StoreUserRequest $request)
+    {
+        $this->authService->register($request);
         return redirect(route('home'));
     }
 

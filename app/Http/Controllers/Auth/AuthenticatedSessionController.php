@@ -4,35 +4,33 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginUserRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use App\Services\AuthService;
 
 
 class AuthenticatedSessionController extends Controller
 {
+
+    public $authService;
+
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
     public function create()
     {
         return view('auth.login');
     }
 
-    public function store(LoginUserRequest $request)
+    public function login(LoginUserRequest $request)
     {
-        $attributes = $request->validated();
-        if (!Auth::attempt($attributes)) {
-            throw ValidationException::withMessages([
-                'email' => 'The provided credentials do not match our records.'
-            ]);
-        }
-        request()->session()->regenerate();
-        session()->flash('welcome', 'Welcome, '.auth()->user()->name.' SuppliMe Happy To Have You Back :)');
+        $this->authService->login($request);
         return redirect()->intended();
     }
 
-    public function destroy()
+    public function logout()
     {
-        Auth::logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
+        $this->authService->logout();
         return redirect(route('login'));
     }
 }

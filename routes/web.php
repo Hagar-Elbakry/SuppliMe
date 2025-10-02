@@ -51,7 +51,7 @@ Route::group(['prefix' => '/cart', 'as' => 'cart.', 'middleware' => 'auth'], fun
     Route::delete('/{product}', [CartController::class, 'destroy'])->name('destroy');
 });
 
-Route::group(['prefix' => '/payment/', 'as' => 'payment.', 'middleware' => 'auth', 'verified'], function () {
+Route::group(['prefix' => '/payment/', 'as' => 'payment.', 'middleware' => ['auth', 'verified']], function () {
     Route::get('{order}', [PaymentController::class, 'index'])->name('index');
     Route::post('create', [PaymentController::class, 'store'])->name('store');
 });
@@ -83,7 +83,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/shop', ShoppingController::class)->name('shop.index');
 
-    Route::post('/checkout', CheckoutController::class)->name('checkout.store');
+    Route::post('/checkout', CheckoutController::class)->name('checkout.store')->middleware('verified');
 
     Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
     Route::get('/products', SearchController::class)->name('search.index');
