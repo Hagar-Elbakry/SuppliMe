@@ -1,4 +1,8 @@
 ## 🛒 SuppliMe
+<p align="center">
+  <img src="public/images/cover.png" alt="SuppliMe Cover" width="100%" />
+</p>
+
 
 **SuppliMe** is a smart and modern **online supermarket platform** designed to make grocery shopping easier, faster, and more enjoyable for everyone.  
 
@@ -125,6 +129,6 @@ Follow these steps to set up **SuppliMe** locally:
 📎 [View Full Project Presentation (UML, BMC, Competitors, and more)](https://www.canva.com/design/DAGYiyVoYR4/yqPynpzQwpaaIgphqATE3w/edit?utm_content=DAGYiyVoYR4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ---
-### 🏁 Built with Passion by the SuppliMe Team 💪
+>  Built with Passion by the SuppliMe Team 💚
 
 
