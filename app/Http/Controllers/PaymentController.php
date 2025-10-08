@@ -2,36 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePaymentRequest;
-use App\Models\Governorate;
 use App\Models\Order;
-use App\Notifications\PaymentReceived;
+use App\Models\Governorate;
+use App\Services\OrderService;
 use App\Payments\PaymentFactory;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\PaymentReceived;
+use App\Http\Requests\StorePaymentRequest;
+use Mockery\Expectation;
 
 class PaymentController extends Controller
 {
-    public function index(Order $order)
+    public function index()
     {
-        $order = $this->getOrder($order);
         $governorates = Governorate::all();
-        return view('payment.index', compact('order', 'governorates'));
+        return view('payment.index', compact('governorates'));
     }
 
     /**
      * @param  Order  $order
      * @return mixed
      */
-    public function getOrder(Order $order)
-    {
-        $order = Order::findOrFail($order->id);
-        return $order;
-    }
 
-    public function store(StorePaymentRequest $request)
+
+    public function store(StorePaymentRequest $request,OrderService $orderService)
     {
         $validated = $request->validated();
         $paymentMethod = PaymentFactory::createPayment($validated['payment_method'])->pay();
-        $order = $this->getOrder(Order::find($validated['order_id']));
+        $user = Auth::user();
+        try{
+            $order = $orderService->placeOrder($user) ;
+        }catch(\Exception $e){
+            return redirect()->route('cart.index')->with('error', 'Failed to place order: ' . $e->getMessage());
+        }
 
         $this->storeAddress($order, $validated);
 

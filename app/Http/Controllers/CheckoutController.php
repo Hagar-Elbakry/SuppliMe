@@ -11,12 +11,11 @@ class CheckoutController extends Controller
 {
     public function __invoke(OrderService $orderService) {
         $user = Auth::user() ;
-        try{
-            $order = $orderService->placeOrder($user);
-            return redirect()->route('payment.index', $order->id);
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to place order: ' . $e->getMessage());
+        // ensure user have products in cart
+        if (Cart::where('user_id', $user->id)->count() == 0) {
+            return redirect()->route('cart.index')->with('error', 'Your cart is empty. Please add products to your cart before proceeding to checkout.');
         }
+        return redirect()->route('payment.index');
     }
 
 }
