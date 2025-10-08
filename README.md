@@ -27,6 +27,7 @@ SuppliMe delivers a seamless e-commerce experience built with a focus on **usabi
 <p align="center">
   <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel" />
   <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP" />
+  <img src="https://img.shields.io/badge/Filament-4ECDC4?style=for-the-badge&logo=laravel&logoColor=white"/>
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
   <img src="https://img.shields.io/badge/Blade%20Template-FFB400?style=for-the-badge&logo=laravel&logoColor=white" alt="Blade Template" />
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
@@ -96,7 +97,11 @@ Follow these steps to set up **SuppliMe** locally:
    php artisan serve
    ```
 
-✅ The project will now be available at [http://localhost:8000](http://localhost:8000)
+9. **Access the app**
+   - User interface → `http://127.0.0.1:8000`
+   - Admin panel → `http://127.0.0.1:8000/admin`
+   - Delivery panel → `http://127.0.0.1:8000/delivery`
+
 
 ---
 
@@ -114,5 +119,12 @@ Follow these steps to set up **SuppliMe** locally:
 
 ---
 
+
+## 📊 Presentation & Documentation
+
+📎 [View Full Project Presentation (UML, BMC, Competitors, and more)](https://www.canva.com/design/DAGYiyVoYR4/yqPynpzQwpaaIgphqATE3w/edit?utm_content=DAGYiyVoYR4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+---
+### 🏁 Built with Passion by the SuppliMe Team 💪
 
 
