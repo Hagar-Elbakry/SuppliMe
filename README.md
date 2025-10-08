@@ -91,9 +91,9 @@ Follow these steps to set up **SuppliMe** locally:
    php artisan key:generate
    ```
 
-7. **Run migrations and seeders**
+7. **Run migrations**
    ```bash
-   php artisan migrate --seed
+   php artisan migrate 
    ```
 
 8. **Start the development server**
@@ -117,7 +117,7 @@ Follow these steps to set up **SuppliMe** locally:
 | Name | Role | GitHub |
 |------|------|--------|
 | Menna Baligh | Backend Developer | [visit](https://github.com/Menna-Baligh) |
-| Hagar-Elbakry | Backend Developer | [visit](https://github.com/Hagar-Elbakry) |
+| Hagar Elbakry | Backend Developer | [visit](https://github.com/Hagar-Elbakry) |
 | Menna Hamada | Frontend Developer | [visit](https://github.com/MennaHamadaElsba3i) |
 | Menna Elsayed | UI/UX Designer | [visit](https://github.com/Mennaelsayd55) |
 
