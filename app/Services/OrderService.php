@@ -2,47 +2,53 @@
 
 namespace App\Services;
 
-use App\Models\Cart;
-use App\Models\Order;
-use App\Models\OrderDetail;
 use App\Models\Product;
-use App\Models\Shipping;
+use App\Repositories\OrderRepository;
 use Exception;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class OrderService
 {
 
-    protected $discountService;
+    protected $discountService, $orderRepository;
 
-    public function __construct(DiscountService $discountService)
+    public function __construct(DiscountService $discountService, OrderRepository $orderRepository)
     {
         $this->discountService = $discountService;
+        $this->orderRepository = $orderRepository;
+    }
+
+    public function getAllOrders()
+    {
+        return $this->orderRepository->getAllOrders();
+    }
+
+    public function getOrder($order)
+    {
+        $order = $this->orderRepository->getOrder($order);
+        $estimated_delivery = Carbon::parse($order->shipping->estimated_delivery);
+        return array($order, $estimated_delivery);
     }
 
     public function placeOrder($user)
     {
-        $cart = Cart::with('products')->where('user_id', $user->id)->firstOrFail();
+        $cart = $this->orderRepository->getUserCart($user);
 
         return DB::transaction(function () use ($user, $cart) {
             $order = $this->createOrder($user->id, $cart);
             $this->attachOrderDetails($order, $cart);
-            $this->clearCart($cart);
-            $this->createShipping($order);
-
+            $this->orderRepository->clearCart($cart);
+            $this->orderRepository->createShipping($order);
             return $order;
         });
     }
 
     protected function createOrder($userId, $cart)
     {
-        $total = $cart->products->sum(fn($p) => $this->calculateProductPrice($p) * $p->pivot->quantity
-        );
+        $total = $cart->products->sum(fn($p) => $this->calculateProductPrice($p) * $p->pivot->quantity);
 
-        return Order::create([
-            'user_id' => $userId,
-            'total_price' => $total,
-        ]);
+        return $this->orderRepository->createOrder($userId, $total);
     }
 
     protected function calculateProductPrice(Product $product)
@@ -61,29 +67,8 @@ class OrderService
                 throw new Exception("Not enough stock for product: {$product->name}");
             }
 
-            OrderDetail::create([
-                'order_id' => $order->id,
-                'product_id' => $product->id,
-                'quantity' => $qty,
-                'price' => $product->price,
-                'sub_total' => $product->price * $qty,
-            ]);
-
+            $this->orderRepository->storeOrderDetails($order, $product, $qty);
             $product->decrement('stock_quantity', $qty);
         }
-    }
-
-    protected function clearCart($cart)
-    {
-        $cart->products()->detach();
-    }
-
-    protected function createShipping($order)
-    {
-        Shipping::create([
-            'tracking_number' => 'TRK-'.strtoupper(uniqid()),
-            'order_id' => $order->id,
-            'estimated_delivery' => now()->addDays(5),
-        ]);
     }
 }

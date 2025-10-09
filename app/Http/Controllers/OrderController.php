@@ -3,32 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Services\OrderService;
 
 class OrderController extends Controller
 {
+    public $orderService;
     protected $status = [
         'unassigned' => 'In Progress',
         'assigned' => 'On the Way',
         'delivered' => 'Delivered'
     ];
 
+    public function __construct(OrderService $orderService)
+    {
+        $this->orderService = $orderService;
+    }
+
     public function index()
     {
-        $orders = Order::where('user_id', Auth::user()->id)
-            ->with(['orderDetails.product'])
-            ->latest()
-            ->get();
+        $orders = $this->orderService->getAllOrders();
         return view('orders.index', compact('orders'));
     }
 
     public function show(Order $order)
     {
-        $order = Order::where('user_id', Auth::user()->id)
-            ->with(['orderDetails.product', 'shipping'])
-            ->findOrFail($order->id);
-        $estimated_delivery = Carbon::parse($order->shipping->estimated_delivery);
+        list($order, $estimated_delivery) = $this->orderService->getOrder($order);
         return view('orders.show', [
             'order' => $order,
             'status' => $this->status,
