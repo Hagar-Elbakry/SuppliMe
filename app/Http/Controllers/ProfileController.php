@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DeleteProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
+use App\Services\ProfileService;
 
 class ProfileController extends Controller
 {
+    public $profileService;
+
+    public function __construct(ProfileService $profileService)
+    {
+        $this->profileService = $profileService;
+    }
+
     public function show(User $user)
     {
         return view('profile.show', ['user' => $user]);
@@ -23,17 +28,10 @@ class ProfileController extends Controller
 
     public function deleteImage(User $user)
     {
-        $this->deleteUserImage($user);
-        $user->update(['image' => null]);
+        $this->profileService->deleteUserImage($user);
         return redirect()->route('profile.show', $user)->with('success', 'Profile image deleted.');
     }
 
-    private function deleteUserImage(User $user): void
-    {
-        if ($user->getRawOriginal('image')) {
-            Storage::delete($user->getRawOriginal('image'));
-        }
-    }
 
     public function delete(User $user)
     {
@@ -42,26 +40,13 @@ class ProfileController extends Controller
 
     public function update(UpdateProfileRequest $request, User $user)
     {
-        $attributes = $request->validated();
-
-        $attributes['password'] = Hash::make($attributes['password']);
-
-        if ($request->hasFile('image')) {
-            $this->deleteUserImage($user);
-            $attributes['image'] = $request->file('image')->store('avatars');
-        }
-        $user->update($attributes);
+        $this->profileService->updateUserProfile($request, $user);
         return redirect()->route('profile.show', $user)->with('success', 'Profile updated successfully!');
     }
 
     public function destroy(DeleteProfileRequest $request, User $user)
     {
-        $request->validated();
-        $this->deleteUserImage($user);
-        $user->delete();
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $this->profileService->deleteUser($request, $user);
         return redirect()->route('home')->with('success', 'Account deleted successfully!');
     }
 }
