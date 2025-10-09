@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Product;
-use App\Services\DiscountService;
+use App\Services\HomeService;
 
 class HomeController extends Controller
 {
-    public function __invoke(DiscountService $discountService)
+    public $homeService;
+
+    public function __construct(HomeService $homeService)
     {
+        $this->homeService = $homeService;
+    }
 
-        $categories = Category::all();
-
-        $featuredProducts = Product::where('is_featured', 1)->get();
-
-        $dailyOffers = $discountService->activeDailyDiscount();
-
-        $bestSellers = Product::inRandomOrder()->take(6)->get();
+    public function __invoke()
+    {
+        list($categories, $featuredProducts, $dailyOffers, $bestSellers) = $this->homeService->getData();
         return view('home', compact('categories', 'featuredProducts', 'dailyOffers', 'bestSellers'));
     }
 }

@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\Category;
+use App\Services\ShoppingService;
 
 class ShoppingController extends Controller
 {
-    public function __invoke(){
-        $categoryId = request()->query('category');
-        $categories = Category::all();
-        $products = Product::with('category')
-                    ->filterByCategory($categoryId)
-                    ->inRandomOrder()
-                    ->paginate(6);
+    public $shoppingService;
+
+    public function __construct(ShoppingService $shoppingService)
+    {
+        $this->shoppingService = $shoppingService;
+    }
+
+    public function __invoke()
+    {
+        list($categories, $products) = $this->shoppingService->getCategoriesAndProducts();
         return view('shopping.index', compact('products', 'categories'));
     }
 }
