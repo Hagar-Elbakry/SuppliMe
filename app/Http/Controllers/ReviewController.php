@@ -3,24 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRatingRequest;
-use App\Models\Review;
-use Illuminate\Support\Facades\Auth;
+use App\Services\ReviewService;
 
 class ReviewController extends Controller
 {
+    public $reviewService;
+
+    public function __construct(ReviewService $reviewService)
+    {
+        $this->reviewService = $reviewService;
+    }
+
     public function store(StoreRatingRequest $request)
     {
-        $request->validated();
-        $review = Review::updateOrCreate(
-            [
-                'product_id' => $request->product_id,
-                'user_id' => Auth::id(),
-            ],
-            [
-                'rate' => $request->rating,
-            ]
-        );
+        $review = $this->reviewService->storeReview($request);
         return redirect()->back()->with('rating', $review->rate);
-
     }
 }
