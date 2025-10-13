@@ -2,12 +2,10 @@
 
 namespace App\Services;
 
-use App\Mail\WelcomeEmail;
+use App\Events\UserRegistered;
 use App\Repositories\AuthRepository;
-use Filament\Events\Auth\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class AuthService
@@ -28,8 +26,7 @@ class AuthService
         $request = $request->all();
         $request['password'] = Hash::make($request['password']);
         $user = $this->authRepository->register($request);
-        event(new Registered($user));
-        Mail::to($user->email)->queue(new WelcomeEmail($user));
+        event(new UserRegistered($user));
         Auth::login($user);
     }
 
