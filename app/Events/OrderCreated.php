@@ -12,14 +12,15 @@ class OrderCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $order;
+    public $order, $paymentMethod;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($order)
+    public function __construct($order, $paymentMethod)
     {
         $this->order = $order;
+        $this->paymentMethod = $paymentMethod;
     }
 
     /**

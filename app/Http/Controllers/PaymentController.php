@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePaymentRequest;
 use App\Models\Order;
-use App\Notifications\PaymentReceived;
 use App\Services\OrderService;
 use App\Services\PaymentService;
 
@@ -31,11 +30,7 @@ class PaymentController extends Controller
 
     public function store(StorePaymentRequest $request, OrderService $orderService)
     {
-        list($order, $paymentMethod) = $this->paymentService->storePayment($request, $orderService);
-        $amount = $order->total_price + ($order->shipping_cost ?? 0);
-
-
-        request()->user()->notify(new PaymentReceived($amount, $paymentMethod));
+        $this->paymentService->storePayment($request, $orderService);
         return redirect(route('notifications.show'));
     }
 

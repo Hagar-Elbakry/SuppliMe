@@ -34,15 +34,13 @@ class PaymentService
         $user = Auth::user();
         try {
             $order = $orderService->placeOrder($user);
-            event(new OrderCreated($order));
         } catch (Exception $e) {
-            redirect()->route('cart.index')->with('error', 'Failed to place order: '.$e->getMessage());
+            return redirect()->route('cart.index')->with('error', 'Failed to place order: '.$e->getMessage());
         }
 
         $this->paymentRepository->storeAddress($order, $validated);
 
         $this->paymentRepository->updateOrder($order, $validated, $paymentMethod);
-
-        return array($order, $paymentMethod);
+        event(new OrderCreated($order, $paymentMethod));
     }
 }
