@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
 use App\Enums\ShippingStatus;
+use App\Events\DeliveryAssigned;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\Widgets\OrderOverview;
 use App\Models\Governorate;
@@ -212,6 +213,14 @@ class OrderResource extends Resource
                                         )
                                         ->label('Assigned Delivery')
                                         ->searchable()
+                                        ->afterStateUpdated(function ($state, $get) {
+                                            if ($state) {
+                                                $order = Order::find($get('id'));
+                                                if ($order) {
+                                                    event(new DeliveryAssigned($order, $state));
+                                                }
+                                            }
+                                        })
                                         ->preload(),
 
                                     ToggleButtons::make('status')

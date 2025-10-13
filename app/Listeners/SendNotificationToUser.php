@@ -21,7 +21,7 @@ class SendNotificationToUser
     public function handle(OrderCreated $event): void
     {
         $amount = $event->order->total_price + ($event->order->shipping_cost ?? 0);
-        $paymentMethod = $event->paymentMethod;
+        $paymentMethod = $event->order->payment_method;
         request()->user()->notify(new PaymentReceived($amount, $paymentMethod));
     }
 }

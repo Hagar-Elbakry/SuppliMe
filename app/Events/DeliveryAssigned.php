@@ -8,18 +8,19 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderCreated
+class DeliveryAssigned
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $order;
+    public $order, $delivery;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($order)
+    public function __construct($order, $delivery)
     {
         $this->order = $order;
+        $this->delivery = $delivery;
     }
 
     /**

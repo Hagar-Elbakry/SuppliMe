@@ -41,6 +41,6 @@ class PaymentService
         $this->paymentRepository->storeAddress($order, $validated);
 
         $this->paymentRepository->updateOrder($order, $validated, $paymentMethod);
-        event(new OrderCreated($order, $paymentMethod));
+        event(new OrderCreated($order));
     }
 }
