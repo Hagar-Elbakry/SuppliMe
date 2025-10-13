@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\OrderCreated;
+use App\Events\UserRegistered;
+use App\Listeners\SendNotificationToAdmins;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -9,6 +12,7 @@ use App\Observers\CategorylObserver;
 use App\Observers\ProductObserver;
 use App\Observers\UserObserver;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -32,5 +36,7 @@ class AppServiceProvider extends ServiceProvider
         Category::observe(CategorylObserver::class);
         Product::observe(ProductObserver::class);
         view()->share('discountService', app('App\Services\DiscountService'));
+        Event::listen(UserRegistered::class, SendNotificationToAdmins::class);
+        Event::listen(OrderCreated::class, SendNotificationToAdmins::class);
     }
 }

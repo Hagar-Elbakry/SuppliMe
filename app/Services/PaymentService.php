@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\OrderCreated;
 use App\Repositories\PaymentRepository;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -33,8 +34,9 @@ class PaymentService
         $user = Auth::user();
         try {
             $order = $orderService->placeOrder($user);
+            event(new OrderCreated($order));
         } catch (Exception $e) {
-            return redirect()->route('cart.index')->with('error', 'Failed to place order: '.$e->getMessage());
+            redirect()->route('cart.index')->with('error', 'Failed to place order: '.$e->getMessage());
         }
 
         $this->paymentRepository->storeAddress($order, $validated);
